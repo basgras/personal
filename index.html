@@ -59,6 +59,26 @@
       aspect-ratio: 4 / 3;
       object-fit: cover;
     }
+
+    @media (prefers-color-scheme: dark) {
+  body {
+    background: #1f1f1b;   /* warm dark, not pure black */
+    color: #f3f3ee;
+  }
+
+  a {
+    color: #c9d4ff;
+  }
+
+  .muted {
+    color: rgba(243, 243, 238, 0.7);
+  }
+
+  .card {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.18);
+  }
+}
   </style>
 </head>
 
