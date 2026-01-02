@@ -81,12 +81,13 @@
       cursor: pointer;
       list-style: none;
       display: flex;
-      align-items: center;
+      align-items: baseline; /* changed: cleaner alignment */
       gap: 10px;
       padding: 6px 0;
     }
     summary::-webkit-details-marker { display: none; }
 
+    /* Toggle: use SVG (optically centered) */
     .toggle {
       width: 16px;
       height: 16px;
@@ -96,18 +97,21 @@
 
       border: 1px solid rgba(0,0,0,0.22);
       border-radius: 999px;
-      font-size: 14px;
-      line-height: 1;
-      font-weight: 600;
-
-      transform: translateY(-0.5px);
       flex: 0 0 auto;
       user-select: none;
       opacity: 0.85;
+      margin-top: 1px; /* tiny baseline nudge */
     }
 
-    details > summary .toggle::before { content: "+"; }
-    details[open] > summary .toggle::before { content: "–"; }
+    .toggle svg {
+      width: 10px;
+      height: 10px;
+      display: block;
+      stroke: currentColor;
+    }
+
+    details[open] > summary .toggle .icon-plus { display: none; }
+    details:not([open]) > summary .toggle .icon-minus { display: none; }
 
     .section-summary {
       font-weight: 700;
@@ -270,7 +274,17 @@
 
         <!-- Background -->
         <details class="background">
-          <summary><span class="toggle" aria-hidden="true"></span><span class="section-summary">🌳 Background</span></summary>
+          <summary>
+            <span class="toggle" aria-hidden="true">
+              <svg class="icon-plus" viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M6 1v10M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              <svg class="icon-minus" viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="section-summary">🌳 Background</span>
+          </summary>
 
           <div class="bg-intro">
             <p>These are four of my most formative professional experiences in my past.</p>
@@ -279,7 +293,14 @@
 
           <details class="role">
             <summary>
-              <span class="toggle" aria-hidden="true"></span>
+              <span class="toggle" aria-hidden="true">
+                <svg class="icon-plus" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M6 1v10M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+                <svg class="icon-minus" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
               <span class="role-title">Head of Platform Management &amp; Distribution, COLORS</span>
               <span class="meta">(2021 – 2025)</span>
             </summary>
@@ -296,7 +317,14 @@
 
           <details class="role">
             <summary>
-              <span class="toggle" aria-hidden="true"></span>
+              <span class="toggle" aria-hidden="true">
+                <svg class="icon-plus" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M6 1v10M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+                <svg class="icon-minus" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
               <span class="role-title">Director of Product, IDAGIO</span>
               <span class="meta">(Apr 2017 – Aug 2019)</span>
             </summary>
@@ -312,7 +340,14 @@
 
           <details class="role">
             <summary>
-              <span class="toggle" aria-hidden="true"></span>
+              <span class="toggle" aria-hidden="true">
+                <svg class="icon-plus" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M6 1v10M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+                <svg class="icon-minus" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
               <span class="role-title">Product Lead, Zvooq</span>
               <span class="meta">(2012 – late 2014)</span>
             </summary>
@@ -327,7 +362,14 @@
 
           <details class="role">
             <summary>
-              <span class="toggle" aria-hidden="true"></span>
+              <span class="toggle" aria-hidden="true">
+                <svg class="icon-plus" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M6 1v10M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+                <svg class="icon-minus" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
               <span class="role-title">BA International Communication Management</span>
               <span class="meta">(2011)</span>
             </summary>
@@ -341,15 +383,24 @@
           </details>
         </details>
 
-        
         <!-- Selected writing -->
         <details>
-          <summary><span class="toggle" aria-hidden="true"></span><span class="section-summary">✍️ Selected writing</span></summary>
+          <summary>
+            <span class="toggle" aria-hidden="true">
+              <svg class="icon-plus" viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M6 1v10M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              <svg class="icon-minus" viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="section-summary">✍️ Selected writing</span>
+          </summary>
+
           <ul class="links">
-            <!-- Add as many as you want; one per line -->
-            <li><a href="https://calmfluffy.substack.com/p/the-slow-streaming-movement-counteracting" rel="noopener">The slow streaming movement: counteracting Spotify & co's economic impact on artists</a></li>
+            <li><a href="https://calmfluffy.substack.com/p/the-slow-streaming-movement-counteracting" rel="noopener">The slow streaming movement: counteracting Spotify &amp; co's economic impact on artists</a></li>
             <li><a href="https://calmfluffy.substack.com/p/were-addicted-to-our-phones-this" rel="noopener">We’re addicted to our phones. This is my experiment to break free.</a></li>
-            <li><a href="https://calmfluffy.substack.com/p/can-you-really-not-be-unreachable" rel="noopener">Can you REALLY not be unreachable for a few hours per day?e</a></li>
+            <li><a href="https://calmfluffy.substack.com/p/can-you-really-not-be-unreachable" rel="noopener">Can you REALLY not be unreachable for a few hours per day?</a></li>
             <li><a href="https://musicx.substack.com/p/will-ai-correct-the-anomaly-of-the" rel="noopener">Will AI correct the anomaly of the 20th century music business?</a></li>
             <li><a href="https://www.calmfluffy.cloud/p/ai-as-the-operating-system-generative" rel="noopener">AI as the operating system: generative user interfaces</a></li>
             <li><a href="https://www.musicxtechxfuture.com/2020/12/15/your-own-personal-ai-music-star/" rel="noopener">Your own personal AI music star</a></li>
@@ -360,7 +411,6 @@
 
         <footer aria-label="Social links">
           <a class="iconlink" href="https://bsky.app/profile/bas.bsky.social" aria-label="Bluesky" rel="noopener">
-            <!-- simple 'cloud' icon -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/>
             </svg>
