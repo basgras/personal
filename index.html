@@ -202,8 +202,18 @@
   width: 20px;
   height: 20px;
   display: block;
-  fill: currentColor;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
+
+    .iconlink svg.fill {
+  fill: currentColor;
+  stroke: none;
+}
+
 
 .iconlink:hover { opacity: 1; }
 
@@ -386,21 +396,26 @@
 
         <footer aria-label="Social links">
           <a class="iconlink" href="https://bsky.app/profile/bas.bsky.social" aria-label="Bluesky" rel="noopener">
-<svg viewBox="0 0 16 16" aria-hidden="true">
+<svg class="fill" viewBox="0 0 16 16" aria-hidden="true">
   <path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/>
 </svg>
          </a>
 
           <a class="iconlink" href="https://www.linkedin.com/in/grasmayer/" aria-label="LinkedIn" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M4.98 3.5a2.5 2.5 0 1 0 .02 5 2.5 2.5 0 0 0-.02-5zM3.5 21h3V9h-3v12zM9 9h2.9v1.64h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6V21h-3v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9V9z"/>
-            </svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4V9h4v2"/>
+  <path d="M2 9h4v12H2z"/>
+  <path d="M4 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+</svg>
           </a>
 
           <a class="iconlink" href="https://calmfluffy.substack.com/" aria-label="Substack" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M5 4h14v3H5V4zm0 5h14v3H5V9zm0 5h14v6l-7-3-7 3v-6z"/>
-            </svg>
+<svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M6 8h12"/>
+  <path d="M6 12h12"/>
+  <path d="M6 16h12"/>
+  <path d="M6 4h12v16H6z"/>
+</svg>
           </a>
         </footer>
       </div>
