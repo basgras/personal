@@ -6,163 +6,208 @@
   <title>Bas Grasmayer</title>
   <meta name="description" content="Strategist focused on product and organisational development." />
 
- <style>
-  :root { color-scheme: light; }
+  <style>
+    :root { color-scheme: light; }
 
-  body {
-    margin: 0;
-    font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-    color: #111;
-    background: #FFFDF8;
-  }
-
-  main {
-    max-width: 920px;
-    margin: 72px auto;
-    padding: 0 20px 96px;
-  }
-
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 28px;
-    align-items: start;
-  }
-
-  @media (min-width: 860px) {
-    .hero {
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 44px;
-    }
-  }
-
-  h1 { font-size: 40px; line-height: 1.1; margin: 0 0 18px; }
-  h2 { font-size: 18px; margin: 28px 0 12px; }
-  p { margin: 0 0 14px; }
-  ul { margin: 0 0 14px 18px; padding: 0; }
-  a { text-underline-offset: 3px; }
-
-  .muted { color: rgba(0,0,0,0.65); }
-
-  /* Make the photo frame lighter + smaller */
-  .card {
-    padding: 10px;
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 12px;
-    background: rgba(255,255,255,0.35);
-    backdrop-filter: blur(2px);
-  }
-
-  .photo {
-    width: 100%;
-    border-radius: 10px;
-    display: block;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-
-  /* Align photo with content: start at the first paragraph (i.e., below H1) */
-  @media (min-width: 860px) {
-    .photo-wrap {
-      margin-top: 58px; /* adjust +/- if needed */
-    }
-  }
-
-  /* Expand/collapse styling (more minimal + clearer) */
-  details { margin-top: 22px; }
-
-  summary {
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 6px 0;
-  }
-  summary::-webkit-details-marker { display: none; }
-
-  /* Minimal toggle: centered, consistent, light */
-  .toggle {
-    width: 16px;
-    height: 16px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid rgba(0,0,0,0.22);
-    border-radius: 999px;      /* circle */
-    font-size: 14px;
-    line-height: 1;
-    font-weight: 600;
-
-    transform: translateY(-0.5px); /* optical centering */
-    flex: 0 0 auto;
-    user-select: none;
-    opacity: 0.85;
-  }
-
-  details > summary .toggle::before { content: "+"; }
-  details[open] > summary .toggle::before { content: "–"; }
-
-  .bg-summary {
-    font-weight: 700;
-    font-size: 20px;
-  }
-
-  .role {
-    margin-top: 18px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(0,0,0,0.10);
-  }
-  .role:first-of-type {
-    border-top: none;
-    padding-top: 0;
-  }
-
-  .role > summary {
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px 0;
-  }
-
-  .role-title {
-    font-weight: 700;
-    font-size: 16px;
-  }
-
-  .meta {
-    font-weight: 500;
-    font-size: 13px;
-    color: rgba(0,0,0,0.65);
-  }
-
-  .links { margin: 8px 0 0; padding-left: 18px; }
-
-  @media (prefers-color-scheme: dark) {
     body {
-      background: #1f1f1b;
-      color: #f3f3ee;
+      margin: 0;
+      font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: #111;
+      background: #FFFDF8;
     }
 
-    a { color: #c9d4ff; }
-    .muted { color: rgba(243, 243, 238, 0.7); }
+    main {
+      max-width: 920px;
+      margin: 72px auto;
+      padding: 0 20px 72px;
+    }
 
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    @media (min-width: 860px) {
+      .hero {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 44px;
+      }
+    }
+
+    h1 { font-size: 40px; line-height: 1.1; margin: 0 0 18px; }
+    h2 { font-size: 18px; margin: 28px 0 12px; }
+    p { margin: 0 0 14px; }
+    ul { margin: 0 0 14px 18px; padding: 0; }
+    a { text-underline-offset: 3px; }
+    .muted { color: rgba(0,0,0,0.65); }
+
+    /* Photo frame */
     .card {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.14);
+      padding: 10px;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(2px);
     }
 
-    .role { border-top-color: rgba(255,255,255,0.18); }
-    .meta { color: rgba(243, 243, 238, 0.7); }
+    .photo {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    /* Desktop: align photo start below H1 */
+    @media (min-width: 860px) {
+      .photo-wrap-desktop { margin-top: 58px; } /* adjust +/- if needed */
+    }
+
+    /* Mobile: show photo right below Contact (and hide desktop photo) */
+    .photo-mobile { display: block; margin-top: 16px; }
+    .photo-desktop { display: none; }
+
+    @media (min-width: 860px) {
+      .photo-mobile { display: none; }
+      .photo-desktop { display: block; }
+    }
+
+    /* Expand/collapse */
+    details { margin-top: 22px; }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+    }
+    summary::-webkit-details-marker { display: none; }
 
     .toggle {
-      border-color: rgba(255,255,255,0.28);
-      opacity: 0.9;
-    }
-  }
-</style>
+      width: 16px;
+      height: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
+      border: 1px solid rgba(0,0,0,0.22);
+      border-radius: 999px;
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 600;
+
+      transform: translateY(-0.5px);
+      flex: 0 0 auto;
+      user-select: none;
+      opacity: 0.85;
+    }
+
+    details > summary .toggle::before { content: "+"; }
+    details[open] > summary .toggle::before { content: "–"; }
+
+    .section-summary {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .role {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(0,0,0,0.10);
+    }
+    .role:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .role > summary {
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .role-title {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .meta {
+      font-weight: 500;
+      font-size: 13px;
+      color: rgba(0,0,0,0.65);
+    }
+
+    .links { margin: 8px 0 0; padding-left: 18px; }
+
+    /* Background section separator (matches role dividers) */
+    details.background {
+      margin-top: 36px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(0,0,0,0.12);
+    }
+
+    /* Footer icons */
+    footer {
+      margin-top: 44px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(0,0,0,0.12);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .iconlink {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: rgba(255,255,255,0.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .iconlink svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+      fill: currentColor;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #1f1f1b; color: #f3f3ee; }
+      a { color: #c9d4ff; }
+      .muted { color: rgba(243, 243, 238, 0.7); }
+
+      .card {
+        background: rgba(255,255,255,0.06);
+        border-color: rgba(255,255,255,0.14);
+      }
+
+      .role { border-top-color: rgba(255,255,255,0.18); }
+      .meta { color: rgba(243, 243, 238, 0.7); }
+
+      .toggle {
+        border-color: rgba(255,255,255,0.28);
+        opacity: 0.9;
+      }
+
+      details.background { border-top-color: rgba(255,255,255,0.18); }
+
+      footer { border-top-color: rgba(255,255,255,0.18); }
+
+      .iconlink {
+        border-color: rgba(255,255,255,0.18);
+        background: rgba(255,255,255,0.06);
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -218,9 +263,14 @@
           <li>Email: <a href="mailto:bas@grasmayer.com">bas@grasmayer.com</a></li>
         </ul>
 
+        <!-- Photo on mobile (right below Contact) -->
+        <div class="card photo-mobile">
+          <img class="photo" src="content/basgrasmayer.jpg" alt="Bas Grasmayer" loading="lazy" />
+        </div>
+
         <!-- Background -->
-        <details>
-          <summary><span class="toggle" aria-hidden="true"></span><span class="bg-summary">🌳 Background</span></summary>
+        <details class="background">
+          <summary><span class="toggle" aria-hidden="true"></span><span class="section-summary">🌳 Background</span></summary>
 
           <div class="bg-intro">
             <p>These are four of my most formative professional experiences in my past.</p>
@@ -290,9 +340,44 @@
             </ul>
           </details>
         </details>
+
+        
+        <!-- Selected writing -->
+        <details>
+          <summary><span class="toggle" aria-hidden="true"></span><span class="section-summary">✍️ Selected writing</span></summary>
+          <ul class="links">
+            <!-- Add as many as you want; one per line -->
+            <li><a href="https://www.forbes.com/sites/cheriehu/2016/07/12/why-pokemon-go-is-more-valuable-than-spotify-soundcloud-and-tidal-combined/" rel="noopener">Why Pokémon Go is more valuable than Spotify, SoundCloud and Tidal combined</a></li>
+            <li><a href="https://ra.co/features/4200" rel="noopener">Resident Advisor: Feature 4200</a></li>
+            <li><a href="https://www.waterandmusic.com/the-rise-of-the-fan-centric-music-streaming-service/" rel="noopener">The rise of the fan-centric music streaming service</a></li>
+            <li><a href="https://www.musicxtechxfuture.com/2021/05/04/why-fanbases-need-to-be-networks-rather-than-channels/" rel="noopener">Why fanbases need to be networks, rather than channels</a></li>
+          </ul>
+        </details>
+
+        <footer aria-label="Social links">
+          <a class="iconlink" href="https://bsky.app/profile/bas.bsky.social" aria-label="Bluesky" rel="noopener">
+            <!-- simple 'cloud' icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.5 18.5h9a4.5 4.5 0 0 0 .6-8.96A5.5 5.5 0 0 0 6.2 7.5a4 4 0 0 0 1.3 11z"/>
+            </svg>
+          </a>
+
+          <a class="iconlink" href="https://www.linkedin.com/in/grasmayer/" aria-label="LinkedIn" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3.5 21h3V9h-3v12zM9 9h2.9v1.64h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6V21h-3v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9V9z"/>
+            </svg>
+          </a>
+
+          <a class="iconlink" href="https://calmfluffy.substack.com/" aria-label="Substack" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 4h14v3H5V4zm0 5h14v3H5V9zm0 5h14v6l-7-3-7 3v-6z"/>
+            </svg>
+          </a>
+        </footer>
       </div>
 
-      <div class="card photo-wrap">
+      <!-- Photo on desktop (right column) -->
+      <div class="card photo-wrap-desktop photo-desktop">
         <img class="photo" src="content/basgrasmayer.jpg" alt="Bas Grasmayer" loading="lazy" />
       </div>
     </section>
