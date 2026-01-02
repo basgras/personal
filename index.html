@@ -6,249 +6,290 @@
   <title>Bas Grasmayer</title>
   <meta name="description" content="Strategist focused on product and organisational development." />
 
-  <style>
-    :root { color-scheme: light; }
+<style>
+  :root { color-scheme: light; }
 
-    body {
-      margin: 0;
-      font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color: #111;
-      background: #FFFDF8;
-    }
+  body {
+    margin: 0;
+    font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    color: #111;
+    background: #FFFDF8;
+  }
 
-    main {
-      max-width: 920px;
-      margin: 72px auto;
-      padding: 0 20px 72px;
-    }
+  main {
+    max-width: 920px;
+    margin: 72px auto;
+    padding: 0 20px 72px;
+  }
 
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  @media (min-width: 860px) {
     .hero {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 28px;
-      align-items: start;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 44px;
     }
+  }
 
-    @media (min-width: 860px) {
-      .hero {
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 44px;
-      }
-    }
+  /* ─────────────────────────────
+     TYPOGRAPHY HIERARCHY (FIXED)
+     ───────────────────────────── */
 
-    h1 { font-size: 40px; line-height: 1.1; margin: 0 0 18px; }
-    h2 { font-size: 18px; margin: 28px 0 12px; }
-    p { margin: 0 0 14px; }
-    ul { margin: 0 0 14px 18px; padding: 0; }
-    a { text-underline-offset: 3px; }
+  h1 {
+    font-size: clamp(30px, 3.6vw, 38px);
+    line-height: 1.12;
+    margin: 0 0 18px;
+    letter-spacing: -0.02em;
+  }
 
-    /* Photo frame */
+  h2 {
+    font-size: clamp(18px, 2.1vw, 22px);
+    line-height: 1.25;
+    margin: 26px 0 12px;
+    letter-spacing: -0.01em;
+  }
+
+  p { margin: 0 0 14px; }
+
+  ul { margin: 0 0 14px 18px; padding: 0; }
+
+  a { text-underline-offset: 3px; }
+
+  /* Collapsible section titles (Background / Selected writing) */
+  .section-summary {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  /* Role titles inside Background */
+  .role-title {
+    font-weight: 650;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  /* Meta dates */
+  .meta {
+    font-weight: 500;
+    font-size: 12.5px;
+    color: rgba(0,0,0,0.6);
+  }
+
+  /* ─────────────────────────────
+     PHOTO
+     ───────────────────────────── */
+
+  .card {
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.35);
+    backdrop-filter: blur(2px);
+  }
+
+  .photo {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  @media (min-width: 860px) {
+    .photo-wrap-desktop { margin-top: 58px; }
+  }
+
+  .photo-mobile { display: block; margin-top: 16px; }
+  .photo-desktop { display: none; }
+
+  @media (min-width: 860px) {
+    .photo-mobile { display: none; }
+    .photo-desktop { display: block; }
+  }
+
+  /* ─────────────────────────────
+     DETAILS / TOGGLES
+     ───────────────────────────── */
+
+  details { margin-top: 22px; }
+
+  summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 6px 0;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  details[open] > summary {
+    margin-bottom: 6px;
+  }
+
+  .toggle {
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,0.22);
+    border-radius: 999px;
+    flex: 0 0 auto;
+    user-select: none;
+    opacity: 0.85;
+    margin-top: 1px;
+  }
+
+  .toggle svg {
+    width: 10px;
+    height: 10px;
+    display: block;
+    stroke: currentColor;
+  }
+
+  details[open] > summary .icon-plus { display: none; }
+  details:not([open]) > summary .icon-minus { display: none; }
+
+  .role {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(0,0,0,0.10);
+  }
+
+  .role:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .role > summary {
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .links { margin: 8px 0 0; padding-left: 18px; }
+
+  /* ─────────────────────────────
+     EMBED (YouTube)
+     ───────────────────────────── */
+
+  .embed {
+    margin-top: 12px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.10);
+    background: rgba(255,255,255,0.2);
+  }
+
+  .embed iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    display: block;
+  }
+
+  /* ─────────────────────────────
+     BACKGROUND SECTION SEPARATOR
+     ───────────────────────────── */
+
+  details.background {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(0,0,0,0.12);
+  }
+
+  details.background[open]::after {
+    content: "";
+    display: block;
+    margin-top: 22px;
+    border-top: 1px solid rgba(0,0,0,0.12);
+  }
+
+  /* ─────────────────────────────
+     FOOTER
+     ───────────────────────────── */
+
+  footer {
+    margin-top: 44px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    align-items: center;
+  }
+
+  .iconlink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+    opacity: 0.7;
+    padding: 6px;
+  }
+
+  .iconlink svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    fill: currentColor;
+  }
+
+  .iconlink:hover { opacity: 1; }
+
+  .iconlink:focus-visible {
+    outline: 2px solid rgba(0,0,0,0.35);
+    outline-offset: 2px;
+  }
+
+  /* ─────────────────────────────
+     DARK MODE
+     ───────────────────────────── */
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #1f1f1b; color: #f3f3ee; }
+    a { color: #c9d4ff; }
+
+    .meta { color: rgba(243,243,238,0.65); }
+
     .card {
-      padding: 10px;
-      border: 1px solid rgba(0,0,0,0.08);
-      border-radius: 12px;
-      background: rgba(255,255,255,0.35);
-      backdrop-filter: blur(2px);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.14);
     }
 
-    .photo {
-      width: 100%;
-      border-radius: 10px;
-      display: block;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-    }
+    .role { border-top-color: rgba(255,255,255,0.18); }
 
-    /* Desktop: align photo start below H1 */
-    @media (min-width: 860px) {
-      .photo-wrap-desktop { margin-top: 58px; } /* adjust +/- if needed */
-    }
-
-    /* Mobile: show photo right below Contact (and hide desktop photo) */
-    .photo-mobile { display: block; margin-top: 16px; }
-    .photo-desktop { display: none; }
-
-    @media (min-width: 860px) {
-      .photo-mobile { display: none; }
-      .photo-desktop { display: block; }
-    }
-
-    /* Expand/collapse */
-    details { margin-top: 22px; }
-
-    summary {
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      align-items: baseline; /* changed: cleaner alignment */
-      gap: 10px;
-      padding: 6px 0;
-    }
-    summary::-webkit-details-marker { display: none; }
-
-    /* Toggle: use SVG (optically centered) */
     .toggle {
-      width: 16px;
-      height: 16px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      border: 1px solid rgba(0,0,0,0.22);
-      border-radius: 999px;
-      flex: 0 0 auto;
-      user-select: none;
-      opacity: 0.85;
-      margin-top: 1px; /* tiny baseline nudge */
+      border-color: rgba(255,255,255,0.28);
+      opacity: 0.9;
     }
 
-    .toggle svg {
-      width: 10px;
-      height: 10px;
-      display: block;
-      stroke: currentColor;
-    }
+    details.background { border-top-color: rgba(255,255,255,0.18); }
+    details.background[open]::after { border-top-color: rgba(255,255,255,0.18); }
 
-    details[open] > summary .toggle .icon-plus { display: none; }
-    details:not([open]) > summary .toggle .icon-minus { display: none; }
-
-    .section-summary {
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    .role {
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(0,0,0,0.10);
-    }
-    .role:first-of-type {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    .role > summary {
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 10px 0;
-    }
-
-    .role-title {
-      font-weight: 700;
-      font-size: 16px;
-    }
-
-    .meta {
-      font-weight: 500;
-      font-size: 13px;
-      color: rgba(0,0,0,0.65);
-    }
-
-    .links { margin: 8px 0 0; padding-left: 18px; }
-
-    .embed {
-      margin-top: 12px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.10);
-      background: rgba(255,255,255,0.2);
-    }
-
-    .embed iframe {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: 0;
-      display: block;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .embed { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); }
-    }
-
-    /* Background section separator (matches role dividers) */
-    details.background {
-      margin-top: 36px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(0,0,0,0.12);
-    }
-    details.background[open]::after {
-      content: "";
-      display: block;
-      margin-top: 22px;
-      border-top: 1px solid rgba(0,0,0,0.12);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      details.background[open]::after {
-        border-top-color: rgba(255,255,255,0.18);
-      }
-    }
-
-    /* Footer icons (UPDATED: centered, no boxes, Bootstrap SVGs) */
-    footer {
-      margin-top: 44px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(0,0,0,0.12);
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .iconlink {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: inherit;
-      opacity: 0.75;
-      padding: 6px; /* tap target, no visible box */
-    }
-
-    .iconlink:hover { opacity: 1; }
+    footer { border-top-color: rgba(255,255,255,0.18); }
 
     .iconlink:focus-visible {
-      outline: 2px solid rgba(0,0,0,0.35);
-      outline-offset: 3px;
-      border-radius: 8px;
+      outline-color: rgba(255,255,255,0.35);
     }
 
-    .iconlink svg {
-      width: 20px;
-      height: 20px;
-      display: block;
-      fill: currentColor;
+    .embed {
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
     }
+  }
+</style>
 
-    @media (prefers-color-scheme: dark) {
-      body { background: #1f1f1b; color: #f3f3ee; }
-      a { color: #c9d4ff; }
-
-      .card {
-        background: rgba(255,255,255,0.06);
-        border-color: rgba(255,255,255,0.14);
-      }
-
-      .role { border-top-color: rgba(255,255,255,0.18); }
-      .meta { color: rgba(243, 243, 238, 0.7); }
-
-      .toggle {
-        border-color: rgba(255,255,255,0.28);
-        opacity: 0.9;
-      }
-
-      details.background { border-top-color: rgba(255,255,255,0.18); }
-
-      footer { border-top-color: rgba(255,255,255,0.18); }
-
-      .iconlink:focus-visible {
-        outline-color: rgba(255,255,255,0.35);
-      }
-
-      .iconlink { opacity: 0.85; }
-    }
-  </style>
 </head>
 
 <body>
@@ -352,7 +393,7 @@
             </ul>
             <div class="embed">
               <iframe
-                src="https://www.youtube-nocookie.com/embed/lukT_WB5IB0"
+                src="https://www.youtube-nocookie.com/embed/lukT_WB5IB0?rel=0&modestbranding=1&playsinline=10"
                 title="YouTube video player"
                 loading="lazy"
                 referrerpolicy="strict-origin-when-cross-origin"
