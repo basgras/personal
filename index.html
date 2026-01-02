@@ -5,112 +5,130 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bas Grasmayer</title>
   <meta name="description" content="Strategist focused on product and organisational development." />
-<style>
-  :root { color-scheme: light; }
 
-  body {
-    margin: 0;
-    font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-    color: #111;
-    background: #fbf4cf; /* soft yellow */
-  }
+  <style>
+    :root { color-scheme: light; }
 
-  main {
-    max-width: 920px;
-    margin: 72px auto;
-    padding: 0 20px 96px;
-  }
-
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 28px;
-    align-items: start;
-  }
-
-  @media (min-width: 860px) {
-    .hero {
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 44px;
+    body {
+      margin: 0;
+      font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: #111;
+      background: #fbf4cf; /* soft yellow */
     }
-  }
 
-  h1 { font-size: 40px; line-height: 1.1; margin: 0 0 18px; }
-  h2 { font-size: 18px; margin: 28px 0 12px; }
-  p { margin: 0 0 14px; }
-  ul { margin: 0 0 14px 18px; padding: 0; }
-  a { text-underline-offset: 3px; }
+    main {
+      max-width: 920px;
+      margin: 72px auto;
+      padding: 0 20px 96px;
+    }
 
-  .card {
-    padding: 18px 18px;
-    border: 1px solid rgba(0,0,0,0.10);
-    border-radius: 14px;
-    background: rgba(255,255,255,0.55);
-    backdrop-filter: blur(2px);
-  }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: start;
+    }
 
-  .photo {
-    width: 100%;
-    max-width: 360px;
-    border-radius: 14px;
-    display: block;
-  }
-</style>
+    @media (min-width: 860px) {
+      .hero {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 44px;
+      }
+    }
 
+    h1 { font-size: 40px; line-height: 1.1; margin: 0 0 18px; }
+    h2 { font-size: 18px; margin: 28px 0 12px; }
+    p { margin: 0 0 14px; }
+    ul { margin: 0 0 14px 18px; padding: 0; }
+    a { text-underline-offset: 3px; }
+
+    .muted { color: rgba(0,0,0,0.65); }
+
+    .card {
+      padding: 18px 18px;
+      border: 1px solid rgba(0,0,0,0.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(2px);
+    }
+
+    .photo {
+      width: 100%;
+      border-radius: 14px;
+      display: block;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+  </style>
 </head>
+
 <body>
   <main>
-    <h1>Hi, I’m Bas.</h1>
+    <section class="hero">
+      <div>
+        <h1>Hi, I’m Bas.</h1>
 
-    <p>
-      I’m a strategist focused on product and organisational development, interested in how ideas survive contact with
-      reality. I help teams turn complex ideas into execution through strategy, workshops, and hands-on leadership.
-    </p>
+        <p>
+          I’m a strategist focused on product and organisational development, interested in how ideas survive contact with
+          reality. I help teams turn complex ideas into execution through strategy, workshops, and hands-on leadership.
+        </p>
 
-    <h2>Current focus areas</h2>
+        <h2>Current focus areas</h2>
 
-    <p>
-      Currently working on a project exploring the role of technology in our culture and wellbeing. It’s called
-      <a href="https://www.calmfluffy.com/" target="_blank" rel="noopener">Calm &amp; Fluffy</a>.
-    </p>
+        <p>
+          Currently working on a project exploring the role of technology in our culture and wellbeing. It’s called
+          <a href="https://www.calmfluffy.com/" rel="noopener">Calm &amp; Fluffy</a>.
+        </p>
 
-    <p>
-      Previously, I was the Head of Platform at music entertainment brand
-      <a href="https://colorsxstudios.com/" target="_blank" rel="noopener">COLORS</a>.
-      Prior to that, I led product at music streaming services, including
-      <a href="https://en.wikipedia.org/wiki/IDAGIO" target="_blank" rel="noopener">IDAGIO</a>.
-    </p>
+        <p>
+          Previously, I was the Head of Platform at music entertainment brand
+          <a href="https://colorsxstudios.com/"  rel="noopener">COLORS</a>.
+          Prior to that, I led product at music streaming services, including
+          <a href="https://en.wikipedia.org/wiki/IDAGIO"  rel="noopener">IDAGIO</a>.
+        </p>
 
-    <p>
-      I’m also the founder of
-      <a href="https://musicx.substack.com/" target="_blank" rel="noopener">MUSIC x</a>,
-      a popular newsletter about innovation in the music business.
-    </p>
+        <p>
+          I’m also the founder of
+          <a href="https://musicx.substack.com/"  rel="noopener">MUSIC x</a>,
+          a popular newsletter about innovation in the music business.
+        </p>
 
-    <p>
-      My writing has been featured or mentioned in publications such as
-      <a href="https://www.forbes.com/sites/cheriehu/2016/07/12/why-pokemon-go-is-more-valuable-than-spotify-soundcloud-and-tidal-combined/"
-         target="_blank" rel="noopener">Forbes</a>,
-      <a href="https://i-d.vice.com/article/8ver7r-aed1bbe7e" target="_blank" rel="noopener">i-D (Vice)</a>,
-      <a href="https://www.ft.com/content/2d216328-b006-4237-8e77-aed1bde712b6"
-         target="_blank" rel="noopener">Financial Times</a>,
-      <a href="https://ra.co/features/4200" target="_blank" rel="noopener">Resident Advisor</a>,
-      <a href="https://www.techdirt.com/user/bas/" target="_blank" rel="noopener">Techdirt</a>,
-      and <a href="https://www.waterandmusic.com/the-rise-of-the-fan-centric-music-streaming-service/"
-              target="_blank" rel="noopener">Water &amp; Music</a>.
-    </p>
+        <p>
+          My writing has been featured or mentioned in publications such as
+          <a href="https://www.forbes.com/sites/cheriehu/2016/07/12/why-pokemon-go-is-more-valuable-than-spotify-soundcloud-and-tidal-combined/"
+              rel="noopener">Forbes</a>,
+          <a href="https://i-d.vice.com/article/8ver7r-aed1bbe7e" rel="noopener">i-D (Vice)</a>,
+          <a href="https://www.ft.com/content/2d216328-b006-4237-8e77-aed1bde712b6"
+              rel="noopener">Financial Times</a>,
+          <a href="https://ra.co/features/4200"  rel="noopener">Resident Advisor</a>,
+          <a href="https://www.techdirt.com/user/bas/"  rel="noopener">Techdirt</a>,
+          and <a href="https://www.waterandmusic.com/the-rise-of-the-fan-centric-music-streaming-service/"
+                 rel="noopener">Water &amp; Music</a>.
+        </p>
 
-    <p>
-      For public speaking, workshops, consultancy, or other forms of collaboration, please reach out using the contact details below.
-    </p>
+        <p>
+          For public speaking, workshops, consultancy, or other forms of collaboration, please reach out using the contact details below.
+        </p>
 
-      <h2 style="margin-top:0">Contact</h2>
-      <p class="muted">The best ways to reach out to me:</p>
-      <ul>
-        <li><a href="https://www.linkedin.com/in/grasmayer/" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li>Bluesky: <a href="https://bsky.app/profile/bas.bsky.social" target="_blank" rel="noopener">@bas.bsky.social</a></li>
-        <li><a href="mailto:bas@grasmayer.com">bas@grasmayer.com</a></li>
-      </ul>
+<h2>Contact</h2>
+<p class="muted">The best ways to reach out to me:</p>
+<ul>
+  <li><a href="https://www.linkedin.com/in/grasmayer/" target="_blank" rel="noopener">LinkedIn</a></li>
+  <li>Bluesky: <a href="https://bsky.app/profile/bas.bsky.social" target="_blank" rel="noopener">@bas.bsky.social</a></li>
+  <li><a href="mailto:bas@grasmayer.com">bas@grasmayer.com</a></li>
+</ul>
+
+      </div>
+
+      <div class="card">
+        <img
+          class="photo"
+          src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/8e5d2eef-52af-47b0-a4d7-b725d213011a/640q90.jpeg"
+          alt="Bas Grasmayer speaking into a microphone"
+          loading="lazy"
+        />
+      </div>
+    </section>
   </main>
 </body>
 </html>
