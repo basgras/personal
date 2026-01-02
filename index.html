@@ -60,25 +60,77 @@
       object-fit: cover;
     }
 
+    /* Background section (collapsible, no thumbnails/cards) */
+    details {
+      margin-top: 22px;
+    }
+
+    details > summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 20px;
+    }
+    details > summary::-webkit-details-marker { display: none; }
+
+    .bg-intro {
+      margin-top: 10px;
+    }
+
+    .role {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(0,0,0,0.10);
+    }
+    .role:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .role > summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: baseline;
+    }
+    .role > summary::-webkit-details-marker { display: none; }
+
+    .meta {
+      font-weight: 500;
+      font-size: 13px;
+      color: rgba(0,0,0,0.65);
+    }
+
+    .links {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
     @media (prefers-color-scheme: dark) {
-  body {
-    background: #1f1f1b;   /* warm dark, not pure black */
-    color: #f3f3ee;
-  }
+      body {
+        background: #1f1f1b;
+        color: #f3f3ee;
+      }
 
-  a {
-    color: #c9d4ff;
-  }
+      a { color: #c9d4ff; }
 
-  .muted {
-    color: rgba(243, 243, 238, 0.7);
-  }
+      .muted { color: rgba(243, 243, 238, 0.7); }
 
-  .card {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.18);
-  }
-}
+      .card {
+        background: rgba(255,255,255,0.08);
+        border-color: rgba(255,255,255,0.18);
+      }
+
+      .role { border-top-color: rgba(255,255,255,0.18); }
+      .meta { color: rgba(243, 243, 238, 0.7); }
+    }
   </style>
 </head>
 
@@ -97,56 +149,121 @@
 
         <p>
           Currently working on a project exploring the role of technology in our culture and wellbeing. It’s called
-          <a href="https://www.calmfluffy.com/" rel="noopener">Calm &amp; Fluffy</a>.
+          <a href="https://www.calmfluffy.com/" target="_blank" rel="noopener">Calm &amp; Fluffy</a>.
         </p>
 
         <p>
           Previously, I was the Head of Platform at music entertainment brand
-          <a href="https://colorsxstudios.com/"  rel="noopener">COLORS</a>.
+          <a href="https://colorsxstudios.com/" target="_blank" rel="noopener">COLORS</a>.
           Prior to that, I led product at music streaming services, including
-          <a href="https://en.wikipedia.org/wiki/IDAGIO"  rel="noopener">IDAGIO</a>.
+          <a href="https://en.wikipedia.org/wiki/IDAGIO" target="_blank" rel="noopener">IDAGIO</a>.
         </p>
 
         <p>
           I’m also the founder of
-          <a href="https://musicx.substack.com/"  rel="noopener">MUSIC x</a>,
+          <a href="https://musicx.substack.com/" target="_blank" rel="noopener">MUSIC x</a>,
           a popular newsletter about innovation in the music business.
         </p>
 
         <p>
           My writing has been featured or mentioned in publications such as
-          <a href="https://www.forbes.com/sites/cheriehu/2016/07/12/why-pokemon-go-is-more-valuable-than-spotify-soundcloud-and-tidal-combined/"
-              rel="noopener">Forbes</a>,
-          <a href="https://i-d.vice.com/article/8ver7r-aed1bbe7e" rel="noopener">i-D (Vice)</a>,
-          <a href="https://www.ft.com/content/2d216328-b006-4237-8e77-aed1bde712b6"
-              rel="noopener">Financial Times</a>,
-          <a href="https://ra.co/features/4200"  rel="noopener">Resident Advisor</a>,
-          <a href="https://www.techdirt.com/user/bas/"  rel="noopener">Techdirt</a>,
-          and <a href="https://www.waterandmusic.com/the-rise-of-the-fan-centric-music-streaming-service/"
-                 rel="noopener">Water &amp; Music</a>.
+          <a href="https://www.forbes.com/sites/cheriehu/2016/07/12/why-pokemon-go-is-more-valuable-than-spotify-soundcloud-and-tidal-combined/" target="_blank" rel="noopener">Forbes</a>,
+          <a href="https://i-d.vice.com/article/8ver7r-aed1bbe7e" target="_blank" rel="noopener">i-D (Vice)</a>,
+          <a href="https://www.ft.com/content/2d216328-b006-4237-8e77-aed1bde712b6" target="_blank" rel="noopener">Financial Times</a>,
+          <a href="https://ra.co/features/4200" target="_blank" rel="noopener">Resident Advisor</a>,
+          <a href="https://www.techdirt.com/user/bas/" target="_blank" rel="noopener">Techdirt</a>,
+          and <a href="https://www.waterandmusic.com/the-rise-of-the-fan-centric-music-streaming-service/" target="_blank" rel="noopener">Water &amp; Music</a>.
         </p>
 
         <p>
           For public speaking, workshops, consultancy, or other forms of collaboration, please reach out using the contact details below.
         </p>
 
-<h2>Contact</h2>
-<p class="muted">The best ways to reach out to me:</p>
-<ul>
-  <li><a href="https://www.linkedin.com/in/grasmayer/" target="_blank" rel="noopener">LinkedIn</a></li>
-  <li>Bluesky: <a href="https://bsky.app/profile/bas.bsky.social" target="_blank" rel="noopener">@bas.bsky.social</a></li>
-  <li><a href="mailto:bas@grasmayer.com">bas@grasmayer.com</a></li>
-</ul>
+        <h2>Contact</h2>
+        <p class="muted">The best ways to reach out to me:</p>
+        <ul>
+          <li><a href="https://www.linkedin.com/in/grasmayer/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li>Bluesky: <a href="https://bsky.app/profile/bas.bsky.social" target="_blank" rel="noopener">@bas.bsky.social</a></li>
+          <li><a href="mailto:bas@grasmayer.com">bas@grasmayer.com</a></li>
+        </ul>
 
+        <!-- Background (simple links, no cards) -->
+        <details>
+          <summary>🌳 Background</summary>
+
+          <div class="bg-intro">
+            <p>These are four of my most formative professional experiences in my past.</p>
+            <p>For a detailed background, check out <a href="https://www.linkedin.com/in/grasmayer/" target="_blank" rel="noopener">my LinkedIn</a>.</p>
+          </div>
+
+          <details class="role">
+            <summary>
+              Community Platform Lead (later: Head of Platform Management &amp; Distribution), COLORS
+              <span class="meta">(2021 – 2025)</span>
+            </summary>
+            <p>Led platform strategy across YouTube, streaming, and social media, reaching millions monthly.</p>
+            <p>Managed cross-functional teams including social media, distribution, and web development while coaching company-wide OKR implementation and driving data-driven decision making through monthly analytics reviews.</p>
+            <p>One personal highlight was spearheading the rollout strategy for Billie Eilish’s third appearance on COLORS’ stage.</p>
+
+            <ul class="links">
+              <li><a href="https://time.com/" target="_blank" rel="noopener">Meet COLORS, a Rising Powerhouse for Music Discovery</a></li>
+              <li><a href="https://www.thelineofbestfit.com/" target="_blank" rel="noopener">Billie Eilish returns to COLORS to perform “Wildflower”</a></li>
+              <li><a href="https://www.musicinafrica.net/" target="_blank" rel="noopener">COLORSxSTUDIOS and NFT minting platform Zora launch new …</a></li>
+            </ul>
+          </details>
+
+          <details class="role">
+            <summary>
+              Director of Product, IDAGIO
+              <span class="meta">(Apr 2017 – Aug 2019)</span>
+            </summary>
+            <p>First product hire at classical music streaming service IDAGIO, founded in Berlin. The role combined product management, project management, strategy and organisational design.</p>
+            <p>Together with the founder/CPO, we built out engineering and product teams from 10 engineers &amp; 1 designer to 25 engineers, 5 product managers, 5 designers &amp; 2 customer success managers. This meant scaling from an organisation of generalist product people to developing specialists on topics like user research, search, recommendation engines, and onboarding funnels.</p>
+            <p>IDAGIO has been featured in The New York Times, Financial Times, Bloomberg, Vogue, and Billboard.</p>
+
+            <ul class="links">
+              <li><a href="https://www.vogue.com/" target="_blank" rel="noopener">Idagio—The Spotify For Classical Music—Has Changed My Life</a></li>
+              <li><a href="https://medium.com/" target="_blank" rel="noopener">Why I’m joining IDAGIO — a classical music start-up — and moving …</a></li>
+            </ul>
+          </details>
+
+          <details class="role">
+            <summary>
+              Product Lead, Zvooq
+              <span class="meta">(2012 – late 2014)</span>
+            </summary>
+            <p>Created &amp; executed a new multi-app product strategy for Zvooq, a music streaming service focused on Russia &amp; CIS with $20M in funding, while rebuilding and rapidly scaling its team, going from less than 10 people in early 2013, to over 30 by mid-2014 and hiring key people like a CTO and Head of Content.</p>
+            <p>Our flagship app Zvooq reached number 1 in the App Store in Russia &amp; Kazakhstan, our focus markets, and topped the music apps charts in most of the former Soviet Union. This helped solidify the service’s comeback and helped re-establish the brand as the leading music service in Russia and surrounding territories.</p>
+            <p>Our app Fonoteka, with a subscription tier as low as $1/month, reached number 1 overall in the App Store in most of our markets. It had a never-before-seen subscription model, which you can read about by clicking the Why We Made Fonoteka article below.</p>
+
+            <ul class="links">
+              <li><a href="https://basgrasmayer.medium.com/" target="_blank" rel="noopener">Why We Made Fonoteka</a></li>
+            </ul>
+          </details>
+
+          <details class="role">
+            <summary>
+              BA International Communication Management
+              <span class="meta">(2011)</span>
+            </summary>
+            <p>My studies in the Netherlands provided me with a lot of tools and frameworks for conducting research, developing strategy and managing projects. It also provided me with the time for exchanges and internships in Bulgaria and Turkey, where I learned about topics like intercultural communication, organisational communication and design.</p>
+            <p>My graduation thesis examined how musicians can thrive despite piracy. It contained two parts: a definition of the problem and a suggested solution. The problem was not piracy itself, but rather the fact that we had transitioned from an age of distribution channels to an age of distribution networks. This new networked reality has its own rules to optimise for. The solution focused on fan retention through community-building and constructing business models out of that.</p>
+            <p>I revisited the topic in this 2021 article, as it’s more relevant than ever:</p>
+
+            <ul class="links">
+              <li><a href="https://www.musicxtechxfuture.com/" target="_blank" rel="noopener">Why fanbases need to be networks, rather than channels</a></li>
+            </ul>
+          </details>
+        </details>
       </div>
 
       <div class="card">
-<img
-  class="photo"
-  src="content/basgrasmayer.jpg"
-  alt="Bas Grasmayer"
-  loading="lazy"
-/>
+        <img
+          class="photo"
+          src="content/basgrasmayer.jpg"
+          alt="Bas Grasmayer"
+          loading="lazy"
+        />
       </div>
     </section>
   </main>
