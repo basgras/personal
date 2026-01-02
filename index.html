@@ -71,20 +71,20 @@
 
   /* Collapsible section titles (Background / Selected writing) */
   .section-summary {
-    font-weight: 650;            /* was 700 */
-    font-size: 19px;             /* clearer vs body + embed title */
+    font-weight: 650;
+    font-size: 19px;
     line-height: 1.25;
     flex: 1 1 auto;
-    min-width: 0;                /* allow wrapping without pushing toggle */
+    min-width: 0;
   }
 
   /* Role titles inside Background */
   .role-title {
     font-weight: 650;
-    font-size: 17px;             /* slightly stronger hierarchy */
+    font-size: 17px;
     line-height: 1.25;
-    flex: 1 1 auto;              /* allow wrap within the title */
-    min-width: 0;                /* key: prevents toggle alone on a line */
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   /* Meta dates */
@@ -92,7 +92,7 @@
     font-weight: 500;
     font-size: 12.5px;
     color: rgba(0,0,0,0.6);
-    white-space: nowrap;         /* keep dates together */
+    white-space: nowrap;
     flex: 0 0 auto;
   }
 
@@ -143,18 +143,16 @@
     cursor: pointer;
     list-style: none;
     display: flex;
-    align-items: center;         /* was baseline */
+    align-items: center;
     gap: 10px;
     padding: 6px 0;
-    flex-wrap: nowrap;           /* prevents toggle becoming its own line */
-    border-radius: 8px;          /* enables subtle hover background */
+    flex-wrap: nowrap;
+    border-radius: 8px;
   }
 
   summary::-webkit-details-marker { display: none; }
 
-  details[open] > summary {
-    margin-bottom: 6px;
-  }
+  details[open] > summary { margin-bottom: 6px; }
 
   /* Hover / focus affordance (titles only, no layout shift) */
   summary:hover,
@@ -199,9 +197,7 @@
     padding-top: 0;
   }
 
-  .role > summary {
-    padding: 10px 0;
-  }
+  .role > summary { padding: 10px 0; }
 
   .links { margin: 8px 0 0; padding-left: 18px; }
 
@@ -226,7 +222,6 @@
 
   /* ─────────────────────────────
      BACKGROUND SECTION SEPARATOR
-     (still only when open, but visually lighter vs role dividers)
      ───────────────────────────── */
 
   details.background {
@@ -235,40 +230,30 @@
     border-top: 1px solid rgba(0,0,0,0.12);
   }
 
-  details.background[open]::after {
-    content: "";
-    display: block;
-    width: 100%;                 /* longer = anchors Selected writing divider */
-    margin: 22px auto 0;         /* centered */
-    border-top: 1px solid rgba(0,0,0,0.12);
-  }
+  /* (Removed details.background[open]::after to avoid double divider before Selected writing) */
 
   /* ─────────────────────────────
      SELECTED WRITING (DISTINCT)
-     - slightly tighter top spacing so it doesn't read like another role row
      ───────────────────────────── */
 
   details.writing {
-  margin-top: 36px;
-  padding-top: 22px;
-  border-top: 1px solid rgba(0,0,0,0.12);
-}
-
+    margin-top: 36px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(0,0,0,0.12);
+  }
 
   /* ─────────────────────────────
      FOOTER
      ───────────────────────────── */
 
-
   footer {
-  margin-top: 44px;
-  padding-top: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  align-items: center;
-}
-
+    margin-top: 44px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    align-items: center;
+  }
 
   .iconlink {
     display: inline-flex;
@@ -315,15 +300,10 @@
     }
 
     details.background { border-top-color: rgba(255,255,255,0.18); }
-    details.background[open]::after { border-top-color: rgba(255,255,255,0.18); }
 
-    .iconlink:focus-visible {
-      outline-color: rgba(255,255,255,0.35);
-    }
+    details.writing { border-top-color: rgba(255,255,255,0.18); }
 
-    details.writing {
-    border-top-color: rgba(255,255,255,0.18);
-  }
+    .iconlink:focus-visible { outline-color: rgba(255,255,255,0.35); }
 
     summary:hover,
     summary:focus-visible {
