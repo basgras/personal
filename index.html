@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,18 +38,18 @@
   }
 
   /* ─────────────────────────────
-     TYPOGRAPHY HIERARCHY (FIXED)
+     TYPOGRAPHY HIERARCHY (TWEAKED)
      ───────────────────────────── */
 
   h1 {
-    font-size: clamp(30px, 3.6vw, 38px);
+    font-size: clamp(32px, 3.4vw, 40px);
     line-height: 1.12;
     margin: 0 0 18px;
     letter-spacing: -0.02em;
   }
 
   h2 {
-    font-size: clamp(18px, 2.1vw, 22px);
+    font-size: clamp(19px, 2.1vw, 24px);
     line-height: 1.25;
     margin: 26px 0 12px;
     letter-spacing: -0.01em;
@@ -62,16 +63,20 @@
 
   /* Collapsible section titles (Background / Selected writing) */
   .section-summary {
-    font-weight: 700;
-    font-size: 18px;
+    font-weight: 650;            /* was 700 */
+    font-size: 19px;             /* clearer vs body + embed title */
     line-height: 1.25;
+    flex: 1 1 auto;
+    min-width: 0;                /* allow wrapping without pushing toggle */
   }
 
   /* Role titles inside Background */
   .role-title {
     font-weight: 650;
-    font-size: 16px;
+    font-size: 17px;             /* slightly stronger hierarchy */
     line-height: 1.25;
+    flex: 1 1 auto;              /* allow wrap within the title */
+    min-width: 0;                /* key: prevents toggle alone on a line */
   }
 
   /* Meta dates */
@@ -79,6 +84,8 @@
     font-weight: 500;
     font-size: 12.5px;
     color: rgba(0,0,0,0.6);
+    white-space: nowrap;         /* keep dates together */
+    flex: 0 0 auto;
   }
 
   /* ─────────────────────────────
@@ -123,9 +130,10 @@
     cursor: pointer;
     list-style: none;
     display: flex;
-    align-items: baseline;
+    align-items: center;         /* was baseline */
     gap: 10px;
     padding: 6px 0;
+    flex-wrap: nowrap;           /* prevents toggle becoming its own line */
   }
 
   summary::-webkit-details-marker { display: none; }
@@ -145,7 +153,6 @@
     flex: 0 0 auto;
     user-select: none;
     opacity: 0.85;
-    margin-top: 1px;
   }
 
   .toggle svg {
@@ -170,9 +177,6 @@
   }
 
   .role > summary {
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 10px;
     padding: 10px 0;
   }
 
@@ -199,6 +203,7 @@
 
   /* ─────────────────────────────
      BACKGROUND SECTION SEPARATOR
+     (still only when open, but visually lighter vs role dividers)
      ───────────────────────────── */
 
   details.background {
@@ -210,9 +215,17 @@
   details.background[open]::after {
     content: "";
     display: block;
-    margin-top: 22px;
+    width: 62%;                  /* shorter = less "same as role list" */
+    margin: 22px auto 0;         /* centered */
     border-top: 1px solid rgba(0,0,0,0.12);
   }
+
+  /* ─────────────────────────────
+     SELECTED WRITING (DISTINCT)
+     - slightly tighter top spacing so it doesn't read like another role row
+     ───────────────────────────── */
+
+  details.writing { margin-top: 14px; }
 
   /* ─────────────────────────────
      FOOTER
@@ -472,7 +485,7 @@
         </details>
 
         <!-- Selected writing -->
-        <details>
+        <details class="writing">
           <summary>
             <span class="toggle" aria-hidden="true">
               <svg class="icon-plus" viewBox="0 0 12 12" aria-hidden="true">
@@ -527,3 +540,4 @@
   </main>
 </body>
 </html>
+```
