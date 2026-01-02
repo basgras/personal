@@ -166,13 +166,15 @@
 
   .role {
     margin-top: 18px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(0,0,0,0.10);
+    padding-top: 0;
   }
 
-  .role:first-of-type {
-    border-top: none;
-    padding-top: 0;
+  .role:not(:first-of-type)::before {
+    content: "";
+    display: block;
+    width: 52%;
+    margin: 0 auto 14px;
+    border-top: 1px solid rgba(0,0,0,0.10);
   }
 
   .role > summary {
@@ -214,7 +216,7 @@
   details.background[open]::after {
     content: "";
     display: block;
-    width: 62%;                  /* shorter = less "same as role list" */
+    width: 100%;                 /* longer = anchors Selected writing divider */
     margin: 22px auto 0;         /* centered */
     border-top: 1px solid rgba(0,0,0,0.12);
   }
@@ -279,7 +281,7 @@
       border-color: rgba(255,255,255,0.14);
     }
 
-    .role { border-top-color: rgba(255,255,255,0.18); }
+    .role:not(:first-of-type)::before { border-top-color: rgba(255,255,255,0.18); }
 
     .toggle {
       border-color: rgba(255,255,255,0.28);
