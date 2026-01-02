@@ -148,6 +148,26 @@
 
     .links { margin: 8px 0 0; padding-left: 18px; }
 
+    .embed {
+  margin-top: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.2);
+}
+
+.embed iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  .embed { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); }
+}
+
+
     /* Background section separator (matches role dividers) */
     details.background {
       margin-top: 36px;
@@ -313,6 +333,16 @@
               <li><a href="https://www.thelineofbestfit.com/news/billie-eilish-returns-to-colors-to-perform-wildflower" rel="noopener">Billie Eilish returns to COLORS to perform “Wildflower”</a></li>
               <li><a href="https://www.musicinafrica.net/magazine/colorsxstudios-and-nft-minting-platform-zora-launch-new-initiative" rel="noopener">COLORSxSTUDIOS and NFT minting platform Zora launch new initiative</a></li>
             </ul>
+            <div class="embed">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/lukT_WB5IB0"
+    title="YouTube video player"
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</div>
           </details>
 
           <details class="role">
