@@ -199,14 +199,6 @@
     padding-top: 0;
   }
 
-  .role:not(:first-of-type)::before {
-    content: "";
-    display: block;
-    width: 52%;
-    margin: 0 auto 14px;
-    border-top: 1px solid rgba(0,0,0,0.10);
-  }
-
   .role > summary {
     padding: 10px 0;
   }
@@ -256,7 +248,12 @@
      - slightly tighter top spacing so it doesn't read like another role row
      ───────────────────────────── */
 
-  details.writing { margin-top: 14px; }
+  details.writing {
+  margin-top: 36px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(0,0,0,0.12);
+}
+
 
   /* ─────────────────────────────
      FOOTER
@@ -312,8 +309,6 @@
       border-color: rgba(255,255,255,0.14);
     }
 
-    .role:not(:first-of-type)::before { border-top-color: rgba(255,255,255,0.18); }
-
     .toggle {
       border-color: rgba(255,255,255,0.28);
       opacity: 0.9;
@@ -325,6 +320,10 @@
     .iconlink:focus-visible {
       outline-color: rgba(255,255,255,0.35);
     }
+
+    details.writing {
+    border-top-color: rgba(255,255,255,0.18);
+  }
 
     summary:hover,
     summary:focus-visible {
