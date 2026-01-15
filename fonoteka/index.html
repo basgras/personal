@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka — Bas Grasmayer</title>
+  <meta name="description" content="Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka" />
+
+  <style>
+    :root { color-scheme: light dark; }
+
+    body{
+      margin:0;
+      font:16px/1.7 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:#FFFDF8;
+      color:#111;
+    }
+
+    a{ text-underline-offset:3px; }
+
+    main{
+      max-width: 720px;
+      margin: 64px auto 96px;
+      padding: 0 20px;
+    }
+
+    header{
+      margin-bottom: 28px;
+    }
+
+    .back{
+      display:inline-block;
+      margin-bottom: 22px;
+      font-size:14px;
+      opacity:.75;
+      text-decoration:none;
+    }
+    .back:hover{ opacity:1; }
+
+    h1{
+      font-size: clamp(28px, 3.4vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin: 0 0 14px;
+    }
+
+    .lede{
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0 0 22px;
+      opacity: .9;
+    }
+
+    p{ margin: 0 0 16px; }
+
+    figure{ margin: 34px 0; }
+    figure img{
+      width:100%;
+      display:block;
+      border-radius:12px;
+    }
+    figcaption{
+      font-size:13px;
+      opacity:.65;
+      margin-top:8px;
+      text-align:center;
+    }
+
+    /* A Medium-ish callout without changing your text */
+    .callout{
+      margin: 28px 0;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.45);
+    }
+
+    footer{
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0,0,0,0.12);
+      font-size: 14px;
+      opacity: .8;
+    }
+
+    @media (prefers-color-scheme: dark){
+      body{ background:#1f1f1b; color:#f3f3ee; }
+      a{ color:#c9d4ff; }
+
+      .callout{
+        border-color: rgba(255,255,255,0.18);
+        background: rgba(255,255,255,0.06);
+      }
+
+      footer{ border-top-color: rgba(255,255,255,0.18); }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <a class="back" href="/">← Back to homepage</a>
+      <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
+    </header>
+
+    <figure>
+      <img src="content/fonoteka-hero.png" alt="Fonoteka header image" />
+    </figure>
+
+    <p>When I became Product Lead of Zvooq, a popular music streaming service in Russia &amp; CIS, I inherited a blank canvas. Not having a mobile version of the service yet, allowed us to devise a new type of strategy.</p>
+
+    <p>Instead of following the same model as most major on-demand streaming services, we opted for a multi-app strategy. That strategy came to fit well into the trend of ‘unbundling’ that Foursquare (Swarm), Facebook (Messenger), and Google (Docs, Sheets, Drive) have started pursuing since.</p>
+
+    <p>The first app we made, is Fonoteka.</p>
+
+    <p>Fonoteka is the name of the user library on Zvooq. We wanted to make a simple single-function app that would allow users to bring that library with them.</p>
+
+    <figure>
+      <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
+      <figcaption>Press enter or click to view image in full size</figcaption>
+    </figure>
+
+    <p>Our goal was to restore a certain intimacy people used to share with their collection… Before music became ubiquitous, and people started hopping from one thing to the other at an ever-increasing pace.</p>
+
+    <p>The idea: we can make people’s experience richer, by giving them LESS features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
+
+    <p>No rating, no favouriting, no sharing, no buttons, no shuffle.</p>
+
+    <p>Nothing to distract.</p>
+
+    <figure>
+      <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
+    </figure>
+
+    <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
+
+    <figure>
+      <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
+    </figure>
+
+    <div class="callout">Become a member</div>
+
+    <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
+
+    <p>Additionally, it creates a richer relationship you have with certain pieces: instead of jumping through scores of playlists, albums and songs, all the time, you will experience the same music in different places, different situations, different moods, and different settings.</p>
+
+    <p>Music services are growing larger and larger, aiming to give people a more meaningful experience by increasing the number of options to pick from.</p>
+
+    <p>You cannot appreciate a great work of art, running through a museum with your sunglasses on, but this is exactly what many music services are forcing users to do.</p>
+
+    <p>We hope Fonoteka’s users experience music as more than ‘entertainment’. Entertainment is superfluous and interchangeable. Music as an art form probably precedes any other human art form. It’s an essential ingredient of the human experience. We should not be sending users into mediocre experiences which don’t acknowledge music’s cultural significance.</p>
+
+    <figure>
+      <img src="content/fonoteka4.png" alt="Fonoteka screenshot 4" />
+    </figure>
+
+    <p>Turn down the noise. Remove the bullshit. Focus on what matters.</p>
+
+    <p>Restore the significance.</p>
+
+    <p>Turn up the music.</p>
+
+    <footer>
+      <p><a href="/">Back to basgrasmayer.com</a></p>
+    </footer>
+  </main>
+</body>
+</html>
