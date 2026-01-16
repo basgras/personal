@@ -16,111 +16,97 @@
       background: #FFFDF8;
     }
 
-    a{ text-underline-offset: 3px; color: inherit; }
+    a{ color: inherit; text-underline-offset: 3px; }
 
-    /* Sticky top bar (solid background, never overlays unreadably) */
+    /* Single, consistent page container (header + article share the same left edge) */
+    .container{
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    /* Sticky top bar: always visible, solid background (no transparency), no divider line */
     .topbar{
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: #FFFDF8;              /* solid (no transparency) */
+      background: #FFFDF8;
+      padding-top: env(safe-area-inset-top);
     }
     .topbar-inner{
       max-width: 720px;
       margin: 0 auto;
       padding: 12px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
     }
+
     .back{
       display: inline-flex;
       align-items: center;
       gap: 8px;
       text-decoration: none;
-      opacity: 0.9;
       font-size: 14px;
-      white-space: nowrap;
+      opacity: 0.85;
     }
     .back:hover{ opacity: 1; }
 
-    /* Article container */
+    /* Page spacing */
     main{
-      max-width: 720px;
-      margin: 30px auto 64px;
-      padding: 0 22px 72px;
+      padding: 26px 0 72px;
     }
-
-    header{ margin-bottom: 22px; }
 
     h1{
       font-size: clamp(28px, 3.2vw, 38px);
       line-height: 1.12;
       letter-spacing: -0.02em;
-      margin: 10px 0 10px;
+      margin: 0 0 10px;
     }
 
     .meta{
+      margin: 0 0 26px;
       font-size: 14px;
       opacity: 0.7;
-      margin: 0 0 18px;
+    }
+
+    /* Prose */
+    article{
+      font-size: 18px;
+      line-height: 1.75;
+      max-width: 66ch; /* readable line length (Medium-like) */
     }
 
     p{ margin: 0 0 14px; }
 
-    /* Article body measure */
-    .prose{
-      font-size: 18px;
-      line-height: 1.75;
-      max-width: 66ch;
-    }
-    .prose-wrap{
-      display: flex;
-      justify-content: center;
-    }
-
-    /* Text runaround (float-based) */
-    .wrap{
-      margin: 26px 0;
-    }
-    .wrap::after{
-      content: "";
-      display: table;
-      clear: both;
-    }
-    .wrap figure{
+    /* Float-based “text runs around image” */
+    figure.float{
       float: left;
       width: 50%;
-      margin: 0 18px 10px 0;
+      margin: 6px 18px 8px 0; /* right gutter + small bottom gutter */
     }
-    .wrap figure img{
+    figure.float img{
       width: 100%;
       height: auto;
       display: block;
       border: 0;
       background: transparent;
     }
-    @media (max-width: 340px){
-      .wrap figure{
-        float: none;
-        width: 100%;
-        margin: 0 0 12px 0;
-      }
+
+    /* Clear float so later paragraphs don’t keep wrapping */
+    .clear{
+      clear: both;
+      height: 0;
     }
 
-    /* Emphasis paragraph (not boxed) */
+    /* Emphasis paragraph (not a quote, not boxed) */
     .emphasis{
-      margin: 18px 0;
-      font-size: 18px;
-      line-height: 1.6;
       font-weight: 650;
+      margin: 18px 0;
     }
 
-    /* End images: wider than text, still centered */
-    .wide{
+    /* End images: larger, tighter gap, still centered */
+    .end-images{
       max-width: 920px;
-      margin: 18px auto 10px;
-      padding: 0 12px;
+      margin: 18px auto 0;
+      padding: 0 22px 72px;
     }
     .figure-grid{
       display: grid;
@@ -135,47 +121,47 @@
       border: 0;
       background: transparent;
     }
-    @media (max-width: 420px){
-      .wide{ padding: 0 14px; }
+
+    /* Very small screens: stack the float block */
+    @media (max-width: 360px){
+      figure.float{
+        float: none;
+        width: 100%;
+        margin: 0 0 12px 0;
+      }
+    }
+
+    /* Small screens: end images stack */
+    @media (max-width: 520px){
       .figure-grid{ grid-template-columns: 1fr; }
     }
 
-    footer{
-      margin-top: 44px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(0,0,0,0.12);
-      font-size: 14px;
-      opacity: 0.9;
-    }
-
+    /* Dark mode aligned with your main site */
     @media (prefers-color-scheme: dark){
       body{ background:#1f1f1b; color:#f3f3ee; }
       a{ color:#c9d4ff; }
 
-      .topbar{
-        background: #1f1f1b;
-      }
-
-      footer{ border-top-color: rgba(255,255,255,0.18); }
+      .topbar{ background:#1f1f1b; }
+      .meta{ opacity: 0.7; }
     }
   </style>
 </head>
 
 <body>
-  <div class="topbar" role="banner" aria-label="Page navigation">
+  <div class="topbar" role="navigation" aria-label="Page navigation">
     <div class="topbar-inner">
       <a class="back" href="/" rel="noopener">← Back to bas.grasmayer.com</a>
     </div>
   </div>
 
   <main>
-    <header>
-      <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
-      <div class="meta">Originally published Oct 30, 2014</div>
-    </header>
+    <div class="container">
+      <header>
+        <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
+        <p class="meta">Originally published Oct 30, 2014</p>
+      </header>
 
-    <div class="prose-wrap">
-      <article class="prose">
+      <article>
         <p>When I became Product Lead of Zvooq, a popular music streaming service in Russia &amp; CIS, I inherited a blank canvas. Not having a mobile version of the service yet, allowed us to devise a new type of strategy.</p>
 
         <p>Instead of following the same model as most major on-demand streaming services, we opted for a multi-app strategy. That strategy came to fit well into the trend of ‘unbundling’ that Foursquare (Swarm), Facebook (Messenger), and Google (Docs, Sheets, Drive) have started pursuing since.</p>
@@ -184,29 +170,29 @@
 
         <p>Fonoteka is the name of the user library on Zvooq. We wanted to make a simple single-function app that would allow users to bring that library with them.</p>
 
-        <section class="wrap">
-          <figure>
-            <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
-          </figure>
+        <figure class="float">
+          <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
+        </figure>
 
-          <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
+        <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
 
-          <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
-        </section>
+        <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
+
+        <div class="clear"></div>
 
         <p>No rating, no favouriting, no sharing, no buttons, no shuffle.</p>
 
         <p>Nothing to distract.</p>
 
-        <section class="wrap">
-          <figure>
-            <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
-          </figure>
+        <figure class="float">
+          <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
+        </figure>
 
-          <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
+        <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
 
-          <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
-        </section>
+        <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
+
+        <div class="clear"></div>
 
         <p>Additionally, it creates a richer relationship you have with certain pieces: instead of jumping through scores of playlists, albums and songs, all the time, you will experience the same music in different places, different situations, different moods, and different settings.</p>
 
@@ -224,7 +210,7 @@
       </article>
     </div>
 
-    <section class="wide" aria-label="Fonoteka screenshots">
+    <section class="end-images" aria-label="Fonoteka screenshots">
       <div class="figure-grid">
         <figure>
           <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
@@ -234,10 +220,6 @@
         </figure>
       </div>
     </section>
-
-    <footer>
-      <!-- Intentionally empty: no second “Back” link needed because top bar is always visible -->
-    </footer>
   </main>
 </body>
 </html>
