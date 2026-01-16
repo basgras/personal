@@ -9,6 +9,7 @@
   <style>
     :root { color-scheme: light; }
 
+    /* Align base look with main site (sans font, colors, dark mode) */
     body{
       margin: 0;
       font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -16,19 +17,25 @@
       background: #FFFDF8;
     }
 
-    /* Wider page container (matches your main site), but text measure is constrained separately */
+    /* Page container matches homepage width; inner measure controls readable line length */
     main{
       max-width: 920px;
       margin: 64px auto;
-      padding: 0 20px 56px; /* reduced bottom padding so it doesn't “fake” extra space before end images */
+      padding: 0 20px 72px;
+    }
+
+    a{ text-underline-offset: 3px; color: inherit; }
+
+    /* Consistent readable measure for both title + prose */
+    .measure{
+      max-width: 66ch;
+      margin: 0 auto;
     }
 
     header{ margin-bottom: 22px; }
 
-    a{ text-underline-offset: 3px; color: inherit; }
-
     h1{
-      font-size: clamp(28px, 3.2vw, 38px);
+      font-size: clamp(28px, 3.2vw, 40px);
       line-height: 1.12;
       letter-spacing: -0.02em;
       margin: 10px 0 14px;
@@ -46,22 +53,16 @@
     }
     .back:hover{ opacity: 1; }
 
-    /* Narrow readable measure, centered within the wider page */
-    .prose-wrap{
-      display: flex;
-      justify-content: center;
-    }
+    /* Prose sizing: sans, but Medium-like readability */
     .prose{
       font-size: 18px;
       line-height: 1.75;
-      max-width: 66ch;
-      width: 100%;
     }
 
-    /* Ensure the paragraph directly before the end images doesn’t create extra space */
-    .prose p:last-child{ margin-bottom: 10px; }
+    /* ─────────────────────────────
+       TEXT RUNAROUND (float-based)
+       ───────────────────────────── */
 
-    /* TEXT RUNAROUND (float-based) */
     .wrap{
       margin: 26px 0;
     }
@@ -70,6 +71,7 @@
       display: table;
       clear: both;
     }
+
     .wrap figure{
       float: left;
       width: 50%;
@@ -92,28 +94,28 @@
       }
     }
 
-    /* Emphasis paragraph (NOT a quote, NOT boxed) */
+    /* Emphasis paragraph: not a quote, not boxed */
     .emphasis{
       margin: 18px 0;
-      font-size: 18px;
-      line-height: 1.6;
       font-weight: 650;
     }
 
-    /* END IMAGES: wider than text measure, inside the same main container */
+    /* ─────────────────────────────
+       END IMAGES (bigger, tighter, reduced side margins)
+       ───────────────────────────── */
+
     .wide{
-      margin: 12px auto 0; /* tighter spacing from last paragraph */
-      width: 100%;
+      /* keep inside the 920 container, but reduce side gutters vs prose */
+      margin: 12px -10px 0;
     }
 
     .figure-grid{
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px; /* smaller gap between the two images */
+      gap: 12px;          /* smaller gap between the two images */
       align-items: start;
     }
 
-    .figure-grid figure{ margin: 0; } /* critical: remove default figure margins */
     .figure-grid img{
       width: 100%;
       height: auto;
@@ -123,7 +125,8 @@
     }
 
     @media (max-width: 420px){
-      .figure-grid{ grid-template-columns: 1fr; }
+      .wide{ margin-left: 0; margin-right: 0; }
+      .figure-grid{ grid-template-columns: 1fr; gap: 14px; }
     }
 
     footer{
@@ -138,6 +141,7 @@
       main{ margin-top: 72px; }
     }
 
+    /* Dark mode aligned with main site */
     @media (prefers-color-scheme: dark){
       body{ background:#1f1f1b; color:#f3f3ee; }
       a{ color:#c9d4ff; }
@@ -148,61 +152,60 @@
 
 <body>
   <main>
-    <header>
-      <a class="back" href="/">← Back to bas.grasmayer.com</a>
+    <header class="measure">
+      <a class="back" href="/" rel="noopener">← Back to bas.grasmayer.com</a>
       <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
     </header>
 
-    <div class="prose-wrap">
-      <article class="prose">
-        <p>When I became Product Lead of Zvooq, a popular music streaming service in Russia &amp; CIS, I inherited a blank canvas. Not having a mobile version of the service yet, allowed us to devise a new type of strategy.</p>
+    <article class="measure prose">
+      <p>When I became Product Lead of Zvooq, a popular music streaming service in Russia &amp; CIS, I inherited a blank canvas. Not having a mobile version of the service yet, allowed us to devise a new type of strategy.</p>
 
-        <p>Instead of following the same model as most major on-demand streaming services, we opted for a multi-app strategy. That strategy came to fit well into the trend of ‘unbundling’ that Foursquare (Swarm), Facebook (Messenger), and Google (Docs, Sheets, Drive) have started pursuing since.</p>
+      <p>Instead of following the same model as most major on-demand streaming services, we opted for a multi-app strategy. That strategy came to fit well into the trend of ‘unbundling’ that Foursquare (Swarm), Facebook (Messenger), and Google (Docs, Sheets, Drive) have started pursuing since.</p>
 
-        <p>The first app we made, is Fonoteka.</p>
+      <p>The first app we made, is Fonoteka.</p>
 
-        <p>Fonoteka is the name of the user library on Zvooq. We wanted to make a simple single-function app that would allow users to bring that library with them.</p>
+      <p>Fonoteka is the name of the user library on Zvooq. We wanted to make a simple single-function app that would allow users to bring that library with them.</p>
 
-        <section class="wrap">
-          <figure>
-            <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
-          </figure>
+      <section class="wrap">
+        <figure>
+          <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
+        </figure>
 
-          <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
+        <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
 
-          <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
-        </section>
+        <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
+      </section>
 
-        <p>No rating, no favouriting, no sharing, no buttons, no shuffle.</p>
+      <p>No rating, no favouriting, no sharing, no buttons, no shuffle.</p>
 
-        <p>Nothing to distract.</p>
+      <p>Nothing to distract.</p>
 
-        <section class="wrap">
-          <figure>
-            <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
-          </figure>
+      <section class="wrap">
+        <figure>
+          <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
+        </figure>
 
-          <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
+        <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
 
-          <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
-        </section>
+        <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
+      </section>
 
-        <p>Additionally, it creates a richer relationship you have with certain pieces: instead of jumping through scores of playlists, albums and songs, all the time, you will experience the same music in different places, different situations, different moods, and different settings.</p>
+      <p>Additionally, it creates a richer relationship you have with certain pieces: instead of jumping through scores of playlists, albums and songs, all the time, you will experience the same music in different places, different situations, different moods, and different settings.</p>
 
-        <p>Music services are growing larger and larger, aiming to give people a more meaningful experience by increasing the number of options to pick from.</p>
+      <p>Music services are growing larger and larger, aiming to give people a more meaningful experience by increasing the number of options to pick from.</p>
 
-        <p class="emphasis">You cannot appreciate a great work of art, running through a museum with your sunglasses on, but this is exactly what many music services are forcing users to do.</p>
+      <p class="emphasis">You cannot appreciate a great work of art, running through a museum with your sunglasses on, but this is exactly what many music services are forcing users to do.</p>
 
-        <p>We hope Fonoteka’s users experience music as more than ‘entertainment’. Entertainment is superfluous and interchangeable. Music as an art form probably precedes any other human art form. It’s an essential ingredient of the human experience. We should not be sending users into mediocre experiences which don’t acknowledge music’s cultural significance.</p>
+      <p>We hope Fonoteka’s users experience music as more than ‘entertainment’. Entertainment is superfluous and interchangeable. Music as an art form probably precedes any other human art form. It’s an essential ingredient of the human experience. We should not be sending users into mediocre experiences which don’t acknowledge music’s cultural significance.</p>
 
-        <p>Turn down the noise. Remove the bullshit. Focus on what matters.</p>
+      <p>Turn down the noise. Remove the bullshit. Focus on what matters.</p>
 
-        <p>Restore the significance.</p>
+      <p>Restore the significance.</p>
 
-        <p>Turn up the music.</p>
-      </article>
-    </div>
+      <p>Turn up the music.</p>
+    </article>
 
+    <!-- End images: bigger + reduced side margins (Medium-like) -->
     <section class="wide" aria-label="Fonoteka screenshots">
       <div class="figure-grid">
         <figure>
@@ -214,8 +217,8 @@
       </div>
     </section>
 
-    <footer>
-      <a href="/">Back to bas.grasmayer.com</a>
+    <footer class="measure">
+      <a href="/" rel="noopener">Back to bas.grasmayer.com</a>
     </footer>
   </main>
 </body>
