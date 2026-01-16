@@ -27,13 +27,12 @@
 
     a{ text-underline-offset: 3px; color: inherit; }
 
-    /* Article typography (more Medium-like, without feeling off-brand) */
+    /* Article typography */
     .prose{
       font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
       font-size: 20px;
       line-height: 1.75;
     }
-
     .prose p{ margin: 0 0 16px; }
 
     h1{
@@ -54,7 +53,7 @@
     }
     .back:hover{ opacity: 1; }
 
-    /* Hero: no “box”; just image + radius */
+    /* Hero: no box */
     .hero{
       margin: 18px 0 26px;
       border-radius: 14px;
@@ -66,18 +65,21 @@
       display: block;
     }
 
-    /* Image + text share space (50/50), responsive */
-    .media{
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* keep 50/50 on normal phones */
-      gap: 18px;
-      align-items: start;
+    /* TEXT RUNAROUND (float-based) */
+    .wrap{
       margin: 26px 0;
     }
-
-    /* No boxes around images: whitespace only */
-    .media img,
-    .figure-grid img{
+    .wrap::after{
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .wrap figure{
+      float: left;
+      width: 50%;
+      margin: 0 18px 10px 0;
+    }
+    .wrap figure img{
       width: 100%;
       height: auto;
       display: block;
@@ -86,9 +88,13 @@
       background: transparent;
     }
 
-    /* Optional: stack on ultra-small screens only */
-    @media (max-width: 360px){
-      .media{ grid-template-columns: 1fr; }
+    /* Keep 50/50 on normal phones; stack only on ultra-small */
+    @media (max-width: 340px){
+      .wrap figure{
+        float: none;
+        width: 100%;
+        margin: 0 0 12px 0;
+      }
     }
 
     /* Big 2-up images near end */
@@ -98,22 +104,26 @@
       gap: 18px;
       margin: 34px 0 10px;
     }
+    .figure-grid img{
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0;
+      border: 0;
+      background: transparent;
+    }
     @media (max-width: 420px){
       .figure-grid{ grid-template-columns: 1fr; }
     }
 
-    /* Callout: subtle, still “Medium-ish” */
-    .callout{
+    /* Emphasis paragraph (NOT a box, not a quote) */
+    .emphasis{
       margin: 18px 0;
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,0.10);
-      background: rgba(255,255,255,0.55);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      font-size: 16px;
-      line-height: 1.65;
+      font-size: 18px;
+      line-height: 1.6;
+      font-weight: 600;
     }
-    .callout p{ margin: 0; }
 
     footer{
       margin-top: 44px;
@@ -124,19 +134,13 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
-    /* Slightly more breathing room on large screens */
     @media (min-width: 1000px){
       main{ margin-top: 72px; }
     }
 
-    /* Dark mode */
     @media (prefers-color-scheme: dark){
       body{ background:#1f1f1b; color:#f3f3ee; }
       a{ color:#c9d4ff; }
-      .callout{
-        border-color: rgba(255,255,255,0.18);
-        background: rgba(255,255,255,0.06);
-      }
       footer{ border-top-color: rgba(255,255,255,0.18); }
     }
   </style>
@@ -162,35 +166,35 @@
 
       <p>Fonoteka is the name of the user library on Zvooq. We wanted to make a simple single-function app that would allow users to bring that library with them.</p>
 
-      <section class="media">
-        <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
-        <div>
-          <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
+      <section class="wrap">
+        <figure>
+          <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
+        </figure>
 
-          <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
-        </div>
+        <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
+
+        <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
       </section>
 
       <p>No rating, no favouriting, no sharing, no buttons, no shuffle.</p>
 
       <p>Nothing to distract.</p>
 
-      <section class="media">
-        <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
-        <div>
-          <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
+      <section class="wrap">
+        <figure>
+          <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
+        </figure>
 
-          <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
-        </div>
+        <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
+
+        <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
       </section>
 
       <p>Additionally, it creates a richer relationship you have with certain pieces: instead of jumping through scores of playlists, albums and songs, all the time, you will experience the same music in different places, different situations, different moods, and different settings.</p>
 
       <p>Music services are growing larger and larger, aiming to give people a more meaningful experience by increasing the number of options to pick from.</p>
 
-      <div class="callout">
-        <p>You cannot appreciate a great work of art, running through a museum with your sunglasses on, but this is exactly what many music services are forcing users to do.</p>
-      </div>
+      <p class="emphasis">You cannot appreciate a great work of art, running through a museum with your sunglasses on, but this is exactly what many music services are forcing users to do.</p>
 
       <p>We hope Fonoteka’s users experience music as more than ‘entertainment’. Entertainment is superfluous and interchangeable. Music as an art form probably precedes any other human art form. It’s an essential ingredient of the human experience. We should not be sending users into mediocre experiences which don’t acknowledge music’s cultural significance.</p>
 
