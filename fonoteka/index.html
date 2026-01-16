@@ -9,7 +9,6 @@
   <style>
     :root { color-scheme: light; }
 
-    /* Align base look with main site (sans font, colors, dark mode) */
     body{
       margin: 0;
       font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -17,7 +16,6 @@
       background: #FFFDF8;
     }
 
-    /* Page container matches homepage width; inner measure controls readable line length */
     main{
       max-width: 920px;
       margin: 64px auto;
@@ -26,10 +24,10 @@
 
     a{ text-underline-offset: 3px; color: inherit; }
 
-    /* Consistent readable measure for both title + prose */
+    /* Readable line length without centering the whole block */
     .measure{
       max-width: 66ch;
-      margin: 0 auto;
+      margin: 0;          /* <-- was auto; this keeps left alignment */
     }
 
     header{ margin-bottom: 22px; }
@@ -53,16 +51,12 @@
     }
     .back:hover{ opacity: 1; }
 
-    /* Prose sizing: sans, but Medium-like readability */
     .prose{
       font-size: 18px;
       line-height: 1.75;
     }
 
-    /* ─────────────────────────────
-       TEXT RUNAROUND (float-based)
-       ───────────────────────────── */
-
+    /* TEXT RUNAROUND (float-based) */
     .wrap{
       margin: 26px 0;
     }
@@ -71,7 +65,6 @@
       display: table;
       clear: both;
     }
-
     .wrap figure{
       float: left;
       width: 50%;
@@ -85,7 +78,6 @@
       background: transparent;
     }
 
-    /* Ultra-small only: stack */
     @media (max-width: 340px){
       .wrap figure{
         float: none;
@@ -100,19 +92,15 @@
       font-weight: 650;
     }
 
-    /* ─────────────────────────────
-       END IMAGES (bigger, tighter, reduced side margins)
-       ───────────────────────────── */
-
+    /* END IMAGES: bigger + tighter + reduced side margins */
     .wide{
-      /* keep inside the 920 container, but reduce side gutters vs prose */
       margin: 12px -10px 0;
     }
 
     .figure-grid{
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;          /* smaller gap between the two images */
+      gap: 12px;
       align-items: start;
     }
 
@@ -141,7 +129,6 @@
       main{ margin-top: 72px; }
     }
 
-    /* Dark mode aligned with main site */
     @media (prefers-color-scheme: dark){
       body{ background:#1f1f1b; color:#f3f3ee; }
       a{ color:#c9d4ff; }
@@ -205,7 +192,6 @@
       <p>Turn up the music.</p>
     </article>
 
-    <!-- End images: bigger + reduced side margins (Medium-like) -->
     <section class="wide" aria-label="Fonoteka screenshots">
       <div class="figure-grid">
         <figure>
