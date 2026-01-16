@@ -16,63 +16,73 @@
       background: #FFFDF8;
     }
 
-    a{ color: inherit; text-underline-offset: 3px; }
-
-    .page{
-      max-width: 980px;
+    /* Article container (keeps everything centered and aligned) */
+    main{
+      max-width: 720px;
       margin: 64px auto;
       padding: 0 22px 72px;
     }
 
-    .measure{
-      max-width: 66ch;
-      margin: 0 auto;
+    header{
+      margin-bottom: 22px;
+      padding-top: 34px; /* space for fixed back-link */
     }
 
-    header{ margin-bottom: 22px; }
-
-    /* Sticky back link */
-    .back{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      opacity: 0.9;
-      font-size: 14px;
-
-      position: sticky;
-      top: 12px;
-      z-index: 10;
-
-      padding: 6px 10px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.78);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
-      width: fit-content;
-    }
-    .back:hover{ opacity: 1; }
+    a{ text-underline-offset: 3px; color: inherit; }
 
     h1{
       font-size: clamp(28px, 3.2vw, 38px);
       line-height: 1.12;
       letter-spacing: -0.02em;
-      margin: 10px 0 8px;
+      margin: 10px 0 10px;
     }
 
-    .published{
-      margin: 0 0 18px;
+    .meta{
       font-size: 14px;
-      opacity: 0.75;
+      opacity: 0.7;
+      margin: 0 0 18px;
     }
 
+    p{ margin: 0 0 14px; }
+
+    /* Fixed back link (always visible, no pill, no blur) */
+    .back{
+      position: fixed;
+      top: 14px;
+      left: 22px;
+      z-index: 1000;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      text-decoration: none;
+      opacity: 0.85;
+      font-size: 14px;
+
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+    }
+    .back:hover{ opacity: 1; }
+
+    /* Article body measure */
     .prose{
       font-size: 18px;
       line-height: 1.75;
+      max-width: 66ch;
     }
-    .prose p{ margin: 0 0 14px; }
 
+    /* Center the prose block within the page */
+    .prose-wrap{
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Text runaround (float-based) */
     .wrap{
       margin: 26px 0;
     }
@@ -94,6 +104,7 @@
       background: transparent;
     }
 
+    /* Ultra-small only: stack */
     @media (max-width: 340px){
       .wrap figure{
         float: none;
@@ -102,20 +113,24 @@
       }
     }
 
+    /* Emphasis paragraph (not a quote, not boxed) */
     .emphasis{
       margin: 18px 0;
+      font-size: 18px;
+      line-height: 1.6;
       font-weight: 650;
     }
 
-    .end{
-      max-width: 980px;
-      margin: 24px auto 0;
-      padding: 0 22px;
+    /* End images: wider than text, still centered */
+    .wide{
+      max-width: 920px;
+      margin: 18px auto 10px;
+      padding: 0 12px;
     }
     .figure-grid{
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 12px;
       align-items: start;
     }
     .figure-grid img{
@@ -125,14 +140,14 @@
       border: 0;
       background: transparent;
     }
-    @media (max-width: 520px){
+    @media (max-width: 420px){
+      .wide{ padding: 0 14px; }
       .figure-grid{ grid-template-columns: 1fr; }
-      .end{ margin-top: 18px; }
     }
 
     footer{
-      margin-top: 34px;
-      padding-top: 18px;
+      margin-top: 44px;
+      padding-top: 22px;
       border-top: 1px solid rgba(0,0,0,0.12);
       font-size: 14px;
       opacity: 0.9;
@@ -142,25 +157,20 @@
       body{ background:#1f1f1b; color:#f3f3ee; }
       a{ color:#c9d4ff; }
       footer{ border-top-color: rgba(255,255,255,0.18); }
-
-      .back{
-        background: rgba(31,31,27,0.72);
-        box-shadow: 0 1px 0 rgba(255,255,255,0.08);
-      }
-      .published{ opacity: 0.7; }
     }
   </style>
 </head>
 
 <body>
-  <main class="page">
-    <div class="measure">
-      <header>
-        <a class="back" href="/" rel="noopener">← Back to bas.grasmayer.com</a>
-        <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
-        <p class="published">Originally published Oct 30, 2014.</p>
-      </header>
+  <a class="back" href="/" rel="noopener">← Back to bas.grasmayer.com</a>
 
+  <main>
+    <header>
+      <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
+      <div class="meta">Originally published Oct 30, 2014</div>
+    </header>
+
+    <div class="prose-wrap">
       <article class="prose">
         <p>When I became Product Lead of Zvooq, a popular music streaming service in Russia &amp; CIS, I inherited a blank canvas. Not having a mobile version of the service yet, allowed us to devise a new type of strategy.</p>
 
@@ -210,7 +220,7 @@
       </article>
     </div>
 
-    <section class="end" aria-label="Fonoteka screenshots">
+    <section class="wide" aria-label="Fonoteka screenshots">
       <div class="figure-grid">
         <figure>
           <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
@@ -221,11 +231,9 @@
       </div>
     </section>
 
-    <div class="measure">
-      <footer>
-        <a href="/" rel="noopener">Back to bas.grasmayer.com</a>
-      </footer>
-    </div>
+    <footer>
+      <a href="/" rel="noopener">Back to bas.grasmayer.com</a>
+    </footer>
   </main>
 </body>
 </html>
