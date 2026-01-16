@@ -16,22 +16,22 @@
       background: #FFFDF8;
     }
 
-    /* Page frame (centered) */
+    a{ color: inherit; text-underline-offset: 3px; }
+
+    /* Page frame (gives comfortable gutters on all screens) */
     .page{
-      max-width: 860px;
+      max-width: 980px;           /* overall page frame */
       margin: 64px auto;
       padding: 0 22px 72px;
     }
 
-    /* Text measure (centered) */
+    /* Single source of truth for alignment */
     .measure{
-      max-width: 66ch;
-      margin: 0 auto;
+      max-width: 66ch;            /* Medium-like readable line length */
+      margin: 0 auto;             /* centers the whole “column” */
     }
 
     header{ margin-bottom: 22px; }
-
-    a{ text-underline-offset: 3px; color: inherit; }
 
     .back{
       display: inline-flex;
@@ -50,14 +50,14 @@
       margin: 10px 0 14px;
     }
 
+    /* Body copy */
     .prose{
       font-size: 18px;
       line-height: 1.75;
     }
-
     .prose p{ margin: 0 0 14px; }
 
-    /* TEXT RUNAROUND (float-based) */
+    /* Float-based “text runs around image” */
     .wrap{
       margin: 26px 0;
     }
@@ -66,13 +66,11 @@
       display: table;
       clear: both;
     }
-
     .wrap figure{
       float: left;
       width: 50%;
       margin: 0 18px 10px 0;
     }
-
     .wrap figure img{
       width: 100%;
       height: auto;
@@ -90,33 +88,24 @@
       }
     }
 
-    /* Emphasis paragraph: not a quote, not boxed */
+    /* Emphasis paragraph (NOT a quote, NOT boxed) */
     .emphasis{
       margin: 18px 0;
       font-weight: 650;
-      font-size: 18px;
-      line-height: 1.6;
     }
 
-    /* End images: wider than measure, still centered within page */
-    .end-images{
-      max-width: 860px;     /* same as .page for clean centering */
-      margin: 18px auto 0;  /* reduce space from last paragraph */
+    /* End images: bigger, tighter, centered, WITHOUT shifting the main measure */
+    .end{
+      max-width: 980px;          /* wider than measure */
+      margin: 24px auto 0;
+      padding: 0 22px;           /* matches page gutters */
     }
-
-    /* Pull images wider than the text column, but keep page gutters */
-    .end-images-inner{
-      margin: 0 auto;
-      max-width: 820px;
-    }
-
     .figure-grid{
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;            /* smaller space between images */
+      gap: 10px;                 /* tighter gap between the two images */
       align-items: start;
     }
-
     .figure-grid img{
       width: 100%;
       height: auto;
@@ -124,20 +113,21 @@
       border: 0;
       background: transparent;
     }
-
-    @media (max-width: 420px){
+    @media (max-width: 520px){
       .figure-grid{ grid-template-columns: 1fr; }
+      .end{ margin-top: 18px; }
     }
 
-    /* Footer rule should be page-wide, link should align with measure */
+    /* Footer aligned with the same measure + divider spanning the page frame */
     footer{
-      margin-top: 44px;
-      padding-top: 22px;
+      margin-top: 34px;
+      padding-top: 18px;
       border-top: 1px solid rgba(0,0,0,0.12);
       font-size: 14px;
       opacity: 0.9;
     }
 
+    /* Dark mode */
     @media (prefers-color-scheme: dark){
       body{ background:#1f1f1b; color:#f3f3ee; }
       a{ color:#c9d4ff; }
@@ -148,77 +138,78 @@
 
 <body>
   <main class="page">
-    <header class="measure">
-      <a class="back" href="/" rel="noopener">← Back to bas.grasmayer.com</a>
-      <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
-    </header>
+    <div class="measure">
+      <header>
+        <a class="back" href="/" rel="noopener">← Back to bas.grasmayer.com</a>
+        <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
+      </header>
 
-    <article class="measure prose">
-      <p>When I became Product Lead of Zvooq, a popular music streaming service in Russia &amp; CIS, I inherited a blank canvas. Not having a mobile version of the service yet, allowed us to devise a new type of strategy.</p>
+      <article class="prose">
+        <p>When I became Product Lead of Zvooq, a popular music streaming service in Russia &amp; CIS, I inherited a blank canvas. Not having a mobile version of the service yet, allowed us to devise a new type of strategy.</p>
 
-      <p>Instead of following the same model as most major on-demand streaming services, we opted for a multi-app strategy. That strategy came to fit well into the trend of ‘unbundling’ that Foursquare (Swarm), Facebook (Messenger), and Google (Docs, Sheets, Drive) have started pursuing since.</p>
+        <p>Instead of following the same model as most major on-demand streaming services, we opted for a multi-app strategy. That strategy came to fit well into the trend of ‘unbundling’ that Foursquare (Swarm), Facebook (Messenger), and Google (Docs, Sheets, Drive) have started pursuing since.</p>
 
-      <p>The first app we made, is Fonoteka.</p>
+        <p>The first app we made, is Fonoteka.</p>
 
-      <p>Fonoteka is the name of the user library on Zvooq. We wanted to make a simple single-function app that would allow users to bring that library with them.</p>
+        <p>Fonoteka is the name of the user library on Zvooq. We wanted to make a simple single-function app that would allow users to bring that library with them.</p>
 
-      <section class="wrap">
-        <figure>
-          <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
-        </figure>
-
-        <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
-
-        <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
-      </section>
-
-      <p>No rating, no favouriting, no sharing, no buttons, no shuffle.</p>
-
-      <p>Nothing to distract.</p>
-
-      <section class="wrap">
-        <figure>
-          <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
-        </figure>
-
-        <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
-
-        <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
-      </section>
-
-      <p>Additionally, it creates a richer relationship you have with certain pieces: instead of jumping through scores of playlists, albums and songs, all the time, you will experience the same music in different places, different situations, different moods, and different settings.</p>
-
-      <p>Music services are growing larger and larger, aiming to give people a more meaningful experience by increasing the number of options to pick from.</p>
-
-      <p class="emphasis">You cannot appreciate a great work of art, running through a museum with your sunglasses on, but this is exactly what many music services are forcing users to do.</p>
-
-      <p>We hope Fonoteka’s users experience music as more than ‘entertainment’. Entertainment is superfluous and interchangeable. Music as an art form probably precedes any other human art form. It’s an essential ingredient of the human experience. We should not be sending users into mediocre experiences which don’t acknowledge music’s cultural significance.</p>
-
-      <p>Turn down the noise. Remove the bullshit. Focus on what matters.</p>
-
-      <p>Restore the significance.</p>
-
-      <p>Turn up the music.</p>
-    </article>
-
-    <section class="end-images" aria-label="Fonoteka screenshots">
-      <div class="end-images-inner">
-        <div class="figure-grid">
+        <section class="wrap">
           <figure>
-            <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
+            <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
           </figure>
+
+          <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
+
+          <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
+        </section>
+
+        <p>No rating, no favouriting, no sharing, no buttons, no shuffle.</p>
+
+        <p>Nothing to distract.</p>
+
+        <section class="wrap">
           <figure>
-            <img src="content/fonoteka4.png" alt="Fonoteka screenshot 4" />
+            <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
           </figure>
-        </div>
+
+          <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
+
+          <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
+        </section>
+
+        <p>Additionally, it creates a richer relationship you have with certain pieces: instead of jumping through scores of playlists, albums and songs, all the time, you will experience the same music in different places, different situations, different moods, and different settings.</p>
+
+        <p>Music services are growing larger and larger, aiming to give people a more meaningful experience by increasing the number of options to pick from.</p>
+
+        <p class="emphasis">You cannot appreciate a great work of art, running through a museum with your sunglasses on, but this is exactly what many music services are forcing users to do.</p>
+
+        <p>We hope Fonoteka’s users experience music as more than ‘entertainment’. Entertainment is superfluous and interchangeable. Music as an art form probably precedes any other human art form. It’s an essential ingredient of the human experience. We should not be sending users into mediocre experiences which don’t acknowledge music’s cultural significance.</p>
+
+        <p>Turn down the noise. Remove the bullshit. Focus on what matters.</p>
+
+        <p>Restore the significance.</p>
+
+        <p>Turn up the music.</p>
+      </article>
+    </div>
+
+    <!-- End images: wide but still centered + consistent gutters -->
+    <section class="end" aria-label="Fonoteka screenshots">
+      <div class="figure-grid">
+        <figure>
+          <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
+        </figure>
+        <figure>
+          <img src="content/fonoteka4.png" alt="Fonoteka screenshot 4" />
+        </figure>
       </div>
     </section>
 
-    <footer>
-      <div class="measure">
+    <div class="measure">
+      <footer>
         <a href="/" rel="noopener">Back to bas.grasmayer.com</a>
-      </div>
-    </footer>
+      </footer>
+    </div>
   </main>
 </body>
 </html>
