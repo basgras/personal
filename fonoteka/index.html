@@ -5,95 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Why We Made Fonoteka — Bas Grasmayer</title>
   <meta name="description" content="Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka" />
+  <link rel="icon" href="/content/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/content/favicon.svg" />
 
   <style>
     :root { color-scheme: light; }
 
-    body{
+    body {
       margin: 0;
       font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color: #111;
       background: #FFFDF8;
     }
 
-    /* Sticky top bar (always readable, no transparency) */
-    .topbar{
+    a { color: inherit; text-underline-offset: 3px; }
+
+    .topbar {
       position: sticky;
       top: 0;
-      z-index: 50;
-      background: #FFFDF8;
-      padding: 12px 0;
+      z-index: 10;
+      background: inherit;
     }
 
-    .topbar .inner{
+    .topbar-inner {
       max-width: 640px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 12px 20px;
     }
 
-    a{ text-underline-offset: 3px; color: inherit; }
-
-    .back{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration:sa none;
+    .back {
+      text-decoration: none;
       font-size: 14px;
+      opacity: 0.85;
     }
 
-    /* Article column (this is the key fix) */
-    main{
-      max-width: 640px;          /* narrower, Medium-like reading measure */
+    .back:hover { opacity: 1; }
+
+    main {
+      max-width: 640px;
       margin: 0 auto;
-      padding: 16px 20px 72px;
+      padding: 12px 20px 72px;
     }
 
-    header{ margin: 10px 0 18px; }
+    header {
+      margin: 10px 0 22px;
+    }
 
-    h1{
+    h1 {
       font-size: clamp(28px, 4.2vw, 44px);
       line-height: 1.08;
       letter-spacing: -0.02em;
-      margin: 10px 0 10px;
+      margin: 8px 0 10px;
     }
 
-    .meta{
-      margin: 0 0 18px;
-      color: rgba(0,0,0,0.62);
+    .meta {
       font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      margin-bottom: 18px;
     }
 
-    article{
+    article {
       font-size: 18px;
       line-height: 1.75;
     }
 
-    @media (max-width: 420px){
-      article{ font-size: 17px; }
+    @media (max-width: 420px) {
+      article { font-size: 17px; }
     }
 
-    p{ margin: 0 0 16px; }
+    p { margin: 0 0 16px; }
 
-    /* Text runaround (float-based, reliable once column width is correct) */
-    .wrap{
-      overflow: auto; /* clears float without extra markup */
-      margin: 18px 0 18px;
+    .wrap {
+      overflow: auto;
+      margin: 18px 0;
     }
 
-    .wrap img.float-left{
+    .wrap img {
       float: left;
       width: 45%;
       max-width: 260px;
-      height: auto;
       margin: 6px 22px 10px 0;
       display: block;
-      border: 0;
-      background: transparent;
     }
 
-    /* Ultra-small only: stack */
-    @media (max-width: 340px){
-      .wrap img.float-left{
+    @media (max-width: 340px) {
+      .wrap img {
         float: none;
         width: 100%;
         max-width: none;
@@ -101,65 +97,72 @@
       }
     }
 
-    /* Emphasis paragraph (NOT a quote, no box) */
-    .emphasis{
+    .emphasis {
       font-weight: 650;
       line-height: 1.6;
       margin: 18px 0;
     }
 
-    /* End images (inside same centered column; tighter spacing) */
-    .end-images{
+    .end-images {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin: 14px 0 0;
+      margin-top: 18px;
     }
 
-    .end-images img{
+    .end-images img {
       width: 100%;
-      height: auto;
       display: block;
-      border: 0;
-      background: transparent;
     }
 
-    @media (max-width: 420px){
-      .end-images{ grid-template-columns: 1fr; }
+    @media (max-width: 420px) {
+      .end-images { grid-template-columns: 1fr; }
     }
 
-    footer{
-      margin-top: 40px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(0,0,0,0.12);
-      font-size: 14px;
-      opacity: 0.9;
+    footer {
+      margin-top: 44px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      align-items: center;
     }
 
-    /* Dark mode aligned with your main site behavior */
-    @media (prefers-color-scheme: dark){
-      body{ background:#1f1f1b; color:#f3f3ee; }
-      a{ color:#c9d4ff; }
+    .iconlink {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      opacity: 0.7;
+      padding: 6px;
+    }
 
-      .topbar{ background:#1f1f1b; }
+    .iconlink:hover { opacity: 1; }
 
-      .meta{ color: rgba(243,243,238,0.65); }
-      footer{ border-top-color: rgba(255,255,255,0.18); }
+    .iconlink svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #1f1f1b; color: #f3f3ee; }
+      .meta { color: rgba(243,243,238,0.65); }
     }
   </style>
 </head>
 
 <body>
-  <div class="topbar" role="banner" aria-label="Navigation">
-    <div class="inner">
-      <a class="back" href="/" rel="noopener">← Back to bas.grasmayer.com</a>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="back" href="/">← Back to bas.grasmayer.com</a>
     </div>
   </div>
 
   <main>
     <header>
       <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
-      <p class="meta">Originally published Oct 30, 2014</p>
+      <div class="meta">Originally published Oct 30, 2014</div>
     </header>
 
     <article>
@@ -172,43 +175,52 @@
       <p>Fonoteka is the name of the user library on Zvooq. We wanted to make a simple single-function app that would allow users to bring that library with them.</p>
 
       <div class="wrap">
-        <img class="float-left" src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
+        <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
         <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
         <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
       </div>
 
       <p>No rating, no favouriting, no sharing, no buttons, no shuffle.</p>
-
       <p>Nothing to distract.</p>
 
       <div class="wrap">
-        <img class="float-left" src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
-        <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
-        <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
+        <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
+        <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also.</p>
+        <p>If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream.</p>
       </div>
 
       <p>Additionally, it creates a richer relationship you have with certain pieces: instead of jumping through scores of playlists, albums and songs, all the time, you will experience the same music in different places, different situations, different moods, and different settings.</p>
 
-      <p>Music services are growing larger and larger, aiming to give people a more meaningful experience by increasing the number of options to pick from.</p>
-
       <p class="emphasis">You cannot appreciate a great work of art, running through a museum with your sunglasses on, but this is exactly what many music services are forcing users to do.</p>
 
-      <p>We hope Fonoteka’s users experience music as more than ‘entertainment’. Entertainment is superfluous and interchangeable. Music as an art form probably precedes any other human art form. It’s an essential ingredient of the human experience. We should not be sending users into mediocre experiences which don’t acknowledge music’s cultural significance.</p>
-
       <p>Turn down the noise. Remove the bullshit. Focus on what matters.</p>
-
       <p>Restore the significance.</p>
-
       <p>Turn up the music.</p>
 
-      <div class="end-images" aria-label="Fonoteka screenshots">
+      <div class="end-images">
         <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
         <img src="content/fonoteka4.png" alt="Fonoteka screenshot 4" />
       </div>
     </article>
 
-    <footer>
-      <!-- Intentionally no duplicate “Back” link (top bar stays available) -->
+    <footer aria-label="Social links">
+      <a class="iconlink" href="https://bsky.app/profile/bas.bsky.social" aria-label="Bluesky">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/>
+        </svg>
+      </a>
+
+      <a class="iconlink" href="https://www.linkedin.com/in/grasmayer/" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854z"/>
+        </svg>
+      </a>
+
+      <a class="iconlink" href="https://calmfluffy.substack.com/" aria-label="Substack">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path d="M15 3.604H1v1.891h14v-1.89ZM1 7.208V16l7-3.926L15 16V7.208zM15 0H1v1.89h14z"/>
+        </svg>
+      </a>
     </footer>
   </main>
 </body>
