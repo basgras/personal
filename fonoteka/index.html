@@ -11,26 +11,34 @@
 
     body{
       margin: 0;
-      font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color: #111;
       background: #FFFDF8;
+      font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
+    /* Medium-like: narrower measure + bigger side margins */
     main{
-      max-width: 920px;
-      margin: 72px auto;
-      padding: 0 20px 72px;
+      max-width: 720px;
+      margin: 64px auto;
+      padding: 0 22px 72px;
     }
 
-    header{
-      margin-bottom: 22px;
-    }
+    header{ margin-bottom: 18px; }
 
     a{ text-underline-offset: 3px; color: inherit; }
-    p{ margin: 0 0 14px; }
+
+    /* Article typography (more Medium-like, without feeling off-brand) */
+    .prose{
+      font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      font-size: 20px;
+      line-height: 1.75;
+    }
+
+    .prose p{ margin: 0 0 16px; }
 
     h1{
-      font-size: clamp(30px, 3.2vw, 40px);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-size: clamp(28px, 3.2vw, 38px);
       line-height: 1.12;
       letter-spacing: -0.02em;
       margin: 10px 0 14px;
@@ -42,15 +50,15 @@
       gap: 8px;
       text-decoration: none;
       opacity: 0.8;
+      font-size: 14px;
     }
     .back:hover{ opacity: 1; }
 
+    /* Hero: no “box”; just image + radius */
     .hero{
       margin: 18px 0 26px;
       border-radius: 14px;
       overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.10);
-      background: rgba(255,255,255,0.35);
     }
     .hero img{
       width: 100%;
@@ -61,21 +69,24 @@
     /* Image + text share space (50/50), responsive */
     .media{
       display: grid;
-      grid-template-columns: 1fr 1fr; /* 50/50 even on mobile */
-      gap: 16px;
+      grid-template-columns: 1fr 1fr; /* keep 50/50 on normal phones */
+      gap: 18px;
       align-items: start;
       margin: 26px 0;
     }
-    .media img{
+
+    /* No boxes around images: whitespace only */
+    .media img,
+    .figure-grid img{
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,0.10);
-      background: rgba(255,255,255,0.35);
+      border-radius: 0;
+      border: 0;
+      background: transparent;
     }
 
-    /* Optional: stack on ultra-small screens */
+    /* Optional: stack on ultra-small screens only */
     @media (max-width: 360px){
       .media{ grid-template-columns: 1fr; }
     }
@@ -84,28 +95,25 @@
     .figure-grid{
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin: 34px 0;
-    }
-    .figure-grid img{
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,0.10);
-      background: rgba(255,255,255,0.35);
+      gap: 18px;
+      margin: 34px 0 10px;
     }
     @media (max-width: 420px){
       .figure-grid{ grid-template-columns: 1fr; }
     }
 
+    /* Callout: subtle, still “Medium-ish” */
     .callout{
       margin: 18px 0;
       padding: 14px 16px;
-      border-radius: 14px;
+      border-radius: 12px;
       border: 1px solid rgba(0,0,0,0.10);
-      background: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.55);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-size: 16px;
+      line-height: 1.65;
     }
+    .callout p{ margin: 0; }
 
     footer{
       margin-top: 44px;
@@ -113,13 +121,19 @@
       border-top: 1px solid rgba(0,0,0,0.12);
       font-size: 14px;
       opacity: 0.9;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
+    /* Slightly more breathing room on large screens */
+    @media (min-width: 1000px){
+      main{ margin-top: 72px; }
+    }
+
+    /* Dark mode */
     @media (prefers-color-scheme: dark){
       body{ background:#1f1f1b; color:#f3f3ee; }
       a{ color:#c9d4ff; }
-
-      .hero, .media img, .figure-grid img, .callout{
+      .callout{
         border-color: rgba(255,255,255,0.18);
         background: rgba(255,255,255,0.06);
       }
@@ -139,60 +153,62 @@
       <img src="content/fonoteka-hero.png" alt="Fonoteka header gradient" />
     </figure>
 
-    <p>When I became Product Lead of Zvooq, a popular music streaming service in Russia &amp; CIS, I inherited a blank canvas. Not having a mobile version of the service yet, allowed us to devise a new type of strategy.</p>
+    <article class="prose">
+      <p>When I became Product Lead of Zvooq, a popular music streaming service in Russia &amp; CIS, I inherited a blank canvas. Not having a mobile version of the service yet, allowed us to devise a new type of strategy.</p>
 
-    <p>Instead of following the same model as most major on-demand streaming services, we opted for a multi-app strategy. That strategy came to fit well into the trend of ‘unbundling’ that Foursquare (Swarm), Facebook (Messenger), and Google (Docs, Sheets, Drive) have started pursuing since.</p>
+      <p>Instead of following the same model as most major on-demand streaming services, we opted for a multi-app strategy. That strategy came to fit well into the trend of ‘unbundling’ that Foursquare (Swarm), Facebook (Messenger), and Google (Docs, Sheets, Drive) have started pursuing since.</p>
 
-    <p>The first app we made, is Fonoteka.</p>
+      <p>The first app we made, is Fonoteka.</p>
 
-    <p>Fonoteka is the name of the user library on Zvooq. We wanted to make a simple single-function app that would allow users to bring that library with them.</p>
+      <p>Fonoteka is the name of the user library on Zvooq. We wanted to make a simple single-function app that would allow users to bring that library with them.</p>
 
-    <section class="media">
-      <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
-      <div>
-        <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
+      <section class="media">
+        <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
+        <div>
+          <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
 
-        <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
+          <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
+        </div>
+      </section>
+
+      <p>No rating, no favouriting, no sharing, no buttons, no shuffle.</p>
+
+      <p>Nothing to distract.</p>
+
+      <section class="media">
+        <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
+        <div>
+          <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
+
+          <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
+        </div>
+      </section>
+
+      <p>Additionally, it creates a richer relationship you have with certain pieces: instead of jumping through scores of playlists, albums and songs, all the time, you will experience the same music in different places, different situations, different moods, and different settings.</p>
+
+      <p>Music services are growing larger and larger, aiming to give people a more meaningful experience by increasing the number of options to pick from.</p>
+
+      <div class="callout">
+        <p>You cannot appreciate a great work of art, running through a museum with your sunglasses on, but this is exactly what many music services are forcing users to do.</p>
       </div>
-    </section>
 
-    <p>No rating, no favouriting, no sharing, no buttons, no shuffle.</p>
+      <p>We hope Fonoteka’s users experience music as more than ‘entertainment’. Entertainment is superfluous and interchangeable. Music as an art form probably precedes any other human art form. It’s an essential ingredient of the human experience. We should not be sending users into mediocre experiences which don’t acknowledge music’s cultural significance.</p>
 
-    <p>Nothing to distract.</p>
+      <p>Turn down the noise. Remove the bullshit. Focus on what matters.</p>
 
-    <section class="media">
-      <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
-      <div>
-        <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
+      <p>Restore the significance.</p>
 
-        <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
+      <p>Turn up the music.</p>
+
+      <div class="figure-grid">
+        <figure>
+          <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
+        </figure>
+        <figure>
+          <img src="content/fonoteka4.png" alt="Fonoteka screenshot 4" />
+        </figure>
       </div>
-    </section>
-
-    <p>Additionally, it creates a richer relationship you have with certain pieces: instead of jumping through scores of playlists, albums and songs, all the time, you will experience the same music in different places, different situations, different moods, and different settings.</p>
-
-    <p>Music services are growing larger and larger, aiming to give people a more meaningful experience by increasing the number of options to pick from.</p>
-
-    <div class="callout">
-      <p>You cannot appreciate a great work of art, running through a museum with your sunglasses on, but this is exactly what many music services are forcing users to do.</p>
-    </div>
-
-    <p>We hope Fonoteka’s users experience music as more than ‘entertainment’. Entertainment is superfluous and interchangeable. Music as an art form probably precedes any other human art form. It’s an essential ingredient of the human experience. We should not be sending users into mediocre experiences which don’t acknowledge music’s cultural significance.</p>
-
-    <p>Turn down the noise. Remove the bullshit. Focus on what matters.</p>
-
-    <p>Restore the significance.</p>
-
-    <p>Turn up the music.</p>
-
-    <div class="figure-grid">
-      <figure>
-        <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
-      </figure>
-      <figure>
-        <img src="content/fonoteka4.png" alt="Fonoteka screenshot 4" />
-      </figure>
-    </div>
+    </article>
 
     <footer>
       <a href="/" rel="noopener">Back to bas.grasmayer.com</a>
