@@ -9,7 +9,6 @@
   <style>
     :root { color-scheme: light; }
 
-    /* Base look (aligned with your homepage) */
     body{
       margin: 0;
       font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -17,84 +16,84 @@
       background: #FFFDF8;
     }
 
-    a{ color: inherit; text-underline-offset: 3px; }
-
-    /* Sticky top bar (always visible, no transparency, no divider line) */
+    /* Sticky top bar (always readable, no transparency) */
     .topbar{
       position: sticky;
       top: 0;
       z-index: 50;
       background: #FFFDF8;
+      padding: 12px 0;
     }
 
-    .topbar-inner{
-      max-width: 760px;            /* SINGLE authoritative column width */
+    .topbar .inner{
+      max-width: 640px;
       margin: 0 auto;
-      padding: 14px 22px;
+      padding: 0 20px;
     }
+
+    a{ text-underline-offset: 3px; color: inherit; }
 
     .back{
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      text-decoration: none;
+      text-decoration:sa none;
       font-size: 14px;
-      opacity: 0.85;
     }
-    .back:hover{ opacity: 1; }
 
-    /* Page layout */
+    /* Article column (this is the key fix) */
     main{
-      max-width: 760px;            /* SAME column as topbar */
+      max-width: 640px;          /* narrower, Medium-like reading measure */
       margin: 0 auto;
-      padding: 18px 22px 72px;
+      padding: 16px 20px 72px;
     }
 
-    /* Type */
+    header{ margin: 10px 0 18px; }
+
     h1{
-      font-size: clamp(28px, 3.2vw, 40px);
-      line-height: 1.12;
+      font-size: clamp(28px, 4.2vw, 44px);
+      line-height: 1.08;
       letter-spacing: -0.02em;
-      margin: 6px 0 12px;
+      margin: 10px 0 10px;
     }
 
     .meta{
-      margin: 0 0 28px;
+      margin: 0 0 18px;
+      color: rgba(0,0,0,0.62);
       font-size: 14px;
-      opacity: 0.72;
+    }
+
+    article{
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    @media (max-width: 420px){
+      article{ font-size: 17px; }
     }
 
     p{ margin: 0 0 16px; }
 
-    /* Float-based runaround (Medium-like) */
-    figure{
-      margin: 0;
+    /* Text runaround (float-based, reliable once column width is correct) */
+    .wrap{
+      overflow: auto; /* clears float without extra markup */
+      margin: 18px 0 18px;
     }
 
-    .float-left{
+    .wrap img.float-left{
       float: left;
-      width: min(46%, 320px);     /* keeps column from feeling too wide */
-      margin: 6px 22px 10px 0;
-    }
-
-    .float-left img{
-      width: 100%;
+      width: 45%;
+      max-width: 260px;
       height: auto;
+      margin: 6px 22px 10px 0;
       display: block;
       border: 0;
       background: transparent;
     }
 
-    /* Clear float so following paragraphs behave predictably */
-    .clearfix::after{
-      content: "";
-      display: table;
-      clear: both;
-    }
-
     /* Ultra-small only: stack */
-    @media (max-width: 360px){
-      .float-left{
+    @media (max-width: 340px){
+      .wrap img.float-left{
         float: none;
         width: 100%;
         max-width: none;
@@ -102,23 +101,22 @@
       }
     }
 
-    /* Emphasis paragraph (NOT a quote; no box) */
+    /* Emphasis paragraph (NOT a quote, no box) */
     .emphasis{
-      margin: 18px 0;
       font-weight: 650;
-      line-height: 1.55;
+      line-height: 1.6;
+      margin: 18px 0;
     }
 
-    /* End images (stay inside the same column; tighter spacing) */
-    .figure-row{
+    /* End images (inside same centered column; tighter spacing) */
+    .end-images{
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;                  /* tighter space between the two images */
-      margin: 12px 0 0;           /* minimal space after last paragraph */
-      align-items: start;
+      gap: 12px;
+      margin: 14px 0 0;
     }
 
-    .figure-row img{
+    .end-images img{
       width: 100%;
       height: auto;
       display: block;
@@ -126,37 +124,45 @@
       background: transparent;
     }
 
-    @media (max-width: 520px){
-      .figure-row{
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
+    @media (max-width: 420px){
+      .end-images{ grid-template-columns: 1fr; }
     }
 
-    /* Dark mode */
+    footer{
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(0,0,0,0.12);
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* Dark mode aligned with your main site behavior */
     @media (prefers-color-scheme: dark){
       body{ background:#1f1f1b; color:#f3f3ee; }
       a{ color:#c9d4ff; }
+
       .topbar{ background:#1f1f1b; }
-      .meta{ opacity: 0.68; }
+
+      .meta{ color: rgba(243,243,238,0.65); }
+      footer{ border-top-color: rgba(255,255,255,0.18); }
     }
   </style>
 </head>
 
 <body>
   <div class="topbar" role="banner" aria-label="Navigation">
-    <div class="topbar-inner">
+    <div class="inner">
       <a class="back" href="/" rel="noopener">← Back to bas.grasmayer.com</a>
     </div>
   </div>
 
   <main>
-    <article>
-      <header>
-        <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
-        <p class="meta">Originally published Oct 30, 2014</p>
-      </header>
+    <header>
+      <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
+      <p class="meta">Originally published Oct 30, 2014</p>
+    </header>
 
+    <article>
       <p>When I became Product Lead of Zvooq, a popular music streaming service in Russia &amp; CIS, I inherited a blank canvas. Not having a mobile version of the service yet, allowed us to devise a new type of strategy.</p>
 
       <p>Instead of following the same model as most major on-demand streaming services, we opted for a multi-app strategy. That strategy came to fit well into the trend of ‘unbundling’ that Foursquare (Swarm), Facebook (Messenger), and Google (Docs, Sheets, Drive) have started pursuing since.</p>
@@ -165,14 +171,9 @@
 
       <p>Fonoteka is the name of the user library on Zvooq. We wanted to make a simple single-function app that would allow users to bring that library with them.</p>
 
-      <!-- Float wrap 1 -->
-      <div class="clearfix">
-        <figure class="float-left">
-          <img src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
-        </figure>
-
+      <div class="wrap">
+        <img class="float-left" src="content/fonoteka1.png" alt="Fonoteka screenshot 1" />
         <p><strong>Our goal</strong> was to restore a certain intimacy people used to share with their collection… Before music became <strong>ubiquitous</strong>, and people started hopping from one thing to the other at an ever-increasing pace.</p>
-
         <p>The idea: we can make people’s experience richer, by giving them <strong>LESS</strong> features and options which detach them from the music itself. We fully centered the experience on the user and their music.</p>
       </div>
 
@@ -180,14 +181,9 @@
 
       <p>Nothing to distract.</p>
 
-      <!-- Float wrap 2 -->
-      <div class="clearfix">
-        <figure class="float-left">
-          <img src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
-        </figure>
-
+      <div class="wrap">
+        <img class="float-left" src="content/fonoteka2.png" alt="Fonoteka screenshot 2" />
         <p>Here’s the concept: a user has 3 slots, every day they can change the album in those slots with an album from their library, though there’s a search function, and a recommended album function also. If they play one of the releases in the slots, the slot locks until midnight. The releases are cached for offline playback, which means the first app we released as a streaming service doesn’t even stream. There’s also a 7 slot tier.</p>
-
         <p>We believe pushing people to make a conscious choice about the music they will bring with themselves for the day, or the next few hours, increases their feeling of connectedness to that music.</p>
       </div>
 
@@ -205,16 +201,15 @@
 
       <p>Turn up the music.</p>
 
-      <!-- End images (bigger-feeling via tighter spacing + same column) -->
-      <div class="figure-row" aria-label="Fonoteka screenshots">
-        <figure>
-          <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
-        </figure>
-        <figure>
-          <img src="content/fonoteka4.png" alt="Fonoteka screenshot 4" />
-        </figure>
+      <div class="end-images" aria-label="Fonoteka screenshots">
+        <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
+        <img src="content/fonoteka4.png" alt="Fonoteka screenshot 4" />
       </div>
     </article>
+
+    <footer>
+      <!-- Intentionally no duplicate “Back” link (top bar stays available) -->
+    </footer>
   </main>
 </body>
 </html>
