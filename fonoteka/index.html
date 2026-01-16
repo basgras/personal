@@ -16,30 +16,21 @@
       background: #FFFDF8;
     }
 
-    main{
+    /* One consistent page container everywhere */
+    .container{
       max-width: 920px;
       margin: 64px auto;
       padding: 0 20px 72px;
     }
 
-    a{ text-underline-offset: 3px; color: inherit; }
-
-    /* Readable line length without centering the whole block */
-    .measure{
-      max-width: 66ch;
-      margin: 0;          /* <-- was auto; this keeps left alignment */
+    /* One consistent content column (header + article align to this) */
+    .content{
+      max-width: 66ch;              /* Medium-like measure */
     }
 
     header{ margin-bottom: 22px; }
 
-    h1{
-      font-size: clamp(28px, 3.2vw, 40px);
-      line-height: 1.12;
-      letter-spacing: -0.02em;
-      margin: 10px 0 14px;
-    }
-
-    p{ margin: 0 0 14px; }
+    a{ text-underline-offset: 3px; color: inherit; }
 
     .back{
       display: inline-flex;
@@ -51,6 +42,16 @@
     }
     .back:hover{ opacity: 1; }
 
+    h1{
+      font-size: clamp(28px, 3.2vw, 38px);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin: 10px 0 14px;
+    }
+
+    p{ margin: 0 0 14px; }
+
+    /* Article body: sans, but legible */
     .prose{
       font-size: 18px;
       line-height: 1.75;
@@ -65,11 +66,20 @@
       display: table;
       clear: both;
     }
+
+    /* Default: image on left, text flows around */
     .wrap figure{
       float: left;
       width: 50%;
       margin: 0 18px 10px 0;
     }
+
+    /* Optional variant: image on right (not used unless you add .right) */
+    .wrap.right figure{
+      float: right;
+      margin: 0 0 10px 18px;
+    }
+
     .wrap figure img{
       width: 100%;
       height: auto;
@@ -78,10 +88,14 @@
       background: transparent;
     }
 
+    /* Only stack on truly tiny screens */
     @media (max-width: 340px){
       .wrap figure{
         float: none;
         width: 100%;
+        margin: 0 0 12px 0;
+      }
+      .wrap.right figure{
         margin: 0 0 12px 0;
       }
     }
@@ -90,17 +104,29 @@
     .emphasis{
       margin: 18px 0;
       font-weight: 650;
+      font-size: 18px;
+      line-height: 1.6;
     }
 
-    /* END IMAGES: bigger + tighter + reduced side margins */
-    .wide{
-      margin: 12px -10px 0;
+    /* End images: wider than text column, but still centered + consistent gutters */
+    .end-images{
+      margin-top: 18px;             /* tighter than before */
+    }
+
+    .widen{
+      max-width: 920px;             /* can be same as container max, but still centered */
+    }
+
+    /* Make it feel “bigger” by reducing side padding relative to main content */
+    .widen-inner{
+      margin-top: 10px;
+      padding: 0;                   /* no extra padding = larger images */
     }
 
     .figure-grid{
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;                    /* smaller gap between the two images */
       align-items: start;
     }
 
@@ -113,8 +139,8 @@
     }
 
     @media (max-width: 420px){
-      .wide{ margin-left: 0; margin-right: 0; }
-      .figure-grid{ grid-template-columns: 1fr; gap: 14px; }
+      .figure-grid{ grid-template-columns: 1fr; }
+      .widen-inner{ padding: 0; }
     }
 
     footer{
@@ -126,9 +152,10 @@
     }
 
     @media (min-width: 1000px){
-      main{ margin-top: 72px; }
+      .container{ margin-top: 72px; }
     }
 
+    /* Dark mode aligned with main site */
     @media (prefers-color-scheme: dark){
       body{ background:#1f1f1b; color:#f3f3ee; }
       a{ color:#c9d4ff; }
@@ -138,13 +165,13 @@
 </head>
 
 <body>
-  <main>
-    <header class="measure">
+  <main class="container">
+    <header class="content">
       <a class="back" href="/" rel="noopener">← Back to bas.grasmayer.com</a>
       <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
     </header>
 
-    <article class="measure prose">
+    <article class="content prose">
       <p>When I became Product Lead of Zvooq, a popular music streaming service in Russia &amp; CIS, I inherited a blank canvas. Not having a mobile version of the service yet, allowed us to devise a new type of strategy.</p>
 
       <p>Instead of following the same model as most major on-demand streaming services, we opted for a multi-app strategy. That strategy came to fit well into the trend of ‘unbundling’ that Foursquare (Swarm), Facebook (Messenger), and Google (Docs, Sheets, Drive) have started pursuing since.</p>
@@ -192,18 +219,20 @@
       <p>Turn up the music.</p>
     </article>
 
-    <section class="wide" aria-label="Fonoteka screenshots">
-      <div class="figure-grid">
-        <figure>
-          <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
-        </figure>
-        <figure>
-          <img src="content/fonoteka4.png" alt="Fonoteka screenshot 4" />
-        </figure>
+    <section class="end-images widen" aria-label="Fonoteka screenshots">
+      <div class="widen-inner">
+        <div class="figure-grid">
+          <figure>
+            <img src="content/fonoteka3.png" alt="Fonoteka screenshot 3" />
+          </figure>
+          <figure>
+            <img src="content/fonoteka4.png" alt="Fonoteka screenshot 4" />
+          </figure>
+        </div>
       </div>
     </section>
 
-    <footer class="measure">
+    <footer class="content">
       <a href="/" rel="noopener">Back to bas.grasmayer.com</a>
     </footer>
   </main>
