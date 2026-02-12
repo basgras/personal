@@ -282,6 +282,26 @@
   }
 
   /* ─────────────────────────────
+     SUBSTACK ARTICLES
+     ───────────────────────────── */
+
+  .substack {
+    margin-top: 36px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .substack h2 { margin-top: 0; }
+
+  .substack-list { margin: 8px 0 0; padding-left: 18px; }
+
+  .substack-date {
+    font-weight: 500;
+    font-size: 12.5px;
+    color: rgba(0,0,0,0.6);
+  }
+
+  /* ─────────────────────────────
      DARK MODE
      ───────────────────────────── */
 
@@ -304,6 +324,9 @@
     details.background { border-top-color: rgba(255,255,255,0.18); }
 
     details.writing { border-top-color: rgba(255,255,255,0.18); }
+
+    .substack { border-top-color: rgba(255,255,255,0.18); }
+    .substack-date { color: rgba(243,243,238,0.65); }
 
     .iconlink:focus-visible { outline-color: rgba(255,255,255,0.35); }
 
@@ -378,6 +401,14 @@
         <div class="card photo-mobile">
           <img class="photo" src="content/basgrasmayer.jpg" alt="Bas Grasmayer" loading="lazy" />
         </div>
+
+        <!-- Latest from Calm & Fluffy -->
+        <section class="substack">
+          <h2>📬 Latest from Calm &amp; Fluffy</h2>
+          <ul class="substack-list" id="substack-articles">
+            <li><a href="https://www.calmfluffy.cloud/">Read on Substack →</a></li>
+          </ul>
+        </section>
 
         <!-- Background -->
         <details class="background">
@@ -561,5 +592,25 @@
       </div>
     </section>
   </main>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var url = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fcalmfluffy.substack.com%2Ffeed';
+    fetch(url)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.status !== 'ok' || !data.items || !data.items.length) return;
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var list = document.getElementById('substack-articles');
+        var html = '';
+        data.items.slice(0, 5).forEach(function (item) {
+          var d = new Date(item.pubDate);
+          var date = months[d.getMonth()] + ' ' + d.getFullYear();
+          html += '<li><a href="' + item.link + '">' + item.title + '</a> <span class="substack-date">(' + date + ')</span></li>';
+        });
+        list.innerHTML = html;
+      })
+      .catch(function () { /* keep fallback link */ });
+  });
+</script>
 </body>
 </html>
