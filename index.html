@@ -6,25 +6,19 @@
   <title>Bas Grasmayer</title>
   <meta name="description" content="Strategist focused on product and organisational development." />
 <link rel="icon" href="/content/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/shared.css" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Bas Grasmayer" />
   <meta property="og:description" content="Strategist focused on product and organisational development." />
   <meta property="og:url" content="https://bas.grasmayer.com/" />
+  <meta property="og:image" content="https://bas.grasmayer.com/content/basgrasmayer.jpg" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Bas Grasmayer" />
   <meta name="twitter:description" content="Strategist focused on product and organisational development." />
+  <meta name="twitter:image" content="https://bas.grasmayer.com/content/basgrasmayer.jpg" />
 
 <style>
-  :root { color-scheme: light; }
-
-  body {
-    margin: 0;
-    font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-    color: #111;
-    background: #FFFDF8;
-  }
-
   main {
     max-width: 920px;
     margin: 72px auto;
@@ -66,8 +60,6 @@
   p { margin: 0 0 14px; }
 
   ul { margin: 0 0 14px 18px; padding: 0; }
-
-  a { text-underline-offset: 3px; }
 
   .section-summary {
     font-weight: 650;
@@ -236,51 +228,11 @@
   }
 
   /* ─────────────────────────────
-     FOOTER
-     ───────────────────────────── */
-
-  footer {
-    margin-top: 44px;
-    padding-top: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    align-items: center;
-  }
-
-  .iconlink {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: inherit;
-    opacity: 0.7;
-    padding: 6px;
-  }
-
-  .iconlink svg {
-    width: 20px;
-    height: 20px;
-    display: block;
-    fill: currentColor;
-  }
-
-  .iconlink:hover { opacity: 1; }
-
-  .iconlink:focus-visible {
-    outline: 2px solid rgba(0,0,0,0.35);
-    outline-offset: 2px;
-  }
-
-  /* ─────────────────────────────
-     DARK MODE
+     DARK MODE (page-specific)
      ───────────────────────────── */
 
   @media (prefers-color-scheme: dark) {
-    body { background: #1f1f1b; color: #f3f3ee; }
     a { color: #c9d4ff; }
-
-    .meta { color: rgba(243,243,238,0.65); }
 
     .toggle {
       border-color: rgba(255,255,255,0.28);
@@ -289,8 +241,6 @@
 
     details.background,
     details.writing { border-top-color: rgba(255,255,255,0.18); }
-
-    .iconlink:focus-visible { outline-color: rgba(255,255,255,0.35); }
 
     summary:hover,
     summary:focus-visible {
@@ -307,7 +257,8 @@
 </head>
 
 <body>
-  <main>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main">
     <section class="hero">
       <div>
         <h1>Hi, I’m Bas.</h1>
@@ -462,7 +413,7 @@
             <p>Our app Fonoteka, with a subscription tier as low as $1/month, reached number 1 overall in the App Store in most of our markets. It had a never-before-seen subscription model, which you can read about by clicking the Why We Made Fonoteka article below.</p>
 
             <ul class="links">
-              <li><a href="https://basgras.medium.com/why-we-made-fonoteka-b54bde9f6f3d">Why We Made Fonoteka</a></li>
+              <li><a href="/fonoteka">Why We Made Fonoteka</a></li>
             </ul>
           </details>
 
@@ -563,9 +514,12 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var url = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fcalmfluffy.substack.com%2Ffeed';
-    fetch(url)
+    var controller = new AbortController();
+    var timeoutId = setTimeout(function () { controller.abort(); }, 5000);
+    fetch(url, { signal: controller.signal })
       .then(function (r) { return r.json(); })
       .then(function (data) {
+        clearTimeout(timeoutId);
         if (data.status !== 'ok' || !data.items || !data.items.length) return;
         var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         var list = document.getElementById('substack-articles');
@@ -588,5 +542,6 @@
       .catch(function () { /* keep fallback link */ });
   });
 </script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');</script>
 </body>
 </html>
