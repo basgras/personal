@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bas Grasmayer</title>
   <meta name="description" content="Strategist focused on product and organisational development." />
-<link rel="icon" href="/content/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/content/favicon.svg" type="image/svg+xml" />
 
-  
-  <!-- Social preview (Open Graph + Twitter) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Bas Grasmayer" />
   <meta property="og:description" content="Strategist focused on product and organisational development." />
@@ -71,7 +69,6 @@
 
   a { text-underline-offset: 3px; }
 
-  /* Collapsible section titles (Background / Selected writing) */
   .section-summary {
     font-weight: 650;
     font-size: 19px;
@@ -80,7 +77,6 @@
     min-width: 0;
   }
 
-  /* Role titles inside Background */
   .role-title {
     font-weight: 650;
     font-size: 17px;
@@ -89,7 +85,6 @@
     min-width: 0;
   }
 
-  /* Meta dates */
   .meta {
     font-weight: 500;
     font-size: 12.5px;
@@ -98,7 +93,6 @@
     flex: 0 0 auto;
   }
 
-  /* Conditional nowrap override (very narrow screens) */
   @media (max-width: 380px) {
     .meta { white-space: normal; }
   }
@@ -156,7 +150,6 @@
 
   details[open] > summary { margin-bottom: 6px; }
 
-  /* Hover / focus affordance (titles only, no layout shift) */
   summary:hover,
   summary:focus-visible {
     background: rgba(0,0,0,0.03);
@@ -232,8 +225,6 @@
     border-top: 1px solid rgba(0,0,0,0.12);
   }
 
-  /* (Removed details.background[open]::after to avoid double divider before Selected writing) */
-
   /* ─────────────────────────────
      SELECTED WRITING (DISTINCT)
      ───────────────────────────── */
@@ -296,8 +287,7 @@
       opacity: 0.9;
     }
 
-    details.background { border-top-color: rgba(255,255,255,0.18); }
-
+    details.background,
     details.writing { border-top-color: rgba(255,255,255,0.18); }
 
     .iconlink:focus-visible { outline-color: rgba(255,255,255,0.35); }
@@ -369,12 +359,10 @@
           <li>Email: <a href="mailto:bas@grasmayer.com">bas@grasmayer.com</a></li>
         </ul>
 
-        <!-- Photo on mobile (right below Contact) -->
         <div class="card photo-mobile">
           <img class="photo" src="content/basgrasmayer.jpg" alt="Bas Grasmayer" loading="lazy" />
         </div>
 
-        <!-- Background -->
         <details class="background">
           <summary>
             <span class="toggle" aria-hidden="true">
@@ -501,7 +489,6 @@
           </details>
         </details>
 
-        <!-- Selected writing -->
         <details class="writing">
           <summary>
             <span class="toggle" aria-hidden="true">
@@ -528,7 +515,6 @@
           </ul>
         </details>
 
-        <!-- Latest from Calm & Fluffy -->
         <details class="writing">
           <summary>
             <span class="toggle" aria-hidden="true">
@@ -549,7 +535,6 @@
 
       </div>
 
-      <!-- Photo on desktop (right column) -->
       <div class="card photo-wrap-desktop photo-desktop">
         <img class="photo" src="content/basgrasmayer.jpg" alt="Bas Grasmayer" loading="lazy" />
       </div>
