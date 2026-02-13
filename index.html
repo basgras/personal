@@ -544,7 +544,7 @@
                 <path d="M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
               </svg>
             </span>
-            <span class="section-summary">📬 Latest from Calm &amp; Fluffy</span>
+            <span class="section-summary">☁️ Latest from Calm &amp; Fluffy</span>
           </summary>
 
           <ul class="links" id="substack-articles">
@@ -589,13 +589,21 @@
         if (data.status !== 'ok' || !data.items || !data.items.length) return;
         var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         var list = document.getElementById('substack-articles');
-        var html = '';
+        list.innerHTML = '';
         data.items.slice(0, 10).forEach(function (item) {
           var d = new Date(item.pubDate);
           var date = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
-          html += '<li><a href="' + item.link + '">' + item.title + '</a> (Calm &amp; Fluffy, ' + date + ')</li>';
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          var href = String(item.link || '');
+          if (/^https?:\/\//i.test(href)) {
+            a.setAttribute('href', href);
+          }
+          a.textContent = item.title;
+          li.appendChild(a);
+          li.appendChild(document.createTextNode(' (' + date + ')'));
+          list.appendChild(li);
         });
-        list.innerHTML = html;
       })
       .catch(function () { /* keep fallback link */ });
   });
