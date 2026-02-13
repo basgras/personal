@@ -1,0 +1,93 @@
+:root { color-scheme: light; }
+
+body {
+  margin: 0;
+  font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color: #111;
+  background: #FFFDF8;
+}
+
+a {
+  text-underline-offset: 3px;
+}
+
+footer {
+  margin-top: 44px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  align-items: center;
+}
+
+.iconlink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.7;
+  padding: 6px;
+}
+
+.iconlink svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  fill: currentColor;
+}
+
+.iconlink:hover { opacity: 1; }
+
+.iconlink:focus-visible {
+  outline: 2px solid rgba(0,0,0,0.35);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 100;
+  padding: 8px 16px;
+  background: #FFFDF8;
+  color: #111;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+
+/* ─────────────────────────────
+   DARK MODE
+   ───────────────────────────── */
+
+@media (prefers-color-scheme: dark) {
+  body { background: #1f1f1b; color: #f3f3ee; }
+  .meta { color: rgba(243,243,238,0.65); }
+  .iconlink:focus-visible { outline-color: rgba(255,255,255,0.35); }
+  .skip-link { background: #1f1f1b; color: #f3f3ee; }
+}
+
+/* ─────────────────────────────
+   PRINT
+   ───────────────────────────── */
+
+@media print {
+  details { display: block; }
+  details > summary { display: none; }
+  details > *:not(summary) { display: block; }
+  footer { display: none; }
+  body { background: #fff; color: #000; font-size: 12pt; }
+  a { color: #000; text-decoration: underline; }
+}

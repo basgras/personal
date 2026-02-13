@@ -7,18 +7,19 @@
   <meta name="description" content="Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka" />
   <link rel="icon" href="/content/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/content/favicon.svg" />
+  <link rel="stylesheet" href="/shared.css" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Why We Made Fonoteka — Bas Grasmayer" />
+  <meta property="og:description" content="Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka" />
+  <meta property="og:url" content="https://bas.grasmayer.com/fonoteka/" />
+  <meta property="og:image" content="https://bas.grasmayer.com/fonoteka/content/fonoteka-hero.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Why We Made Fonoteka — Bas Grasmayer" />
+  <meta name="twitter:description" content="Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka" />
+  <meta name="twitter:image" content="https://bas.grasmayer.com/fonoteka/content/fonoteka-hero.png" />
 
   <style>
-    :root { color-scheme: light; }
-
-    body {
-      margin: 0;
-      font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color: #111;
-      background: #FFFDF8;
-    }
-
-    a { color: inherit; text-underline-offset: 3px; }
 
     .topbar {
       position: sticky;
@@ -119,54 +120,18 @@
       .end-images { grid-template-columns: 1fr; }
     }
 
-    footer {
-      margin-top: 44px;
-      padding-top: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .iconlink {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: inherit;
-      opacity: 0.7;
-      padding: 6px;
-    }
-
-    .iconlink:hover { opacity: 1; }
-
-    .iconlink:focus-visible {
-      outline: 2px solid rgba(0,0,0,0.35);
-      outline-offset: 2px;
-    }
-
-    .iconlink svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body { background: #1f1f1b; color: #f3f3ee; }
-      .meta { color: rgba(243,243,238,0.65); }
-      .iconlink:focus-visible { outline-color: rgba(255,255,255,0.35); }
-    }
   </style>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="topbar">
     <div class="topbar-inner">
       <a class="back" href="/">← Back to bas.grasmayer.com</a>
     </div>
   </div>
 
-  <main>
+  <main id="main">
     <header>
       <h1>Turn Down the Noise, Turn Up the Music: Why We Made Fonoteka</h1>
       <div class="meta">Originally published Oct 30, 2014</div>
