@@ -110,7 +110,6 @@
       padding: 1rem 0;
     }
 
-    /* Details/summary — matches bas.grasmayer.com exactly */
     details { margin-top: 22px; }
     details:first-child { margin-top: 0; }
 
@@ -149,7 +148,6 @@
       min-width: 0;
     }
 
-    /* Circle +/− toggle — identical to parent site */
     .toggle {
       width: 16px;
       height: 16px;
@@ -251,6 +249,7 @@
     }
 
     .thumb-btn:active { transform: scale(0.93) !important; }
+    .thumb-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
     .thumb-btn.is-up {
       background:   var(--accent);
@@ -310,13 +309,16 @@
       font: inherit;
       font-size: 0.925rem;
       color: var(--text);
-      outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
       -webkit-appearance: none;
     }
 
     .form-input:focus,
-    .form-textarea:focus { border-color: var(--accent); }
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
 
     .form-textarea { min-height: 90px; resize: vertical; }
 
@@ -383,7 +385,7 @@
       display: block;
       width: 100%;
       padding: 0.82rem 1rem;
-      border-radius: 7px;
+      border-radius: 6px;
       background: var(--text);
       color: #fff;
       text-align: center;
@@ -397,6 +399,7 @@
     }
 
     .maps-btn:active { transform: scale(0.98); }
+    .maps-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .maps-btn.is-primary { background: var(--accent); }
 
     /* Maps button is secondary when feedback form is open (thumbs-down state only) */
@@ -466,6 +469,7 @@
     }
 
     .coffee-btn:active { transform: scale(0.97); }
+    .coffee-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
     .kofi-wrap {
       display: none;
@@ -518,6 +522,9 @@
         border-color: rgba(255,255,255,0.18);
         color: #f3f3ee;
       }
+
+      .form-input:focus,
+      .form-textarea:focus { box-shadow: 0 0 0 3px rgba(37,99,235,0.35); }
 
       /* Cards blend into dark background instead of forming raised surfaces */
       .maps-block,
@@ -664,7 +671,7 @@
     ================================================ -->
     <section id="coffee-section" class="section-body" aria-label="Fooi voor de gids">
       <div class="coffee-card">
-        <p class="coffee-heading" id="coffee-heading"></p>
+        <h2 class="coffee-heading" id="coffee-heading"></h2>
         <button
           id="coffee-btn"
           type="button"
