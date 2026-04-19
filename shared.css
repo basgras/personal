@@ -68,20 +68,12 @@ footer {
   overflow: visible;
 }
 
-/* ─────────────────────────────
-   DARK MODE
-   ───────────────────────────── */
-
 @media (prefers-color-scheme: dark) {
   body { background: #1f1f1b; color: #f3f3ee; }
   .meta { color: rgba(243,243,238,0.65); }
   .iconlink:focus-visible { outline-color: rgba(255,255,255,0.35); }
   .skip-link { background: #1f1f1b; color: #f3f3ee; }
 }
-
-/* ─────────────────────────────
-   PRINT
-   ───────────────────────────── */
 
 @media print {
   details { display: block; }
