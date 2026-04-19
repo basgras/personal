@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Persoonlijke tips van je gids na de fietstour — aanbevelingen, recensie en meer.">
+  <link rel="icon" href="/content/favicon.svg" type="image/svg+xml">
   <title>Nog wat tips voor Berlijn</title>
 
   <style>
@@ -81,7 +82,6 @@
       font-weight: 600;
       line-height: 1.12;
       letter-spacing: -0.02em;
-      margin-top: 0.4rem;
     }
 
     /* =====================================================
@@ -100,6 +100,14 @@
       color: var(--text-muted);
       margin-bottom: 22px;
       font-size: 0.95rem;
+    }
+
+    #tips-list { min-height: 340px; }
+
+    .tips-loading {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      padding: 1rem 0;
     }
 
     /* Details/summary — matches bas.grasmayer.com exactly */
@@ -421,6 +429,8 @@
       line-height: 1.5;
     }
 
+    .maps-note:empty { margin-top: 0; }
+
     /* =====================================================
        BUY ME A COFFEE
     ===================================================== */
@@ -444,16 +454,27 @@
       padding: 0.72rem 1.5rem;
       background: var(--accent);
       color: #fff;
+      border: none;
       border-radius: 6px;
       text-decoration: none;
       font: inherit;
       font-size: 0.9rem;
       font-weight: 500;
+      cursor: pointer;
       transition: transform 0.2s ease;
       -webkit-tap-highlight-color: transparent;
     }
 
     .coffee-btn:active { transform: scale(0.97); }
+
+    .kofi-wrap {
+      display: none;
+      margin-top: 1rem;
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+
+    .kofi-wrap.is-open { display: block; }
 
     /* =====================================================
        DARK MODE
@@ -511,8 +532,8 @@
 
       /* Maps button: ghost style instead of a jarring cream block */
       .maps-btn {
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(255,255,255,0.20);
+        background: rgba(255,255,255,0.14);
+        border: 1px solid rgba(255,255,255,0.30);
         color: #f3f3ee;
       }
 
@@ -560,7 +581,6 @@
 
     <!-- Page header -->
     <header class="page-header">
-      <p class="meta" id="page-eyebrow"></p>
       <h1 class="page-title">Nog wat tips voor Berlijn</h1>
     </header>
 
@@ -569,7 +589,7 @@
     ================================================ -->
     <section id="tips-section" class="section-body" aria-label="Tips van de gids">
       <p class="tips-intro" id="tips-intro"></p>
-      <div id="tips-list"></div>
+      <div id="tips-list"><p class="tips-loading">Laden…</p></div>
     </section>
 
     <!-- ================================================
@@ -633,7 +653,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="maps-btn"
-        >Laat een recensie achter op Google Maps</a>
+        >Review op Google Maps</a>
         <p id="maps-note" class="maps-note"></p>
       </div>
     </section>
@@ -644,13 +664,19 @@
     <section id="coffee-section" class="section-body" aria-label="Fooi voor de gids">
       <div class="coffee-card">
         <p class="coffee-heading" id="coffee-heading"></p>
-        <a
+        <button
           id="coffee-btn"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
+          type="button"
           class="coffee-btn"
-        >Naar de fooipot ☕</a>
+        >Naar de fooipot ☕</button>
+        <div id="kofi-wrap" class="kofi-wrap">
+          <iframe
+            id="kofiframe"
+            style="border:none;width:100%;padding:4px;background:#f9f9f9;"
+            height="712"
+            title="tourgidsbas"
+          ></iframe>
+        </div>
       </div>
     </section>
 
@@ -672,13 +698,19 @@
     document.getElementById('maps-btn').href = CONFIG.googleMapsUrl;
 
     var coffeeBtn     = document.getElementById('coffee-btn');
+    var kofiWrap      = document.getElementById('kofi-wrap');
+    var kofiFrame     = document.getElementById('kofiframe');
     var coffeeHeading = document.getElementById('coffee-heading');
-    if (coffeeBtn)     coffeeBtn.href        = CONFIG.buyMeCoffeeUrl;
     if (coffeeHeading) coffeeHeading.textContent =
       'Vond je het nou écht leuk? Dan kun je ' + CONFIG.guideName + ' op een koffie trakteren \u2615';
-
-    document.getElementById('page-eyebrow').textContent =
-      CONFIG.location + ' \u00b7 Fietstour';
+    if (coffeeBtn) coffeeBtn.addEventListener('click', function() {
+      var isOpen = kofiWrap.classList.toggle('is-open');
+      if (isOpen && !kofiFrame.src) {
+        var base = CONFIG.buyMeCoffeeUrl.replace(/\/$/, '');
+        kofiFrame.src = base + '/?hidefeed=true&widget=true&embed=true&preview=true';
+      }
+      coffeeBtn.textContent = isOpen ? 'Sluiten \u2715' : 'Naar de fooipot \u2615';
+    });
 
     document.getElementById('tips-intro').textContent =
       'Ik hoop dat je de tour interessant vond! ' +
@@ -732,7 +764,11 @@
       fetch('tips.csv')
         .then(function(r) { return r.ok ? r.text() : Promise.reject(r.status); })
         .then(function(text) { renderTips(parseCSV(text)); })
-        .catch(function() {});
+        .catch(function() {
+          var container = document.getElementById('tips-list');
+          container.innerHTML = '';
+          container.style.minHeight = '';
+        });
     }
     loadTipsFromCSV();
 
@@ -767,6 +803,9 @@
     // ---- Render tips as native <details>/<summary> groups ----
     function renderTips(tips) {
       var groups = [], groupMap = {};
+      var container = document.getElementById('tips-list');
+      container.innerHTML = '';
+      container.style.minHeight = '';
       tips.forEach(function(tip) {
         if (!groupMap[tip.category]) {
           groupMap[tip.category] = [];
@@ -774,8 +813,6 @@
         }
         groupMap[tip.category].push(tip);
       });
-
-      var container = document.getElementById('tips-list');
 
       groups.forEach(function(group, groupIndex) {
         var details = document.createElement('details');
@@ -845,7 +882,7 @@
       };
       if (state === 'down') return {
         copy: 'Je kunt ook een beoordeling achterlaten op Google Maps.',
-        note: 'Als je de naam ' + n + ' vermeldt, stel ik dat op prijs.'
+        note: ''
       };
       return {
         copy: 'Vond je de tour leuk? Een recensie op Google Maps helpt enorm.',
