@@ -177,7 +177,7 @@
     .tip-list {
       display: flex;
       flex-direction: column;
-      padding-left: 26px; /* aligns under text, past toggle + gap */
+      padding-left: 0;
     }
 
     .tip-card {
@@ -813,6 +813,9 @@
           groups.push({ category: tip.category, items: groupMap[tip.category] });
         }
         groupMap[tip.category].push(tip);
+      });
+      groups.forEach(function(group) {
+        group.items.sort(function(a, b) { return a.title.localeCompare(b.title); });
       });
 
       groups.forEach(function(group, groupIndex) {
