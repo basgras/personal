@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Persoonlijke tips van je gids na de fietstour — aanbevelingen, recensie en meer.">
-  <title>Na de tour · Berlijn</title>
+  <title>Nog wat tips voor Berlijn</title>
 
   <style>
     /* =====================================================
@@ -348,7 +348,7 @@
       border: 1px solid var(--border);
       border-radius: var(--r);
       padding: 1.1rem;
-      background: var(--surface);
+      background: var(--bg);
       transition:
         background    0.35s ease,
         border-color  0.35s ease,
@@ -391,6 +391,28 @@
     .maps-btn:active { transform: scale(0.98); }
     .maps-btn.is-primary { background: var(--accent); }
 
+    /* Maps button is secondary when feedback form is open (thumbs-down state only) */
+    .feedback-wrap.is-open + .maps-block .maps-btn {
+      display: inline-block;
+      width: auto;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 0;
+      border-radius: 0;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transform: none;
+    }
+
+    .feedback-wrap.is-open + .maps-block .maps-btn::after {
+      content: " ↗";
+      display: inline-block;
+      text-decoration: none;
+    }
+
     .maps-note {
       margin-top: 0.55rem;
       font-size: 0.775rem;
@@ -407,7 +429,7 @@
       border-radius: var(--r);
       padding: 1.25rem;
       text-align: center;
-      background: var(--surface);
+      background: var(--bg);
     }
 
     .coffee-heading {
@@ -449,6 +471,10 @@
       .maps-note,
       .feedback-intro { color: rgba(243,243,238,0.65); }
 
+      /* Venue names and headings that hard-code var(--text) need a dark override */
+      .tip-title    { color: #f3f3ee; }
+      .coffee-heading { color: #f3f3ee; }
+
       .toggle { border-color: rgba(255,255,255,0.28); }
 
       summary:hover,
@@ -471,17 +497,50 @@
         color: #f3f3ee;
       }
 
+      /* Cards blend into dark background instead of forming raised surfaces */
       .maps-block,
-      .coffee-card,
-      .feedback-thanks {
-        background: rgba(255,255,255,0.04);
-        border-color: rgba(255,255,255,0.12);
+      .coffee-card {
+        background: transparent;
+        border-color: rgba(255,255,255,0.08);
       }
 
-      .maps-btn,
+      .feedback-thanks {
+        background: rgba(255,255,255,0.04);
+        border-color: rgba(255,255,255,0.10);
+      }
+
+      /* Maps button: ghost style instead of a jarring cream block */
+      .maps-btn {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.20);
+        color: #f3f3ee;
+      }
+
+      .maps-btn.is-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+      /* Thumbs-down state: muted text link stays muted in dark mode */
+      .feedback-wrap.is-open + .maps-block .maps-btn {
+        background: transparent;
+        border: none;
+        color: rgba(243,243,238,0.65);
+      }
+
+      /* Thumbs-up (is-primary) state: dark blue tint instead of jarring light blue */
+      .maps-block.is-primary {
+        background: rgba(37,99,235,0.18);
+        border-color: var(--accent);
+      }
+
+      .maps-copy.is-primary { color: #f3f3ee; }
+
       .form-submit { background: #f3f3ee; color: #111; }
 
-      .maps-btn.is-primary { background: var(--accent); color: #fff; }
+      /* Coffee button: consistent ghost style with maps-btn */
+      .coffee-btn {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.20);
+        color: #f3f3ee;
+      }
 
       .section-body + .section-body { border-top-color: rgba(255,255,255,0.18); }
       .page-header { border-bottom-color: rgba(255,255,255,0.18); }
@@ -502,7 +561,7 @@
     <!-- Page header -->
     <header class="page-header">
       <p class="meta" id="page-eyebrow"></p>
-      <h1 class="page-title">Na de tour</h1>
+      <h1 class="page-title">Nog wat tips voor Berlijn</h1>
     </header>
 
     <!-- ================================================
@@ -560,7 +619,7 @@
           <button type="submit" class="form-submit">Versturen</button>
         </form>
         <div id="feedback-thanks" class="feedback-thanks">
-          Bedankt voor je bericht — dit helpt me de tour te verbeteren.
+          Bedankt voor je bericht. Dit helpt me de tour te verbeteren!
         </div>
       </div>
 
@@ -591,7 +650,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="coffee-btn"
-        >Buy me a coffee ☕</a>
+        >Naar de fooipot ☕</a>
       </div>
     </section>
 
@@ -604,9 +663,9 @@
     var CONFIG = {
       location:       'Berlijn',
       guideName:      'Bas',
-      googleMapsUrl:  'https://maps.google.com/?cid=placeholder',
-      feedbackEmail:  'placeholder@example.com',
-      buyMeCoffeeUrl: 'https://buymeacoffee.com/placeholder'
+      googleMapsUrl:  'https://maps.app.goo.gl/W9QEMyamaupmE3kS8',
+      feedbackEmail:  'bas@grasmayer.com',
+      buyMeCoffeeUrl: 'https://ko-fi.com/tourgidsbas'
     };
 
     // Wire up URLs and dynamic text
@@ -616,14 +675,14 @@
     var coffeeHeading = document.getElementById('coffee-heading');
     if (coffeeBtn)     coffeeBtn.href        = CONFIG.buyMeCoffeeUrl;
     if (coffeeHeading) coffeeHeading.textContent =
-      'De tour bevallen? Trakteer ' + CONFIG.guideName + ' op een koffie \u2615';
+      'Vond je het nou écht leuk? Dan kun je ' + CONFIG.guideName + ' op een koffie trakteren \u2615';
 
     document.getElementById('page-eyebrow').textContent =
       CONFIG.location + ' \u00b7 Fietstour';
 
     document.getElementById('tips-intro').textContent =
-      'Hoop dat je een geweldige tijd hebt gehad \u2014 ' +
-      'dit is wat ik je aanraad in ' + CONFIG.location + '.';
+      'Ik hoop dat je de tour interessant vond! ' +
+      'Dit is een greep uit wat ik je verder nog kan aanraden in ' + CONFIG.location + '.';
 
     // ---- CSV parser ----
     function parseCSVRow(line) {
