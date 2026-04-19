@@ -1,14 +1,16 @@
-# post-tour-qr
+# berlintips
 
-A single-page post-tour guest page for a Berlin bicycle tour guide. Guests scan a QR code at the end of a tour and land here. The page shows personal city tips from the guide, a thumbs-up/down review prompt with a Google Maps link, and a Buy Me a Coffee button.
+A single-page post-tour guest page for a Berlin bicycle tour guide, living at `/berlintips/` inside the `basgras/personal` repo. Guests scan a QR code at the end of a tour and land here. The page shows personal city tips from the guide, a thumbs-up/down review prompt with a Google Maps link, and a Buy Me a Coffee button.
 
 One self-contained HTML file. No frameworks, no build step, no dependencies beyond Google Fonts.
+
+Live at: **bas.grasmayer.com/berlintips**
 
 ---
 
 ## Tips
 
-Tips are loaded from `tips.csv` in the repo root. The CSV must have this header row:
+Tips are loaded from `tips.csv` in the `/berlintips/` folder (the same folder as `index.html`). The CSV must have this header row:
 
 ```
 Name,Description,Category,Neighbourhood,Google Maps URL
@@ -24,13 +26,13 @@ Name,Description,Category,Neighbourhood,Google Maps URL
 
 ## Deploying
 
-This repo is connected to Netlify and deploys automatically on every push to `main`. There is no build step — Netlify serves `index.html` and `tips.csv` directly.
+This sub-project is deployed as part of the `basgras/personal` repo via Netlify. Netlify serves the files in `/berlintips/` directly — no build step, no separate site, no proxy.
 
-To deploy an update:
+To deploy an update, commit and push to `main` from the parent repo root:
 
 ```bash
-git add index.html tips.csv
-git commit -m "Update tips"
+git add berlintips/index.html berlintips/tips.csv
+git commit -m "Update berlintips"
 git push origin main
 ```
 

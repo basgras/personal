@@ -1,6 +1,12 @@
 # CLAUDE.md — Project Brief
 
-This file is a briefing document for future Claude Code sessions working on this project.
+This file is a briefing document for future Claude Code sessions working on this sub-project.
+
+## Sub-project location
+
+This is a sub-project living at `/berlintips/` inside the `basgras/personal` repo. The working directory for all work on this page is `/berlintips/`. `index.html` and `tips.csv` are siblings in that folder — no path changes are needed when editing either file.
+
+The page is served at **bas.grasmayer.com/berlintips** via Netlify. Netlify serves the files in this folder directly as part of the parent site — there is no separate Netlify site, no proxy, and no build step.
 
 ---
 
@@ -97,10 +103,13 @@ Tips come first, review second, coffee third. This order is intentional.
 
 ## File structure
 
+All files live under `/berlintips/` in the parent repo:
+
 ```
-index.html   — the entire product; self-contained, no dependencies except Google Fonts
-tips.csv     — tip data; columns: Name, Description, Category, Neighbourhood, Google Maps URL
-CLAUDE.md    — this file
-CHANGELOG.md — version history
-README.md    — setup and deployment guide
+berlintips/
+  index.html   — the entire product; self-contained, no dependencies except Google Fonts
+  tips.csv     — tip data; columns: Name, Description, Category, Neighbourhood, Google Maps URL
+  CLAUDE.md    — this file
+  CHANGELOG.md — version history
+  README.md    — setup and deployment guide
 ```
