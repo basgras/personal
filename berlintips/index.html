@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Persoonlijke tips van je gids na de fietstour — aanbevelingen, recensie en meer.">
-  <title>Na de tour · Berlijn</title>
+  <title>Nog wat tips voor Berlijn</title>
 
   <style>
     /* =====================================================
@@ -561,7 +561,7 @@
     <!-- Page header -->
     <header class="page-header">
       <p class="meta" id="page-eyebrow"></p>
-      <h1 class="page-title">Na de tour</h1>
+      <h1 class="page-title">Nog wat tips voor Berlijn</h1>
     </header>
 
     <!-- ================================================
@@ -619,7 +619,7 @@
           <button type="submit" class="form-submit">Versturen</button>
         </form>
         <div id="feedback-thanks" class="feedback-thanks">
-          Bedankt voor je bericht — dit helpt me de tour te verbeteren.
+          Bedankt voor je bericht. Dit helpt me de tour te verbeteren!
         </div>
       </div>
 
@@ -650,7 +650,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="coffee-btn"
-        >Buy me a coffee ☕</a>
+        >Naar de fooipot ☕</a>
       </div>
     </section>
 
@@ -663,9 +663,9 @@
     var CONFIG = {
       location:       'Berlijn',
       guideName:      'Bas',
-      googleMapsUrl:  'https://maps.google.com/?cid=placeholder',
-      feedbackEmail:  'placeholder@example.com',
-      buyMeCoffeeUrl: 'https://buymeacoffee.com/placeholder'
+      googleMapsUrl:  'https://maps.app.goo.gl/W9QEMyamaupmE3kS8',
+      feedbackEmail:  'bas@grasmayer.com',
+      buyMeCoffeeUrl: 'https://ko-fi.com/tourgidsbas'
     };
 
     // Wire up URLs and dynamic text
@@ -675,14 +675,14 @@
     var coffeeHeading = document.getElementById('coffee-heading');
     if (coffeeBtn)     coffeeBtn.href        = CONFIG.buyMeCoffeeUrl;
     if (coffeeHeading) coffeeHeading.textContent =
-      'De tour bevallen? Trakteer ' + CONFIG.guideName + ' op een koffie \u2615';
+      'Vond je het nou écht leuk? Dan kun je ' + CONFIG.guideName + ' op een koffie trakteren \u2615';
 
     document.getElementById('page-eyebrow').textContent =
       CONFIG.location + ' \u00b7 Fietstour';
 
     document.getElementById('tips-intro').textContent =
-      'Hoop dat je een geweldige tijd hebt gehad \u2014 ' +
-      'dit is wat ik je aanraad in ' + CONFIG.location + '.';
+      'Ik hoop dat je de tour interessant vond! ' +
+      'Dit is een greep uit wat ik je verder nog kan aanraden in ' + CONFIG.location + '.';
 
     // ---- CSV parser ----
     function parseCSVRow(line) {
