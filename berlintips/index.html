@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Persoonlijke tips van je gids na de fietstour — aanbevelingen, recensie en meer.">
+  <title>Na de tour · Berlijn</title>
+
+  <style>
+    /* =====================================================
+       RESET
+    ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* =====================================================
+       DESIGN TOKENS
+    ===================================================== */
+    :root {
+      color-scheme: light;
+      --bg:         #FFFDF8;
+      --surface:    #fff;
+      --surface-hi: #EFF6FF;
+      --text:       #111;
+      --text-muted: rgba(0,0,0,0.6);
+      --border:     rgba(0,0,0,0.12);
+      --accent:     #2563EB;
+      --r:          10px;
+      --max-w:      480px;
+    }
+
+    /* =====================================================
+       BASE
+    ===================================================== */
+    html { scroll-behavior: smooth; }
+
+    body {
+      font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 4rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-underline-offset: 3px; }
+
+    p { margin: 0 0 14px; }
+
+    /* =====================================================
+       LAYOUT
+    ===================================================== */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* =====================================================
+       TYPOGRAPHY
+    ===================================================== */
+    h1, h2, h3 { font-weight: 600; line-height: 1.25; }
+
+    .meta {
+      font-weight: 500;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* =====================================================
+       PAGE HEADER
+    ===================================================== */
+    .page-header {
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 44px;
+    }
+
+    .page-title {
+      font-size: clamp(32px, 3.4vw, 40px);
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-top: 0.4rem;
+    }
+
+    /* =====================================================
+       SECTION SEPARATORS
+    ===================================================== */
+    .section-body + .section-body {
+      margin-top: 36px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* =====================================================
+       TIPS SECTION
+    ===================================================== */
+    .tips-intro {
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      font-size: 0.95rem;
+    }
+
+    /* Details/summary — matches bas.grasmayer.com exactly */
+    details { margin-top: 22px; }
+    details:first-child { margin-top: 0; }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      border-radius: 8px;
+      flex-wrap: nowrap;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    details[open] > summary { margin-bottom: 6px; }
+
+    summary:hover,
+    summary:focus-visible { background: rgba(0,0,0,0.03); }
+
+    summary:focus-visible { outline: none; }
+
+    summary:hover .section-summary,
+    summary:focus-visible .section-summary {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .section-summary {
+      font-weight: 650;
+      font-size: 17px;
+      line-height: 1.25;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    /* Circle +/− toggle — identical to parent site */
+    .toggle {
+      width: 16px;
+      height: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0,0,0,0.22);
+      border-radius: 999px;
+      flex: 0 0 auto;
+      user-select: none;
+      opacity: 0.85;
+    }
+
+    .toggle svg {
+      width: 10px;
+      height: 10px;
+      display: block;
+      stroke: currentColor;
+    }
+
+    details[open] > summary .icon-plus  { display: none; }
+    details:not([open]) > summary .icon-minus { display: none; }
+
+    /* Tip rows inside an open category */
+    .tip-list {
+      display: flex;
+      flex-direction: column;
+      padding-left: 26px; /* aligns under text, past toggle + gap */
+    }
+
+    .tip-card {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .tip-card:last-child { border-bottom: none; }
+
+    .tip-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0;
+    }
+
+    .tip-neighbourhood {
+      display: inline-block;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .tip-description {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Tip maps link — inherits page link style */
+    .tip-maps-link { font-size: 0.85rem; }
+
+    /* =====================================================
+       REVIEW SECTION
+    ===================================================== */
+    .review-heading {
+      font-size: clamp(19px, 2.1vw, 24px);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+    }
+
+    .thumb-row {
+      display: flex;
+      gap: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .thumb-btn {
+      flex: 1;
+      height: 62px;
+      border: 1px solid rgba(0,0,0,0.18);
+      border-radius: var(--r);
+      background: transparent;
+      font-size: 1.7rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        transform     0.3s  cubic-bezier(0.34, 1.2, 0.64, 1),
+        background    0.25s ease,
+        border-color  0.25s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    .thumb-btn:active { transform: scale(0.93) !important; }
+
+    .thumb-btn.is-up {
+      background:   var(--accent);
+      border-color: var(--accent);
+      transform:    scale(1.05);
+    }
+
+    .thumb-btn.is-down {
+      background:   var(--text);
+      border-color: var(--text);
+      transform:    scale(1.05);
+    }
+
+    /* Feedback form — slides open on thumbs down */
+    .feedback-wrap {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition:
+        max-height     0.45s ease,
+        opacity        0.4s  ease,
+        margin-bottom  0.4s  ease;
+      margin-bottom: 0;
+    }
+
+    .feedback-wrap.is-open {
+      max-height: 480px;
+      opacity: 1;
+      margin-bottom: 1.25rem;
+    }
+
+    .feedback-intro {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .form-field { margin-bottom: 0.9rem; }
+
+    .form-label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .form-input,
+    .form-textarea {
+      display: block;
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      background: var(--bg);
+      border: 1px solid rgba(0,0,0,0.18);
+      border-radius: 6px;
+      font: inherit;
+      font-size: 0.925rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus { border-color: var(--accent); }
+
+    .form-textarea { min-height: 90px; resize: vertical; }
+
+    .form-submit {
+      width: 100%;
+      padding: 0.78rem;
+      background: var(--text);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font: inherit;
+      font-size: 0.925rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .form-submit:active { transform: scale(0.98); }
+
+    .feedback-thanks {
+      display: none;
+      padding: 0.9rem 1rem;
+      background: var(--surface);
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .feedback-thanks.is-shown { display: block; }
+
+    /* Google Maps block — always visible; prominence changes with review state */
+    .maps-block {
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.1rem;
+      background: var(--surface);
+      transition:
+        background    0.35s ease,
+        border-color  0.35s ease,
+        box-shadow    0.35s ease;
+    }
+
+    .maps-block.is-primary {
+      background:   var(--surface-hi);
+      border-color: var(--accent);
+      box-shadow:   0 2px 16px rgba(37, 99, 235, 0.12);
+    }
+
+    .maps-copy {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      line-height: 1.55;
+      transition: color 0.25s ease, font-size 0.25s ease;
+    }
+
+    .maps-copy.is-primary { color: var(--text); font-size: 0.925rem; }
+
+    .maps-btn {
+      display: block;
+      width: 100%;
+      padding: 0.82rem 1rem;
+      border-radius: 7px;
+      background: var(--text);
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font: inherit;
+      font-size: 0.925rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: background 0.25s ease, transform 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .maps-btn:active { transform: scale(0.98); }
+    .maps-btn.is-primary { background: var(--accent); }
+
+    .maps-note {
+      margin-top: 0.55rem;
+      font-size: 0.775rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* =====================================================
+       BUY ME A COFFEE
+    ===================================================== */
+    .coffee-card {
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.25rem;
+      text-align: center;
+      background: var(--surface);
+    }
+
+    .coffee-heading {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .coffee-btn {
+      display: inline-block;
+      padding: 0.72rem 1.5rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: transform 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .coffee-btn:active { transform: scale(0.97); }
+
+    /* =====================================================
+       DARK MODE
+    ===================================================== */
+    @media (prefers-color-scheme: dark) {
+      body { background: #1f1f1b; color: #f3f3ee; }
+
+      a { color: #c9d4ff; }
+
+      .meta,
+      .tips-intro,
+      .tip-neighbourhood,
+      .tip-description,
+      .maps-copy,
+      .maps-note,
+      .feedback-intro { color: rgba(243,243,238,0.65); }
+
+      .toggle { border-color: rgba(255,255,255,0.28); }
+
+      summary:hover,
+      summary:focus-visible { background: rgba(255,255,255,0.06); }
+
+      .tip-card { border-bottom-color: rgba(255,255,255,0.08); }
+
+      .thumb-btn { border-color: rgba(255,255,255,0.22); }
+
+      .thumb-btn.is-down {
+        background:   #f3f3ee;
+        border-color: #f3f3ee;
+        color: #111;
+      }
+
+      .form-input,
+      .form-textarea {
+        background: #1f1f1b;
+        border-color: rgba(255,255,255,0.18);
+        color: #f3f3ee;
+      }
+
+      .maps-block,
+      .coffee-card,
+      .feedback-thanks {
+        background: rgba(255,255,255,0.04);
+        border-color: rgba(255,255,255,0.12);
+      }
+
+      .maps-btn,
+      .form-submit { background: #f3f3ee; color: #111; }
+
+      .maps-btn.is-primary { background: var(--accent); color: #fff; }
+
+      .section-body + .section-body { border-top-color: rgba(255,255,255,0.18); }
+      .page-header { border-bottom-color: rgba(255,255,255,0.18); }
+    }
+
+    /* =====================================================
+       DESKTOP FALLBACK
+    ===================================================== */
+    @media (min-width: 600px) {
+      body { padding-top: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Page header -->
+    <header class="page-header">
+      <p class="meta" id="page-eyebrow"></p>
+      <h1 class="page-title">Na de tour</h1>
+    </header>
+
+    <!-- ================================================
+         SECTION 1: Tips
+    ================================================ -->
+    <section id="tips-section" class="section-body" aria-label="Tips van de gids">
+      <p class="tips-intro" id="tips-intro"></p>
+      <div id="tips-list"></div>
+    </section>
+
+    <!-- ================================================
+         SECTION 2: Review
+    ================================================ -->
+    <section id="review-section" class="section-body" aria-label="Tour beoordelen">
+      <h2 class="review-heading">Hoe was de tour?</h2>
+
+      <div class="thumb-row" role="group" aria-label="Beoordeel de tour">
+        <button
+          id="btn-up"
+          class="thumb-btn"
+          aria-label="Positief"
+          onclick="setReview('up')"
+        >👍</button>
+        <button
+          id="btn-down"
+          class="thumb-btn"
+          aria-label="Negatief"
+          onclick="setReview('down')"
+        >👎</button>
+      </div>
+
+      <!-- Feedback form — slides open only on thumbs down -->
+      <div id="feedback-wrap" class="feedback-wrap" aria-live="polite">
+        <p class="feedback-intro">Jammer — vertel me wat er beter kon.</p>
+        <form id="feedback-form" onsubmit="submitFeedback(event)">
+          <div class="form-field">
+            <label class="form-label" for="f-name">Naam (optioneel)</label>
+            <input
+              id="f-name"
+              class="form-input"
+              type="text"
+              placeholder="Jouw naam"
+              autocomplete="name"
+            >
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-msg">Bericht</label>
+            <textarea
+              id="f-msg"
+              class="form-textarea"
+              required
+              placeholder="Wat kan er beter?"
+            ></textarea>
+          </div>
+          <button type="submit" class="form-submit">Versturen</button>
+        </form>
+        <div id="feedback-thanks" class="feedback-thanks">
+          Bedankt voor je bericht — dit helpt me de tour te verbeteren.
+        </div>
+      </div>
+
+      <!-- Google Maps review link — ALWAYS VISIBLE regardless of which thumb was tapped.
+           Only the visual emphasis changes between states. -->
+      <div id="maps-block" class="maps-block" aria-label="Google Maps recensie">
+        <p id="maps-copy" class="maps-copy"></p>
+        <a
+          id="maps-btn"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="maps-btn"
+        >Laat een recensie achter op Google Maps</a>
+        <p id="maps-note" class="maps-note"></p>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 3: Buy Me a Coffee
+    ================================================ -->
+    <section id="coffee-section" class="section-body" aria-label="Fooi voor de gids">
+      <div class="coffee-card">
+        <p class="coffee-heading" id="coffee-heading"></p>
+        <a
+          id="coffee-btn"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="coffee-btn"
+        >Buy me a coffee ☕</a>
+      </div>
+    </section>
+
+  </div><!-- /.container -->
+
+  <script>
+    // ====================================================================
+    // PERSONALISATION CONFIG
+    // ====================================================================
+    var CONFIG = {
+      location:       'Berlijn',
+      guideName:      'Bas',
+      googleMapsUrl:  'https://maps.google.com/?cid=placeholder',
+      feedbackEmail:  'placeholder@example.com',
+      buyMeCoffeeUrl: 'https://buymeacoffee.com/placeholder'
+    };
+
+    // Wire up URLs and dynamic text
+    document.getElementById('maps-btn').href = CONFIG.googleMapsUrl;
+
+    var coffeeBtn     = document.getElementById('coffee-btn');
+    var coffeeHeading = document.getElementById('coffee-heading');
+    if (coffeeBtn)     coffeeBtn.href        = CONFIG.buyMeCoffeeUrl;
+    if (coffeeHeading) coffeeHeading.textContent =
+      'De tour bevallen? Trakteer ' + CONFIG.guideName + ' op een koffie \u2615';
+
+    document.getElementById('page-eyebrow').textContent =
+      CONFIG.location + ' \u00b7 Fietstour';
+
+    document.getElementById('tips-intro').textContent =
+      'Hoop dat je een geweldige tijd hebt gehad \u2014 ' +
+      'dit is wat ik je aanraad in ' + CONFIG.location + '.';
+
+    // ---- CSV parser ----
+    function parseCSVRow(line) {
+      var result = [], field = '', inQuotes = false;
+      for (var i = 0; i < line.length; i++) {
+        var c = line[i];
+        if (c === '"') {
+          if (inQuotes && line[i + 1] === '"') { field += '"'; i++; }
+          else { inQuotes = !inQuotes; }
+        } else if (c === ',' && !inQuotes) {
+          result.push(field); field = '';
+        } else {
+          field += c;
+        }
+      }
+      result.push(field);
+      return result;
+    }
+
+    function parseCSV(text) {
+      var lines   = text.split(/\r?\n/);
+      if (lines.length < 2) return [];
+      var headers  = parseCSVRow(lines[0]);
+      var nameIdx  = headers.indexOf('Name');
+      var descIdx  = headers.indexOf('Description');
+      var catIdx   = headers.indexOf('Category');
+      var neighIdx = headers.indexOf('Neighbourhood');
+      var mapsIdx  = headers.indexOf('Google Maps URL');
+      var tips = [];
+      for (var i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
+        var cols = parseCSVRow(lines[i]);
+        var name = nameIdx >= 0 ? (cols[nameIdx] || '').trim() : '';
+        if (!name) continue;
+        tips.push({
+          title:         name,
+          description:   descIdx  >= 0 ? (cols[descIdx]  || '').trim() : '',
+          category:      catIdx   >= 0 ? (cols[catIdx]   || '').trim() : '',
+          neighbourhood: neighIdx >= 0 ? (cols[neighIdx] || '').trim() : '',
+          mapsUrl:       mapsIdx  >= 0 ? (cols[mapsIdx]  || '').trim() : ''
+        });
+      }
+      return tips;
+    }
+
+    function loadTipsFromCSV() {
+      fetch('tips.csv')
+        .then(function(r) { return r.ok ? r.text() : Promise.reject(r.status); })
+        .then(function(text) { renderTips(parseCSV(text)); })
+        .catch(function() {});
+    }
+    loadTipsFromCSV();
+
+    // ---- Build the +/− toggle circle (matches bas.grasmayer.com) ----
+    function makeToggle() {
+      var ns   = 'http://www.w3.org/2000/svg';
+      var wrap = document.createElement('span');
+      wrap.className = 'toggle';
+      wrap.setAttribute('aria-hidden', 'true');
+
+      function makeSvg(cls, lines) {
+        var svg = document.createElementNS(ns, 'svg');
+        svg.setAttribute('class', cls);
+        svg.setAttribute('viewBox', '0 0 10 10');
+        svg.setAttribute('fill', 'none');
+        lines.forEach(function(coords) {
+          var line = document.createElementNS(ns, 'line');
+          line.setAttribute('x1', coords[0]); line.setAttribute('y1', coords[1]);
+          line.setAttribute('x2', coords[2]); line.setAttribute('y2', coords[3]);
+          line.setAttribute('stroke-width', '1.5');
+          line.setAttribute('stroke-linecap', 'round');
+          svg.appendChild(line);
+        });
+        return svg;
+      }
+
+      wrap.appendChild(makeSvg('icon-plus',  [[2,5,8,5],[5,2,5,8]]));
+      wrap.appendChild(makeSvg('icon-minus', [[2,5,8,5]]));
+      return wrap;
+    }
+
+    // ---- Render tips as native <details>/<summary> groups ----
+    function renderTips(tips) {
+      var groups = [], groupMap = {};
+      tips.forEach(function(tip) {
+        if (!groupMap[tip.category]) {
+          groupMap[tip.category] = [];
+          groups.push({ category: tip.category, items: groupMap[tip.category] });
+        }
+        groupMap[tip.category].push(tip);
+      });
+
+      var container = document.getElementById('tips-list');
+
+      groups.forEach(function(group, groupIndex) {
+        var details = document.createElement('details');
+        if (groupIndex === 0) details.setAttribute('open', '');
+
+        var summary = document.createElement('summary');
+
+        var label = document.createElement('span');
+        label.className   = 'section-summary';
+        label.textContent = group.category;
+        summary.appendChild(label);
+        summary.appendChild(makeToggle());
+        details.appendChild(summary);
+
+        var list = document.createElement('div');
+        list.className = 'tip-list';
+
+        group.items.forEach(function(tip) {
+          var card = document.createElement('div');
+          card.className = 'tip-card';
+
+          var title = document.createElement('p');
+          title.className   = 'tip-title';
+          title.textContent = tip.title;
+          card.appendChild(title);
+
+          if (tip.neighbourhood) {
+            var neigh = document.createElement('span');
+            neigh.className   = 'tip-neighbourhood';
+            neigh.textContent = tip.neighbourhood;
+            card.appendChild(neigh);
+          }
+
+          if (tip.description) {
+            var desc = document.createElement('p');
+            desc.className   = 'tip-description';
+            desc.textContent = tip.description;
+            card.appendChild(desc);
+          }
+
+          if (tip.mapsUrl) {
+            var mapsLink = document.createElement('a');
+            mapsLink.className   = 'tip-maps-link';
+            mapsLink.href        = tip.mapsUrl;
+            mapsLink.target      = '_blank';
+            mapsLink.rel         = 'noopener noreferrer';
+            mapsLink.textContent = 'Bekijk op Google Maps \u2197';
+            card.appendChild(mapsLink);
+          }
+
+          list.appendChild(card);
+        });
+
+        details.appendChild(list);
+        container.appendChild(details);
+      });
+    }
+
+    // ---- Review state machine ----
+    var reviewState = 'neutral';
+
+    function getMapsTexts(state) {
+      var n = CONFIG.guideName;
+      if (state === 'up') return {
+        copy: 'Super! Deel je ervaring op Google Maps \u2014 dat helpt anderen de tour te vinden.',
+        note: 'Als je de naam ' + n + ' vermeldt, waardeer ik dat enorm.'
+      };
+      if (state === 'down') return {
+        copy: 'Je kunt ook een beoordeling achterlaten op Google Maps.',
+        note: 'Als je de naam ' + n + ' vermeldt, stel ik dat op prijs.'
+      };
+      return {
+        copy: 'Vond je de tour leuk? Een recensie op Google Maps helpt enorm.',
+        note: 'Als je de naam ' + n + ' vermeldt, waardeer ik dat heel erg.'
+      };
+    }
+
+    (function initMaps() {
+      var t = getMapsTexts('neutral');
+      document.getElementById('maps-copy').textContent = t.copy;
+      document.getElementById('maps-note').textContent = t.note;
+    })();
+
+    function setReview(thumb) {
+      var next = (thumb === reviewState) ? 'neutral' : thumb;
+      reviewState = next;
+
+      var btnUp        = document.getElementById('btn-up');
+      var btnDown      = document.getElementById('btn-down');
+      var mapsBlock    = document.getElementById('maps-block');
+      var mapsCopy     = document.getElementById('maps-copy');
+      var mapsBtn      = document.getElementById('maps-btn');
+      var mapsNote     = document.getElementById('maps-note');
+      var feedbackWrap = document.getElementById('feedback-wrap');
+
+      btnUp.classList.remove('is-up');
+      btnDown.classList.remove('is-down');
+      mapsBlock.classList.remove('is-primary');
+      mapsCopy.classList.remove('is-primary');
+      mapsBtn.classList.remove('is-primary');
+
+      var t = getMapsTexts(next);
+      mapsCopy.textContent = t.copy;
+      mapsNote.textContent = t.note;
+
+      if (next === 'up') {
+        btnUp.classList.add('is-up');
+        mapsBlock.classList.add('is-primary');
+        mapsCopy.classList.add('is-primary');
+        mapsBtn.classList.add('is-primary');
+        feedbackWrap.classList.remove('is-open');
+      } else if (next === 'down') {
+        btnDown.classList.add('is-down');
+        feedbackWrap.classList.add('is-open');
+      } else {
+        feedbackWrap.classList.remove('is-open');
+      }
+    }
+
+    // ---- Feedback form submission (mailto fallback) ----
+    function submitFeedback(e) {
+      e.preventDefault();
+      var name = document.getElementById('f-name').value.trim();
+      var msg  = document.getElementById('f-msg').value.trim();
+      if (!msg) return;
+      var body = name ? 'Naam: ' + name + '\n\n' + msg : msg;
+      window.location.href =
+        'mailto:' + CONFIG.feedbackEmail +
+        '?subject=' + encodeURIComponent('Tour feedback') +
+        '&body='    + encodeURIComponent(body);
+      document.getElementById('feedback-form').style.display = 'none';
+      document.getElementById('feedback-thanks').classList.add('is-shown');
+    }
+  </script>
+
+</body>
+</html>
