@@ -348,7 +348,7 @@
       border: 1px solid var(--border);
       border-radius: var(--r);
       padding: 1.1rem;
-      background: var(--surface);
+      background: var(--bg);
       transition:
         background    0.35s ease,
         border-color  0.35s ease,
@@ -391,6 +391,28 @@
     .maps-btn:active { transform: scale(0.98); }
     .maps-btn.is-primary { background: var(--accent); }
 
+    /* Maps button is secondary when feedback form is open (thumbs-down state only) */
+    .feedback-wrap.is-open + .maps-block .maps-btn {
+      display: inline-block;
+      width: auto;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 0;
+      border-radius: 0;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transform: none;
+    }
+
+    .feedback-wrap.is-open + .maps-block .maps-btn::after {
+      content: " ↗";
+      display: inline-block;
+      text-decoration: none;
+    }
+
     .maps-note {
       margin-top: 0.55rem;
       font-size: 0.775rem;
@@ -407,7 +429,7 @@
       border-radius: var(--r);
       padding: 1.25rem;
       text-align: center;
-      background: var(--surface);
+      background: var(--bg);
     }
 
     .coffee-heading {
@@ -449,6 +471,10 @@
       .maps-note,
       .feedback-intro { color: rgba(243,243,238,0.65); }
 
+      /* Venue names and headings that hard-code var(--text) need a dark override */
+      .tip-title    { color: #f3f3ee; }
+      .coffee-heading { color: #f3f3ee; }
+
       .toggle { border-color: rgba(255,255,255,0.28); }
 
       summary:hover,
@@ -471,17 +497,50 @@
         color: #f3f3ee;
       }
 
+      /* Cards blend into dark background instead of forming raised surfaces */
       .maps-block,
-      .coffee-card,
-      .feedback-thanks {
-        background: rgba(255,255,255,0.04);
-        border-color: rgba(255,255,255,0.12);
+      .coffee-card {
+        background: transparent;
+        border-color: rgba(255,255,255,0.08);
       }
 
-      .maps-btn,
+      .feedback-thanks {
+        background: rgba(255,255,255,0.04);
+        border-color: rgba(255,255,255,0.10);
+      }
+
+      /* Maps button: ghost style instead of a jarring cream block */
+      .maps-btn {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.20);
+        color: #f3f3ee;
+      }
+
+      .maps-btn.is-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+      /* Thumbs-down state: muted text link stays muted in dark mode */
+      .feedback-wrap.is-open + .maps-block .maps-btn {
+        background: transparent;
+        border: none;
+        color: rgba(243,243,238,0.65);
+      }
+
+      /* Thumbs-up (is-primary) state: dark blue tint instead of jarring light blue */
+      .maps-block.is-primary {
+        background: rgba(37,99,235,0.18);
+        border-color: var(--accent);
+      }
+
+      .maps-copy.is-primary { color: #f3f3ee; }
+
       .form-submit { background: #f3f3ee; color: #111; }
 
-      .maps-btn.is-primary { background: var(--accent); color: #fff; }
+      /* Coffee button: consistent ghost style with maps-btn */
+      .coffee-btn {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.20);
+        color: #f3f3ee;
+      }
 
       .section-body + .section-body { border-top-color: rgba(255,255,255,0.18); }
       .page-header { border-bottom-color: rgba(255,255,255,0.18); }
