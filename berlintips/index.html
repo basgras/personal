@@ -110,6 +110,26 @@
       padding: 1rem 0;
     }
 
+    .photo-drachenberg {
+      margin-top: 32px;
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+
+    .photo-drachenberg img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .photo-drachenberg figcaption {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+
     details { margin-top: 22px; }
     details:first-child { margin-top: 0; }
 
@@ -486,6 +506,7 @@
       .maps-copy,
       .maps-note,
       .feedback-intro,
+      .photo-drachenberg figcaption,
       .form-label { color: rgba(243,243,238,0.65); }
 
       /* Venue names and headings that hard-code var(--text) need a dark override */
@@ -592,6 +613,10 @@
     <section id="tips-section" class="section-body" aria-label="Tips van de gids">
       <p class="tips-intro" id="tips-intro"></p>
       <div id="tips-list"><p class="tips-loading">Laden…</p></div>
+      <figure class="photo-drachenberg">
+        <img src="drachenberg.jpg" alt="Zonsopkomst vanaf de Drachenberg in Grunewald, Berlijn" loading="lazy">
+        <figcaption>Niet Parijs, maar Berlijn bij zonsopkomst, vanaf de Drachenberg in Grunewald.</figcaption>
+      </figure>
     </section>
 
     <!-- ================================================
@@ -804,7 +829,6 @@
 
       groups.forEach(function(group, groupIndex) {
         var details = document.createElement('details');
-        if (groupIndex === 0) details.setAttribute('open', '');
 
         var summary = document.createElement('summary');
 

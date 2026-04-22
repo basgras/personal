@@ -53,7 +53,7 @@ Empty field rules:
 - `Google Maps URL` missing → tip shown without the Maps link
 - `Neighbourhood` missing → tip shown without the neighbourhood tag
 
-Category order on the page follows first appearance in the CSV. The first category is expanded by default; all others start collapsed.
+Category order on the page follows first appearance in the CSV. All categories start collapsed by default.
 
 ---
 
