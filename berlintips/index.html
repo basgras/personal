@@ -435,8 +435,9 @@
     .maps-note:empty { margin-top: 0; }
 
     /* =====================================================
-       BUY ME A COFFEE
+       BUY ME A COFFEE (disabled)
     ===================================================== */
+    /*
     .coffee-card {
       border: 1px solid var(--border);
       border-radius: var(--r);
@@ -479,6 +480,7 @@
     }
 
     .kofi-wrap.is-open { display: block; }
+    */
 
     /* =====================================================
        DARK MODE
@@ -499,7 +501,7 @@
 
       /* Venue names and headings that hard-code var(--text) need a dark override */
       .tip-title    { color: #f3f3ee; }
-      .coffee-heading { color: #f3f3ee; }
+      /* .coffee-heading { color: #f3f3ee; } */
 
       .toggle { border-color: rgba(255,255,255,0.28); }
 
@@ -527,11 +529,14 @@
       .form-textarea:focus { box-shadow: 0 0 0 3px rgba(37,99,235,0.35); }
 
       /* Cards blend into dark background instead of forming raised surfaces */
-      .maps-block,
-      .coffee-card {
+      .maps-block {
         background: transparent;
         border-color: rgba(255,255,255,0.08);
       }
+      /* .coffee-card {
+        background: transparent;
+        border-color: rgba(255,255,255,0.08);
+      } */
 
       .feedback-thanks {
         background: rgba(255,255,255,0.04);
@@ -565,11 +570,11 @@
       .form-submit { background: #f3f3ee; color: #111; }
 
       /* Coffee button: consistent ghost style with maps-btn */
-      .coffee-btn {
+      /* .coffee-btn {
         background: rgba(255,255,255,0.08);
         border: 1px solid rgba(255,255,255,0.20);
         color: #f3f3ee;
-      }
+      } */
 
       .section-body + .section-body { border-top-color: rgba(255,255,255,0.18); }
       .page-header { border-bottom-color: rgba(255,255,255,0.18); }
@@ -667,8 +672,9 @@
     </section>
 
     <!-- ================================================
-         SECTION 3: Buy Me a Coffee
+         SECTION 3: Buy Me a Coffee (disabled)
     ================================================ -->
+    <!--
     <section id="coffee-section" class="section-body" aria-label="Fooi voor de gids">
       <div class="coffee-card">
         <h2 class="coffee-heading" id="coffee-heading"></h2>
@@ -687,6 +693,7 @@
         </div>
       </div>
     </section>
+    -->
 
   </div><!-- /.container -->
 
@@ -698,13 +705,14 @@
       location:       'Berlijn',
       guideName:      'Bas',
       googleMapsUrl:  'https://maps.app.goo.gl/W9QEMyamaupmE3kS8',
-      feedbackEmail:  'bas@grasmayer.com',
-      buyMeCoffeeUrl: 'https://ko-fi.com/tourgidsbas'
+      feedbackEmail:  'bas@grasmayer.com'
+      // buyMeCoffeeUrl: 'https://ko-fi.com/tourgidsbas'
     };
 
     // Wire up URLs and dynamic text
     document.getElementById('maps-btn').href = CONFIG.googleMapsUrl;
 
+    /* tipping disabled
     var coffeeBtn     = document.getElementById('coffee-btn');
     var kofiWrap      = document.getElementById('kofi-wrap');
     var kofiFrame     = document.getElementById('kofiframe');
@@ -719,6 +727,7 @@
       }
       coffeeBtn.textContent = isOpen ? 'Sluiten \u2715' : 'Naar de fooipot \u2615';
     });
+    */
 
     document.getElementById('tips-intro').textContent =
       'Ik hoop dat je de tour interessant vond! ' +
