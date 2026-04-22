@@ -435,9 +435,8 @@
     .maps-note:empty { margin-top: 0; }
 
     /* =====================================================
-       BUY ME A COFFEE (disabled)
+       BUY ME A COFFEE
     ===================================================== */
-    /*
     .coffee-card {
       border: 1px solid var(--border);
       border-radius: var(--r);
@@ -472,16 +471,6 @@
     .coffee-btn:active { transform: scale(0.97); }
     .coffee-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-    .kofi-wrap {
-      display: none;
-      margin-top: 1rem;
-      border-radius: var(--r);
-      overflow: hidden;
-    }
-
-    .kofi-wrap.is-open { display: block; }
-    */
-
     /* =====================================================
        DARK MODE
     ===================================================== */
@@ -501,7 +490,7 @@
 
       /* Venue names and headings that hard-code var(--text) need a dark override */
       .tip-title    { color: #f3f3ee; }
-      /* .coffee-heading { color: #f3f3ee; } */
+      .coffee-heading { color: #f3f3ee; }
 
       .toggle { border-color: rgba(255,255,255,0.28); }
 
@@ -533,10 +522,10 @@
         background: transparent;
         border-color: rgba(255,255,255,0.08);
       }
-      /* .coffee-card {
+      .coffee-card {
         background: transparent;
         border-color: rgba(255,255,255,0.08);
-      } */
+      }
 
       .feedback-thanks {
         background: rgba(255,255,255,0.04);
@@ -570,11 +559,11 @@
       .form-submit { background: #f3f3ee; color: #111; }
 
       /* Coffee button: consistent ghost style with maps-btn */
-      /* .coffee-btn {
+      .coffee-btn {
         background: rgba(255,255,255,0.08);
         border: 1px solid rgba(255,255,255,0.20);
         color: #f3f3ee;
-      } */
+      }
 
       .section-body + .section-body { border-top-color: rgba(255,255,255,0.18); }
       .page-header { border-bottom-color: rgba(255,255,255,0.18); }
@@ -672,28 +661,20 @@
     </section>
 
     <!-- ================================================
-         SECTION 3: Buy Me a Coffee (disabled)
+         SECTION 3: Buy Me a Coffee
     ================================================ -->
-    <!--
     <section id="coffee-section" class="section-body" aria-label="Fooi voor de gids">
       <div class="coffee-card">
         <h2 class="coffee-heading" id="coffee-heading"></h2>
-        <button
+        <a
           id="coffee-btn"
-          type="button"
+          href="https://buymeacoffee.com/tourgidsbas"
+          target="_blank"
+          rel="noopener noreferrer"
           class="coffee-btn"
-        >Naar de fooipot</button>
-        <div id="kofi-wrap" class="kofi-wrap">
-          <iframe
-            id="kofiframe"
-            style="border:none;width:100%;padding:4px;background:#f9f9f9;"
-            height="712"
-            title="tourgidsbas"
-          ></iframe>
-        </div>
+        >Naar de fooipot ☕</a>
       </div>
     </section>
-    -->
 
   </div><!-- /.container -->
 
@@ -705,29 +686,16 @@
       location:       'Berlijn',
       guideName:      'Bas',
       googleMapsUrl:  'https://maps.app.goo.gl/W9QEMyamaupmE3kS8',
-      feedbackEmail:  'bas@grasmayer.com'
-      // buyMeCoffeeUrl: 'https://ko-fi.com/tourgidsbas'
+      feedbackEmail:  'bas@grasmayer.com',
+      buyMeCoffeeUrl: 'https://buymeacoffee.com/tourgidsbas'
     };
 
     // Wire up URLs and dynamic text
     document.getElementById('maps-btn').href = CONFIG.googleMapsUrl;
 
-    /* tipping disabled
-    var coffeeBtn     = document.getElementById('coffee-btn');
-    var kofiWrap      = document.getElementById('kofi-wrap');
-    var kofiFrame     = document.getElementById('kofiframe');
     var coffeeHeading = document.getElementById('coffee-heading');
     if (coffeeHeading) coffeeHeading.textContent =
       'Vond je het nou écht leuk? Dan kun je ' + CONFIG.guideName + ' op een koffie trakteren \u2615';
-    if (coffeeBtn) coffeeBtn.addEventListener('click', function() {
-      var isOpen = kofiWrap.classList.toggle('is-open');
-      if (isOpen && !kofiFrame.src) {
-        var base = CONFIG.buyMeCoffeeUrl.replace(/\/$/, '');
-        kofiFrame.src = base + '/?hidefeed=true&widget=true&embed=true&preview=true';
-      }
-      coffeeBtn.textContent = isOpen ? 'Sluiten \u2715' : 'Naar de fooipot \u2615';
-    });
-    */
 
     document.getElementById('tips-intro').textContent =
       'Ik hoop dat je de tour interessant vond! ' +
