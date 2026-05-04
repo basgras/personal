@@ -680,14 +680,15 @@
           target="_blank"
           rel="noopener noreferrer"
           class="maps-btn"
-        >Review op Google Maps</a>
+        >Review op Google Maps </a>
         <p id="maps-note" class="maps-note"></p>
       </div>
     </section>
 
     <!-- ================================================
-         SECTION 3: Buy Me a Coffee
+         SECTION 3: Buy Me a Coffee (disabled)
     ================================================ -->
+    <!--
     <section id="coffee-section" class="section-body" aria-label="Fooi voor de gids">
       <div class="coffee-card">
         <h2 class="coffee-heading" id="coffee-heading"></h2>
@@ -700,6 +701,7 @@
         >Naar de fooipot ☕</a>
       </div>
     </section>
+    -->
 
   </div><!-- /.container -->
 
@@ -712,15 +714,15 @@
       guideName:      'Bas',
       googleMapsUrl:  'https://maps.app.goo.gl/W9QEMyamaupmE3kS8',
       feedbackEmail:  'bas@grasmayer.com',
-      buyMeCoffeeUrl: 'https://buymeacoffee.com/tourgidsbas'
+      // buyMeCoffeeUrl: 'https://buymeacoffee.com/tourgidsbas'
     };
 
     // Wire up URLs and dynamic text
     document.getElementById('maps-btn').href = CONFIG.googleMapsUrl;
 
-    var coffeeHeading = document.getElementById('coffee-heading');
-    if (coffeeHeading) coffeeHeading.textContent =
-      'Vond je het nou écht leuk? Dan kun je ' + CONFIG.guideName + ' op een koffie trakteren \u2615';
+    // var coffeeHeading = document.getElementById('coffee-heading');
+    // if (coffeeHeading) coffeeHeading.textContent =
+      // 'Vond je het nou écht leuk? Dan kun je ' + CONFIG.guideName + ' op een koffie trakteren \u2615';
 
     document.getElementById('tips-intro').textContent =
       'Ik hoop dat je de tour interessant vond! ' +
