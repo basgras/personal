@@ -1,2 +1,17 @@
+/
+  Cache-Control: no-cache
+
+/fonoteka
+  Cache-Control: no-cache
+
+/fonoteka/
+  Cache-Control: no-cache
+
+/berlintips
+  Cache-Control: no-cache
+
+/berlintips/
+  Cache-Control: no-cache
+
 /*.html
   Cache-Control: no-cache
