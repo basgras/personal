@@ -22,15 +22,6 @@ robots.txt              Search engine crawling rules
 sitemap.xml             XML sitemap
 ```
 
-## Running locally
-
-Open `index.html` in a browser, or serve with any static file server:
-
-```sh
-python3 -m http.server 8000
-# then open http://localhost:8000
-```
-
 ## External dependency
 
 The homepage fetches the latest [Calm & Fluffy](https://calmfluffy.substack.com/) articles at runtime via the [rss2json](https://rss2json.com/) API. If the fetch fails or times out (5 s), a static fallback link is shown.
