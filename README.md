@@ -28,4 +28,4 @@ The homepage fetches the latest [Calm & Fluffy](https://calmfluffy.substack.com/
 
 ## Service worker
 
-`sw.js` caches both pages and all images for offline viewing using a cache-first strategy. When updating the site, bump the `CACHE_NAME` version string in `sw.js` so returning visitors get the new content.
+`sw.js` caches pages and images for offline viewing. Pages and CSS are network-first (always fresh when online, cache only as offline fallback); images are stale-while-revalidate. Content updates reach returning visitors automatically — no need to bump `CACHE_NAME`. Only bump it if you change the caching logic itself and want old caches wiped.
