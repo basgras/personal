@@ -33,10 +33,16 @@
     align-items: start;
   }
 
-  @media (min-width: 860px) {
+  /* Keep single-column text within a comfortable measure (~45–75 characters per line) */
+  @media (max-width: 599px) {
+    .hero > :first-child { max-width: 30em; }
+  }
+
+  /* Photo column scales with the viewport so text stays beside it at tablet widths */
+  @media (min-width: 600px) {
     .hero {
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 44px;
+      grid-template-columns: minmax(0, 1fr) clamp(200px, 34vw, 350px);
+      gap: clamp(28px, 4vw, 44px);
     }
   }
 
@@ -106,14 +112,14 @@
     object-fit: cover;
   }
 
-  @media (min-width: 860px) {
+  @media (min-width: 600px) {
     .photo-wrap-desktop { margin-top: 58px; }
   }
 
-  .photo-mobile { display: block; margin-top: 16px; }
+  .photo-mobile { display: block; margin-top: 16px; max-width: 280px; }
   .photo-desktop { display: none; }
 
-  @media (min-width: 860px) {
+  @media (min-width: 600px) {
     .photo-mobile { display: none; }
     .photo-desktop { display: block; }
   }
