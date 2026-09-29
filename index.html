@@ -169,8 +169,30 @@
     stroke: currentColor;
   }
 
-  details[open] > summary .icon-plus { display: none; }
-  details:not([open]) > summary .icon-minus { display: none; }
+  .toggle { position: relative; }
+
+  .toggle svg {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  details[open] > summary .icon-plus { transform: rotate(90deg); opacity: 0; }
+  details:not([open]) > summary .icon-minus { transform: rotate(-90deg); opacity: 0; }
+
+  /* Smoothly animate details open/close where supported; elsewhere they snap as before. */
+  @supports (interpolate-size: allow-keywords) {
+    :root { interpolate-size: allow-keywords; }
+
+    details::details-content {
+      block-size: 0;
+      overflow-y: clip;
+      transition: block-size 0.35s ease, content-visibility 0.35s allow-discrete;
+    }
+
+    details[open]::details-content { block-size: auto; }
+  }
 
   .role {
     margin-top: 18px;
@@ -194,6 +216,80 @@
     aspect-ratio: 16 / 9;
     border: 0;
     display: block;
+  }
+
+  .emoji { display: inline-block; }
+
+  .emoji.wave {
+    transform-origin: 70% 80%;
+    animation: wave 1.8s ease-in-out 0.4s;
+  }
+  h1:hover .emoji.wave { animation: wave-again 1.8s ease-in-out; }
+
+  h2:hover .emoji.hop { animation: hop 0.6s ease-out; }
+
+  .emoji.sway { transform-origin: 50% 100%; }
+  summary:hover .emoji.sway,
+  summary:focus-visible .emoji.sway,
+  details[open] > summary .emoji.sway { animation: sway 1s ease-in-out; }
+
+  summary:hover .emoji.scribble,
+  summary:focus-visible .emoji.scribble { animation: scribble 0.6s ease-in-out; }
+
+  summary:hover .emoji.drift,
+  summary:focus-visible .emoji.drift { animation: drift 3s ease-in-out infinite; }
+
+  h2:hover .emoji.drop { animation: drop 0.5s ease-in-out; }
+
+  @keyframes wave {
+    0%, 60%, 100% { transform: rotate(0); }
+    10%, 30% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+  }
+  @keyframes wave-again {
+    0%, 60%, 100% { transform: rotate(0); }
+    10%, 30% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+  }
+  @keyframes hop {
+    0%, 100% { transform: translateY(0) scale(1, 1); }
+    15% { transform: translateY(0) scale(1.1, 0.9); }
+    45% { transform: translateY(-7px) scale(0.95, 1.05); }
+    75% { transform: translateY(0) scale(1.05, 0.95); }
+  }
+  @keyframes sway {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-8deg); }
+    55% { transform: rotate(6deg); }
+    80% { transform: rotate(-3deg); }
+  }
+  @keyframes scribble {
+    0%, 100% { transform: translate(0, 0); }
+    20% { transform: translate(2px, -1px) rotate(-6deg); }
+    40% { transform: translate(-1px, 1px) rotate(4deg); }
+    60% { transform: translate(2px, 0) rotate(-6deg); }
+    80% { transform: translate(-1px, -1px) rotate(3deg); }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translateX(0); }
+    35% { transform: translateX(4px) translateY(-1px); }
+    70% { transform: translateX(-3px); }
+  }
+  @keyframes drop {
+    0%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-4px); }
+    65% { transform: translateY(1px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after, ::details-content {
+      animation: none !important;
+      transition: none !important;
+    }
   }
 
   details.background {
@@ -238,14 +334,14 @@
   <main id="main">
     <section class="hero">
       <div>
-        <h1>Hi, I’m Bas.</h1>
+        <h1>Hi, I’m Bas. <span class="emoji wave">👋</span></h1>
 
         <p>
           I’m a Berlin-based strategist focused on product and organisational development, interested in how ideas survive contact with
           reality. I help teams turn complex ideas into execution through strategy, workshops, and hands-on leadership.
         </p>
 
-        <h2>🐿️ In a nutshell</h2>
+        <h2><span class="emoji hop">🐿️</span> In a nutshell</h2>
 
         <p>
           Currently executing growth strategy at <a href="https://vandall.com/">Vandall</a>, the collaboration platform for music creators, labels, and publishers.
@@ -283,7 +379,7 @@
           For public speaking, workshops, consultancy, or other forms of collaboration, please reach out using the contact details below.
         </p>
 
-        <h2>📨 Contact</h2>
+        <h2><span class="emoji drop">📨</span> Contact</h2>
         <p>The best ways to reach out to me:</p>
         <ul>
           <li>LinkedIn: <a href="https://www.linkedin.com/in/grasmayer/">https://www.linkedin.com/in/grasmayer/</a></li>
@@ -305,7 +401,7 @@
                 <path d="M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
               </svg>
             </span>
-            <span class="section-summary">🌳 Background</span>
+            <span class="section-summary"><span class="emoji sway">🌳</span> Background</span>
           </summary>
 
           <div class="bg-intro">
@@ -431,7 +527,7 @@
                 <path d="M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
               </svg>
             </span>
-            <span class="section-summary">✍️ Selected writing</span>
+            <span class="section-summary"><span class="emoji scribble">✍️</span> Selected writing</span>
           </summary>
 
           <ul class="links">
@@ -457,7 +553,7 @@
                 <path d="M1 6h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
               </svg>
             </span>
-            <span class="section-summary">☁️ Latest from Calm &amp; Fluffy</span>
+            <span class="section-summary"><span class="emoji drift">☁️</span> Latest from Calm &amp; Fluffy</span>
           </summary>
 
           <ul class="links" id="substack-articles">
