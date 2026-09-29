@@ -1,6 +1,6 @@
 // Pages and CSS: network-first, so returning visitors always get the latest
 // version when online; the cache is only an offline fallback.
-// Images: stale-while-revalidate, so they load instantly and refresh in the
+// Images and fonts: stale-while-revalidate, so they load instantly and refresh in the
 // background. No need to bump CACHE_NAME when updating content.
 var CACHE_NAME = 'basgrasmayer-v2';
 var URLS_TO_CACHE = [
@@ -9,6 +9,7 @@ var URLS_TO_CACHE = [
   '/fonoteka/',
   '/content/basgrasmayer.jpg',
   '/content/favicon.svg',
+  '/content/fonts/fraunces-latin.woff2',
   '/fonoteka/content/fonoteka-hero.png',
   '/fonoteka/content/fonoteka1.png',
   '/fonoteka/content/fonoteka2.png',
@@ -69,7 +70,7 @@ self.addEventListener('fetch', function (e) {
 
   if (request.mode === 'navigate' || request.destination === 'style') {
     e.respondWith(networkFirst(request));
-  } else if (request.destination === 'image') {
+  } else if (request.destination === 'image' || request.destination === 'font') {
     e.respondWith(staleWhileRevalidate(request));
   }
 });
