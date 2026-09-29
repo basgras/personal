@@ -16,7 +16,7 @@ fonoteka/index.html     Fonoteka case study article
 shared.css              Shared styles (footer, dark mode, print, skip-link)
 sw.js                   Service worker for offline caching
 404.html                Custom 404 page
-content/                Images and favicon for the main site
+content/                Images, favicon and self-hosted Fraunces font for the main site
 fonoteka/content/       Images for the Fonoteka article
 robots.txt              Search engine crawling rules
 sitemap.xml             XML sitemap
