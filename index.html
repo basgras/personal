@@ -14,11 +14,11 @@
   <meta property="og:title" content="Bas Grasmayer" />
   <meta property="og:description" content="Strategist focused on product and organisational development." />
   <meta property="og:url" content="https://bas.grasmayer.com/" />
-  <meta property="og:image" content="https://bas.grasmayer.com/content/basgrasmayer.jpg" />
+  <meta property="og:image" content="https://bas.grasmayer.com/content/basgrasmayer-2026.jpg" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Bas Grasmayer" />
   <meta name="twitter:description" content="Strategist focused on product and organisational development." />
-  <meta name="twitter:image" content="https://bas.grasmayer.com/content/basgrasmayer.jpg" />
+  <meta name="twitter:image" content="https://bas.grasmayer.com/content/basgrasmayer-2026.jpg" />
 
 <style>
   @font-face {
@@ -116,6 +116,7 @@
   }
 
   .card {
+    margin: 0;
     padding: 0;
     border: none;
     border-radius: 12px;
@@ -133,6 +134,17 @@
 
   @media (min-width: 600px) {
     .photo-wrap-desktop { margin-top: 58px; }
+  }
+
+  .photo-credit {
+    margin-top: 8px;
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: rgba(0,0,0,0.6);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .photo-credit { color: rgba(243,243,238,0.65); }
   }
 
   .photo-mobile { display: block; margin-top: 16px; max-width: 280px; }
@@ -420,9 +432,10 @@
           <li>Email: <a href="mailto:bas@grasmayer.com">bas@grasmayer.com</a></li>
         </ul>
 
-        <div class="card photo-mobile">
-          <img class="photo" src="content/basgrasmayer.jpg" alt="Bas Grasmayer" loading="lazy" />
-        </div>
+        <figure class="card photo-mobile">
+          <img class="photo" src="content/basgrasmayer-2026.jpg" alt="Bas Grasmayer" loading="lazy" />
+          <figcaption class="photo-credit">MIL Lisboa 2026 keynote, Hopecore. Photo:&nbsp;©&nbsp;Filipe&nbsp;Gonçalves</figcaption>
+        </figure>
 
         <details class="background">
           <summary>
@@ -596,9 +609,10 @@
 
       </div>
 
-      <div class="card photo-wrap-desktop photo-desktop">
-        <img class="photo" src="content/basgrasmayer.jpg" alt="Bas Grasmayer" loading="lazy" />
-      </div>
+      <figure class="card photo-wrap-desktop photo-desktop">
+        <img class="photo" src="content/basgrasmayer-2026.jpg" alt="Bas Grasmayer" loading="lazy" />
+        <figcaption class="photo-credit">MIL Lisboa 2026 keynote, Hopecore. Photo:&nbsp;©&nbsp;Filipe&nbsp;Gonçalves</figcaption>
+      </figure>
     </section>
 
     <footer aria-label="Social links">

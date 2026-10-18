@@ -2,12 +2,12 @@
 // version when online; the cache is only an offline fallback.
 // Images and fonts: stale-while-revalidate, so they load instantly and refresh in the
 // background. No need to bump CACHE_NAME when updating content.
-var CACHE_NAME = 'basgrasmayer-v2';
+var CACHE_NAME = 'basgrasmayer-v3';
 var URLS_TO_CACHE = [
   '/',
   '/shared.css',
   '/fonoteka/',
-  '/content/basgrasmayer.jpg',
+  '/content/basgrasmayer-2026.jpg',
   '/content/favicon.svg',
   '/content/fonts/fraunces-latin.woff2',
   '/fonoteka/content/fonoteka-hero.png',
